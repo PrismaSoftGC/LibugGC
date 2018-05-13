@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Maio-2018 às 21:15
+-- Generation Time: 13-Maio-2018 às 23:36
 -- Versão do servidor: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -31,26 +31,24 @@ USE `biblioteca`;
 CREATE TABLE `autor` (
   `codigoAutor` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
-  `status` varchar(45) NOT NULL,
-  `conteudo` varchar(45) NOT NULL,
-  `cpf` varchar(12) NOT NULL
+  `status` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `autor`
 --
 
-INSERT INTO `autor` (`codigoAutor`, `nome`, `status`, `conteudo`, `cpf`) VALUES
-(22, 'MACHADO DE ASSIS', 'Ativado', 'POESIA', '2322344'),
-(23, 'CARLOS DRUMOMOND', 'Ativado', 'SONETO', '2233309909'),
-(24, 'JORGE AMADO', 'Ativado', 'NAO LEMBRO', '3340000'),
-(25, 'GUIMARAES ', 'Ativado', 'PIOROU', '877778'),
-(26, 'CLARISSE LIS', 'Ativado', 'LASCOU', '99900'),
-(27, 'ADEJAR', 'Ativado', 'NAO SEI', '344'),
-(28, 'ADEJAIR', 'Desativado', 'JJ', '009999'),
-(29, 'ANDRE', 'Ativado', 'RGR', '12345'),
-(30, 'jamel da silva', 'Ativado', '', '34343434'),
-(31, 'MARIA BARBOSA', 'Ativado', 'INFANTIL', '3343444');
+INSERT INTO `autor` (`codigoAutor`, `nome`, `status`) VALUES
+(22, 'MACHADO DE ASSIS', 'Ativado'),
+(23, 'CARLOS DRUMOMOND', 'Ativado'),
+(24, 'JORGE AMADO', 'Ativado'),
+(25, 'GUIMARAES ', 'Ativado'),
+(26, 'CLARISSE LIS', 'Ativado'),
+(27, 'ADEJAR', 'Ativado'),
+(28, 'ADEJAIR', 'Desativado'),
+(29, 'ANDRE', 'Ativado'),
+(30, 'jamel da silva', 'Ativado'),
+(31, 'MARIA BARBOSA', 'Ativado');
 
 -- --------------------------------------------------------
 
@@ -181,7 +179,6 @@ CREATE TABLE `editora` (
   `nomeFantasia` varchar(45) NOT NULL,
   `razaoSocial` varchar(45) NOT NULL,
   `cnpj` varchar(20) NOT NULL,
-  `endereco_codigoEndereco` int(11) NOT NULL,
   `telefone_codigoTelefone` int(11) NOT NULL,
   `status` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -190,13 +187,13 @@ CREATE TABLE `editora` (
 -- Extraindo dados da tabela `editora`
 --
 
-INSERT INTO `editora` (`codigoEditora`, `nomeFantasia`, `razaoSocial`, `cnpj`, `endereco_codigoEndereco`, `telefone_codigoTelefone`, `status`) VALUES
-(11, 'GLOBO', 'rodruiges e dutra ltda', '434343', 0, 0, 'Desativado'),
-(12, 'SEXTANTE', 'NAO INFORMADO', '34343435599', 0, 0, 'Ativado'),
-(13, 'VEJA', 'VEJA EDICAO LTDA ERELI', '343434356', 0, 0, 'Ativado'),
-(14, 'EDIOURO', 'SIGILOSO', '3434', 0, 0, 'Ativado'),
-(15, 'RECORD', 'CRISTIAN AMPERES', '1111', 0, 0, 'Desativado'),
-(16, 'UNIRV-RV', 'UNIRV', '123456789', 0, 0, 'Ativado');
+INSERT INTO `editora` (`codigoEditora`, `nomeFantasia`, `razaoSocial`, `cnpj`, `telefone_codigoTelefone`, `status`) VALUES
+(11, 'GLOBO', 'rodruiges e dutra ltda', '434343', 0, 'Desativado'),
+(12, 'SEXTANTE', 'NAO INFORMADO', '34343435599', 0, 'Ativado'),
+(13, 'VEJA', 'VEJA EDICAO LTDA ERELI', '343434356', 0, 'Ativado'),
+(14, 'EDIOURO', 'SIGILOSO', '3434', 0, 'Ativado'),
+(15, 'RECORD', 'CRISTIAN AMPERES', '1111', 0, 'Desativado'),
+(16, 'UNIRV-RV', 'UNIRV', '123456789', 0, 'Ativado');
 
 -- --------------------------------------------------------
 
@@ -267,8 +264,9 @@ INSERT INTO `emprestimo` (`codigoEmprestimo`, `funcionario_codigoFuncionario`, `
 
 CREATE TABLE `endereco` (
   `codigoEndereco` int(11) NOT NULL,
-  `codigoCliente` int(11) DEFAULT NULL,
-  `cidade_codigoCidade` int(11) NOT NULL,
+  `cliente_codigoCliente` int(11) DEFAULT NULL,
+  `cidade_codigoCidade` int(11) DEFAULT NULL,
+  `editora_codigoEditora` int(11) DEFAULT NULL,
   `rua` varchar(45) DEFAULT NULL,
   `bairro` varchar(45) DEFAULT NULL,
   `complemento` varchar(45) DEFAULT NULL
@@ -278,15 +276,15 @@ CREATE TABLE `endereco` (
 -- Extraindo dados da tabela `endereco`
 --
 
-INSERT INTO `endereco` (`codigoEndereco`, `codigoCliente`, `cidade_codigoCidade`, `rua`, `bairro`, `complemento`) VALUES
-(1, 1, 0, 'MARIA MERQUEDES', 'MARANATA', 'Q.32 LT.10'),
-(2, 1, 0, 'Av. Engenheiro ', 'Eusébio Stevaux', '823'),
-(3, 2, 0, 'R João Vaiano', 'Vitória RégiA', '440 - LT 2 A SL A'),
-(4, 2, 0, 'Av. Tocantins', 'St. Central', 'N 675'),
-(5, 2, 0, 'Av. Pres. Vargas', 'CENTRO', '1997'),
-(6, 3, 0, 'Av. Cândido de Abreu', 'centro', 'n 817'),
-(7, 3, 0, 'Av. Anhanguera', 'St.Central', '4603'),
-(8, 4, 0, 'Norte Rua', 'NORTE', ' Q. 104 ');
+INSERT INTO `endereco` (`codigoEndereco`, `cliente_codigoCliente`, `cidade_codigoCidade`, `editora_codigoEditora`, `rua`, `bairro`, `complemento`) VALUES
+(1, 1, 0, NULL, 'MARIA MERQUEDES', 'MARANATA', 'Q.32 LT.10'),
+(2, 1, 0, NULL, 'Av. Engenheiro ', 'Eusébio Stevaux', '823'),
+(3, 2, 0, NULL, 'R João Vaiano', 'Vitória RégiA', '440 - LT 2 A SL A'),
+(4, 2, 0, NULL, 'Av. Tocantins', 'St. Central', 'N 675'),
+(5, 2, 0, NULL, 'Av. Pres. Vargas', 'CENTRO', '1997'),
+(6, 3, 0, NULL, 'Av. Cândido de Abreu', 'centro', 'n 817'),
+(7, 3, 0, NULL, 'Av. Anhanguera', 'St.Central', '4603'),
+(8, 4, 0, NULL, 'Norte Rua', 'NORTE', ' Q. 104 ');
 
 -- --------------------------------------------------------
 
@@ -297,19 +295,6 @@ INSERT INTO `endereco` (`codigoEndereco`, `codigoCliente`, `cidade_codigoCidade`
 CREATE TABLE `estado` (
   `codigoEstado` int(11) NOT NULL,
   `nome` varchar(30) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `estoque`
---
-
-CREATE TABLE `estoque` (
-  `codigoEstoque` int(11) NOT NULL,
-  `obra_codigoObra` int(11) NOT NULL,
-  `qtdTotal` int(11) NOT NULL,
-  `qtdDisponivel` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -326,26 +311,28 @@ CREATE TABLE `obra` (
   `cidade_codigoCidade` int(11) DEFAULT NULL,
   `edicao` int(11) DEFAULT NULL,
   `ano` year(4) NOT NULL,
-  `categoria_codigoCategoria` int(11) DEFAULT NULL,
+  `categoria_codigoCategoria` int(11) NOT NULL,
   `situacao` varchar(12) NOT NULL,
   `status` varchar(12) NOT NULL,
-  `codBarras` varchar(50) DEFAULT NULL
+  `codBarras` varchar(50) DEFAULT NULL,
+  `qtdEstoqueTotal` int(11) NOT NULL,
+  `qtdEstoqueDisponivel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `obra`
 --
 
-INSERT INTO `obra` (`codigoObra`, `titulo`, `subtitulo`, `editora_codigoEditora`, `cidade_codigoCidade`, `edicao`, `ano`, `categoria_codigoCategoria`, `situacao`, `status`, `codBarras`) VALUES
-(24, 'DOM CASMURRO', NULL, 14, NULL, 1, 0000, NULL, 'Emprestado', 'Ativado', NULL),
-(25, 'A ROSA DO POVO', NULL, 12, NULL, 3, 0000, NULL, 'Emprestado', 'Ativado', NULL),
-(26, 'CAPITAES DA AREIA', NULL, 13, NULL, 4, 0000, NULL, 'Emprestado', 'Ativado', NULL),
-(27, 'COMPILADORES', NULL, 13, NULL, 1, 0000, NULL, 'Prateleira', 'Ativado', NULL),
-(28, 'CADILACKES', NULL, 12, NULL, 4, 0000, NULL, 'Emprestado', 'Ativado', NULL),
-(29, 'a culpa', NULL, 12, NULL, 5, 0000, NULL, 'Emprestado', 'Ativado', NULL),
-(30, 'A CRUZ PERDIDA', NULL, 14, NULL, 1, 0000, NULL, 'Emprestado', 'Ativado', NULL),
-(31, 'o poeta', NULL, 12, NULL, 877, 0000, NULL, 'Emprestado', 'Ativado', NULL),
-(32, 'HARRY POTTER', NULL, 12, NULL, 5, 0000, NULL, 'Emprestado', 'Ativado', NULL);
+INSERT INTO `obra` (`codigoObra`, `titulo`, `subtitulo`, `editora_codigoEditora`, `cidade_codigoCidade`, `edicao`, `ano`, `categoria_codigoCategoria`, `situacao`, `status`, `codBarras`, `qtdEstoqueTotal`, `qtdEstoqueDisponivel`) VALUES
+(24, 'DOM CASMURRO', NULL, 14, NULL, 1, 0000, 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(25, 'A ROSA DO POVO', NULL, 12, NULL, 3, 0000, 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(26, 'CAPITAES DA AREIA', NULL, 13, NULL, 4, 0000, 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(27, 'COMPILADORES', NULL, 13, NULL, 1, 0000, 0, 'Prateleira', 'Ativado', NULL, 0, 0),
+(28, 'CADILACKES', NULL, 12, NULL, 4, 0000, 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(29, 'a culpa', NULL, 12, NULL, 5, 0000, 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(30, 'A CRUZ PERDIDA', NULL, 14, NULL, 1, 0000, 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(31, 'o poeta', NULL, 12, NULL, 877, 0000, 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(32, 'HARRY POTTER', NULL, 12, NULL, 5, 0000, 0, 'Emprestado', 'Ativado', NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -428,12 +415,6 @@ ALTER TABLE `estado`
   ADD PRIMARY KEY (`codigoEstado`);
 
 --
--- Indexes for table `estoque`
---
-ALTER TABLE `estoque`
-  ADD PRIMARY KEY (`codigoEstoque`);
-
---
 -- Indexes for table `obra`
 --
 ALTER TABLE `obra`
@@ -496,11 +477,6 @@ ALTER TABLE `endereco`
 --
 ALTER TABLE `estado`
   MODIFY `codigoEstado` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `estoque`
---
-ALTER TABLE `estoque`
-  MODIFY `codigoEstoque` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `obra`
 --
