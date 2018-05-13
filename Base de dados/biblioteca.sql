@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 06-Maio-2018 às 18:06
--- Versão do servidor: 10.1.29-MariaDB
--- PHP Version: 7.1.12
+-- Generation Time: 13-Maio-2018 às 21:15
+-- Versão do servidor: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -118,6 +116,29 @@ INSERT INTO `aux_emprestimo_obra` (`codigoEmprestimo`, `codigoObra`, `chegada`) 
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `codigoCategoria` int(11) NOT NULL,
+  `nome` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cidade`
+--
+
+CREATE TABLE `cidade` (
+  `codigoCidade` int(11) NOT NULL,
+  `nome` varchar(30) NOT NULL,
+  `estado_codigoEstado` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `cliente`
 --
 
@@ -127,30 +148,27 @@ CREATE TABLE `cliente` (
   `status` varchar(11) NOT NULL,
   `cpf` varchar(100) NOT NULL,
   `idade` int(11) NOT NULL,
-  `rua` varchar(50) DEFAULT NULL,
-  `bairro` varchar(30) DEFAULT NULL,
-  `complemento` varchar(30) DEFAULT NULL,
-  `cidade` varchar(50) DEFAULT NULL
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `cliente`
 --
 
-INSERT INTO `cliente` (`codigoCliente`, `nome`, `status`, `cpf`, `idade`, `rua`, `bairro`, `complemento`, `cidade`) VALUES
-(1, 'MARIA NAZARETH RODRIGUES', 'Ativado', '343434', 58, 'FRANCISCO FERDINANDO CORREA', 'CENTRO', 'DE FRENTE A FARMACIA', 'QUIRINOPOLIS -GO'),
-(2, 'ADA KEYSE SANTOS RODRIGUES', 'Ativado', '555588', 23, 'ELUCIDARIA QD 14 LOTE 15', 'ANHANGUERA', 'EM FRENTE O PASTO', 'RIO VERDE - GO'),
-(3, 'GLAUCIENE SOUZA PERES', 'Ativado', '34343498880', 47, '', '', '', ''),
-(4, 'ALERRANDRO BARBOSA DE FARIAS', 'Ativado', '34443434', 16, '', '', '', ''),
-(5, 'ADEJAR SOARES MARTINS', 'Desativado', '435454545', 23, '', '', '', ''),
-(6, 'MaurHy de Jesus', 'Ativado', '245362343', 31, 'Rua das aboboras', 'abobral', 'sfgs', 'Rio Verde'),
-(7, 'maria joaquina', 'Ativado', '34343434343', 0, '', '', '', ''),
-(8, 'FELIPE PERET', 'Ativado', '75373785172', 6, '', '', '', ''),
-(9, 'VANESSA CAMARGO', 'Ativado', '444889978', 0, '', '', '', ''),
-(10, 'JOAO PARAIBA', 'Ativado', '75373785172', 33, '', '', '', ''),
-(11, 'MARCELO VOAVENTURA', 'Ativado', '343434344', 5, '', '', '', ''),
-(12, 'Esdras Goulart Bueno', 'Ativado', '02555939105', 14, '', '', '', ''),
-(13, 'GUEDES', 'Desativado', '05223284151', 23, '', '', '', '');
+INSERT INTO `cliente` (`codigoCliente`, `nome`, `status`, `cpf`, `idade`, `email`) VALUES
+(1, 'MARIA NAZARETH RODRIGUES', 'Ativado', '343434', 58, ''),
+(2, 'ADA KEYSE SANTOS RODRIGUES', 'Ativado', '555588', 23, ''),
+(3, 'GLAUCIENE SOUZA PERES', 'Ativado', '34343498880', 47, ''),
+(4, 'ALERRANDRO BARBOSA DE FARIAS', 'Ativado', '34443434', 16, ''),
+(5, 'ADEJAR SOARES MARTINS', 'Desativado', '435454545', 23, ''),
+(6, 'MaurHy de Jesus', 'Ativado', '245362343', 31, ''),
+(7, 'maria joaquina', 'Ativado', '34343434343', 0, ''),
+(8, 'FELIPE PERET', 'Ativado', '75373785172', 6, ''),
+(9, 'VANESSA CAMARGO', 'Ativado', '444889978', 0, ''),
+(10, 'JOAO PARAIBA', 'Ativado', '75373785172', 33, ''),
+(11, 'MARCELO VOAVENTURA', 'Ativado', '343434344', 5, ''),
+(12, 'Esdras Goulart Bueno', 'Ativado', '02555939105', 14, ''),
+(13, 'GUEDES', 'Desativado', '05223284151', 23, '');
 
 -- --------------------------------------------------------
 
@@ -163,11 +181,8 @@ CREATE TABLE `editora` (
   `nomeFantasia` varchar(45) NOT NULL,
   `razaoSocial` varchar(45) NOT NULL,
   `cnpj` varchar(20) NOT NULL,
-  `rua` varchar(45) DEFAULT NULL,
-  `bairro` varchar(30) DEFAULT NULL,
-  `complemento` varchar(30) DEFAULT NULL,
-  `cidade` varchar(30) DEFAULT NULL,
-  `telefone` varchar(14) DEFAULT NULL,
+  `endereco_codigoEndereco` int(11) NOT NULL,
+  `telefone_codigoTelefone` int(11) NOT NULL,
   `status` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -175,13 +190,13 @@ CREATE TABLE `editora` (
 -- Extraindo dados da tabela `editora`
 --
 
-INSERT INTO `editora` (`codigoEditora`, `nomeFantasia`, `razaoSocial`, `cnpj`, `rua`, `bairro`, `complemento`, `cidade`, `telefone`, `status`) VALUES
-(11, 'GLOBO', 'rodruiges e dutra ltda', '434343', '', '', '', '', '', 'Desativado'),
-(12, 'SEXTANTE', 'NAO INFORMADO', '34343435599', '', '', '', '', '', 'Ativado'),
-(13, 'VEJA', 'VEJA EDICAO LTDA ERELI', '343434356', '', '', '', '', '', 'Ativado'),
-(14, 'EDIOURO', 'SIGILOSO', '3434', '', '', '', '', '', 'Ativado'),
-(15, 'RECORD', 'CRISTIAN AMPERES', '1111', '', '', '', '', '', 'Desativado'),
-(16, 'UNIRV-RV', 'UNIRV', '123456789', 'RUA ', 'JD', 'RD', 'RIO VERDE', '', 'Ativado');
+INSERT INTO `editora` (`codigoEditora`, `nomeFantasia`, `razaoSocial`, `cnpj`, `endereco_codigoEndereco`, `telefone_codigoTelefone`, `status`) VALUES
+(11, 'GLOBO', 'rodruiges e dutra ltda', '434343', 0, 0, 'Desativado'),
+(12, 'SEXTANTE', 'NAO INFORMADO', '34343435599', 0, 0, 'Ativado'),
+(13, 'VEJA', 'VEJA EDICAO LTDA ERELI', '343434356', 0, 0, 'Ativado'),
+(14, 'EDIOURO', 'SIGILOSO', '3434', 0, 0, 'Ativado'),
+(15, 'RECORD', 'CRISTIAN AMPERES', '1111', 0, 0, 'Desativado'),
+(16, 'UNIRV-RV', 'UNIRV', '123456789', 0, 0, 'Ativado');
 
 -- --------------------------------------------------------
 
@@ -191,6 +206,7 @@ INSERT INTO `editora` (`codigoEditora`, `nomeFantasia`, `razaoSocial`, `cnpj`, `
 
 CREATE TABLE `emprestimo` (
   `codigoEmprestimo` int(11) NOT NULL,
+  `funcionario_codigoFuncionario` int(11) NOT NULL,
   `saida` date NOT NULL,
   `codigoCliente` int(11) NOT NULL,
   `devolucao` date NOT NULL
@@ -200,48 +216,48 @@ CREATE TABLE `emprestimo` (
 -- Extraindo dados da tabela `emprestimo`
 --
 
-INSERT INTO `emprestimo` (`codigoEmprestimo`, `saida`, `codigoCliente`, `devolucao`) VALUES
-(4, '2017-11-26', 1, '2017-11-26'),
-(5, '2017-11-26', 1, '2017-11-26'),
-(6, '2017-11-26', 1, '2017-11-28'),
-(7, '2017-11-26', 1, '2017-11-27'),
-(8, '2017-11-26', 2, '2017-11-30'),
-(9, '2017-11-26', 2, '2017-11-26'),
-(15, '2017-11-28', 2, '2017-11-29'),
-(16, '2017-11-28', 3, '2017-11-30'),
-(17, '2017-11-28', 2, '2017-12-02'),
-(18, '2017-11-28', 3, '2017-12-03'),
-(19, '2017-11-28', 2, '2017-12-02'),
-(20, '2017-11-29', 0, '1111-11-11'),
-(21, '2017-11-29', 3, '2019-11-23'),
-(22, '2017-11-26', 2, '2017-11-26'),
-(23, '2017-11-29', 3, '3335-10-03'),
-(24, '2017-11-29', 2, '3335-10-03'),
-(25, '2017-11-29', 2, '8895-06-27'),
-(26, '2017-11-29', 3, '4447-09-13'),
-(27, '2017-11-29', 3, '3335-10-03'),
-(28, '2017-11-29', 3, '2017-11-30'),
-(29, '2017-11-29', 2, '7783-07-16'),
-(30, '2017-11-29', 2, '1111-11-11'),
-(31, '2017-11-29', 3, '5559-08-24'),
-(32, '2017-11-29', 4, '2223-10-22'),
-(33, '2017-11-29', 4, '5559-08-24'),
-(34, '2017-11-29', 4, '5559-08-24'),
-(35, '2017-11-30', 5, '0002-11-30'),
-(36, '2017-11-30', 5, '3335-10-03'),
-(37, '2017-12-01', 5, '1993-12-12'),
-(38, '2017-12-02', 6, '2017-12-01'),
-(39, '2017-12-02', 6, '2017-11-01'),
-(40, '2017-12-07', 8, '2017-12-05'),
-(41, '2017-12-21', 8, '2017-12-22'),
-(42, '2017-12-21', 14, '2017-12-22'),
-(43, '2017-12-21', 13, '2017-12-29'),
-(44, '2017-12-21', 14, '2017-12-22'),
-(45, '2018-01-09', 6, '2018-01-10'),
-(46, '2018-01-11', 10, '2018-01-15'),
-(47, '2018-01-18', 10, '2018-01-26'),
-(48, '2018-04-17', 4, '2018-04-20'),
-(49, '2018-04-27', 10, '2018-04-30');
+INSERT INTO `emprestimo` (`codigoEmprestimo`, `funcionario_codigoFuncionario`, `saida`, `codigoCliente`, `devolucao`) VALUES
+(4, 0, '2017-11-26', 1, '2017-11-26'),
+(5, 0, '2017-11-26', 1, '2017-11-26'),
+(6, 0, '2017-11-26', 1, '2017-11-28'),
+(7, 0, '2017-11-26', 1, '2017-11-27'),
+(8, 0, '2017-11-26', 2, '2017-11-30'),
+(9, 0, '2017-11-26', 2, '2017-11-26'),
+(15, 0, '2017-11-28', 2, '2017-11-29'),
+(16, 0, '2017-11-28', 3, '2017-11-30'),
+(17, 0, '2017-11-28', 2, '2017-12-02'),
+(18, 0, '2017-11-28', 3, '2017-12-03'),
+(19, 0, '2017-11-28', 2, '2017-12-02'),
+(20, 0, '2017-11-29', 0, '1111-11-11'),
+(21, 0, '2017-11-29', 3, '2019-11-23'),
+(22, 0, '2017-11-26', 2, '2017-11-26'),
+(23, 0, '2017-11-29', 3, '3335-10-03'),
+(24, 0, '2017-11-29', 2, '3335-10-03'),
+(25, 0, '2017-11-29', 2, '8895-06-27'),
+(26, 0, '2017-11-29', 3, '4447-09-13'),
+(27, 0, '2017-11-29', 3, '3335-10-03'),
+(28, 0, '2017-11-29', 3, '2017-11-30'),
+(29, 0, '2017-11-29', 2, '7783-07-16'),
+(30, 0, '2017-11-29', 2, '1111-11-11'),
+(31, 0, '2017-11-29', 3, '5559-08-24'),
+(32, 0, '2017-11-29', 4, '2223-10-22'),
+(33, 0, '2017-11-29', 4, '5559-08-24'),
+(34, 0, '2017-11-29', 4, '5559-08-24'),
+(35, 0, '2017-11-30', 5, '0002-11-30'),
+(36, 0, '2017-11-30', 5, '3335-10-03'),
+(37, 0, '2017-12-01', 5, '1993-12-12'),
+(38, 0, '2017-12-02', 6, '2017-12-01'),
+(39, 0, '2017-12-02', 6, '2017-11-01'),
+(40, 0, '2017-12-07', 8, '2017-12-05'),
+(41, 0, '2017-12-21', 8, '2017-12-22'),
+(42, 0, '2017-12-21', 14, '2017-12-22'),
+(43, 0, '2017-12-21', 13, '2017-12-29'),
+(44, 0, '2017-12-21', 14, '2017-12-22'),
+(45, 0, '2018-01-09', 6, '2018-01-10'),
+(46, 0, '2018-01-11', 10, '2018-01-15'),
+(47, 0, '2018-01-18', 10, '2018-01-26'),
+(48, 0, '2018-04-17', 4, '2018-04-20'),
+(49, 0, '2018-04-27', 10, '2018-04-30');
 
 -- --------------------------------------------------------
 
@@ -252,7 +268,7 @@ INSERT INTO `emprestimo` (`codigoEmprestimo`, `saida`, `codigoCliente`, `devoluc
 CREATE TABLE `endereco` (
   `codigoEndereco` int(11) NOT NULL,
   `codigoCliente` int(11) DEFAULT NULL,
-  `cidade` varchar(45) DEFAULT NULL,
+  `cidade_codigoCidade` int(11) NOT NULL,
   `rua` varchar(45) DEFAULT NULL,
   `bairro` varchar(45) DEFAULT NULL,
   `complemento` varchar(45) DEFAULT NULL
@@ -262,15 +278,39 @@ CREATE TABLE `endereco` (
 -- Extraindo dados da tabela `endereco`
 --
 
-INSERT INTO `endereco` (`codigoEndereco`, `codigoCliente`, `cidade`, `rua`, `bairro`, `complemento`) VALUES
-(1, 1, 'RIO VERDE', 'MARIA MERQUEDES', 'MARANATA', 'Q.32 LT.10'),
-(2, 1, 'SÃO PAULO', 'Av. Engenheiro ', 'Eusébio Stevaux', '823'),
-(3, 2, 'RIO VERDE', 'R João Vaiano', 'Vitória RégiA', '440 - LT 2 A SL A'),
-(4, 2, 'GOIANIA', 'Av. Tocantins', 'St. Central', 'N 675'),
-(5, 2, 'RIO DE JANEIRO', 'Av. Pres. Vargas', 'CENTRO', '1997'),
-(6, 3, 'CURITIBA', 'Av. Cândido de Abreu', 'centro', 'n 817'),
-(7, 3, 'BAHIA', 'Av. Anhanguera', 'St.Central', '4603'),
-(8, 4, 'PALMAS', 'Norte Rua', 'NORTE', ' Q. 104 ');
+INSERT INTO `endereco` (`codigoEndereco`, `codigoCliente`, `cidade_codigoCidade`, `rua`, `bairro`, `complemento`) VALUES
+(1, 1, 0, 'MARIA MERQUEDES', 'MARANATA', 'Q.32 LT.10'),
+(2, 1, 0, 'Av. Engenheiro ', 'Eusébio Stevaux', '823'),
+(3, 2, 0, 'R João Vaiano', 'Vitória RégiA', '440 - LT 2 A SL A'),
+(4, 2, 0, 'Av. Tocantins', 'St. Central', 'N 675'),
+(5, 2, 0, 'Av. Pres. Vargas', 'CENTRO', '1997'),
+(6, 3, 0, 'Av. Cândido de Abreu', 'centro', 'n 817'),
+(7, 3, 0, 'Av. Anhanguera', 'St.Central', '4603'),
+(8, 4, 0, 'Norte Rua', 'NORTE', ' Q. 104 ');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `estado`
+--
+
+CREATE TABLE `estado` (
+  `codigoEstado` int(11) NOT NULL,
+  `nome` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `estoque`
+--
+
+CREATE TABLE `estoque` (
+  `codigoEstoque` int(11) NOT NULL,
+  `obra_codigoObra` int(11) NOT NULL,
+  `qtdTotal` int(11) NOT NULL,
+  `qtdDisponivel` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -281,26 +321,59 @@ INSERT INTO `endereco` (`codigoEndereco`, `codigoCliente`, `cidade`, `rua`, `bai
 CREATE TABLE `obra` (
   `codigoObra` int(11) NOT NULL,
   `titulo` varchar(45) NOT NULL,
-  `codigoEditora` int(11) NOT NULL,
+  `subtitulo` varchar(50) DEFAULT NULL,
+  `editora_codigoEditora` int(11) NOT NULL,
+  `cidade_codigoCidade` int(11) DEFAULT NULL,
   `edicao` int(11) DEFAULT NULL,
+  `ano` year(4) NOT NULL,
+  `categoria_codigoCategoria` int(11) DEFAULT NULL,
   `situacao` varchar(12) NOT NULL,
-  `status` varchar(12) NOT NULL
+  `status` varchar(12) NOT NULL,
+  `codBarras` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `obra`
 --
 
-INSERT INTO `obra` (`codigoObra`, `titulo`, `codigoEditora`, `edicao`, `situacao`, `status`) VALUES
-(24, 'DOM CASMURRO', 14, 1, 'Emprestado', 'Ativado'),
-(25, 'A ROSA DO POVO', 12, 3, 'Emprestado', 'Ativado'),
-(26, 'CAPITAES DA AREIA', 13, 4, 'Emprestado', 'Ativado'),
-(27, 'COMPILADORES', 13, 1, 'Prateleira', 'Ativado'),
-(28, 'CADILACKES', 12, 4, 'Emprestado', 'Ativado'),
-(29, 'a culpa', 12, 5, 'Emprestado', 'Ativado'),
-(30, 'A CRUZ PERDIDA', 14, 1, 'Emprestado', 'Ativado'),
-(31, 'o poeta', 12, 877, 'Emprestado', 'Ativado'),
-(32, 'HARRY POTTER', 12, 5, 'Emprestado', 'Ativado');
+INSERT INTO `obra` (`codigoObra`, `titulo`, `subtitulo`, `editora_codigoEditora`, `cidade_codigoCidade`, `edicao`, `ano`, `categoria_codigoCategoria`, `situacao`, `status`, `codBarras`) VALUES
+(24, 'DOM CASMURRO', NULL, 14, NULL, 1, 0000, NULL, 'Emprestado', 'Ativado', NULL),
+(25, 'A ROSA DO POVO', NULL, 12, NULL, 3, 0000, NULL, 'Emprestado', 'Ativado', NULL),
+(26, 'CAPITAES DA AREIA', NULL, 13, NULL, 4, 0000, NULL, 'Emprestado', 'Ativado', NULL),
+(27, 'COMPILADORES', NULL, 13, NULL, 1, 0000, NULL, 'Prateleira', 'Ativado', NULL),
+(28, 'CADILACKES', NULL, 12, NULL, 4, 0000, NULL, 'Emprestado', 'Ativado', NULL),
+(29, 'a culpa', NULL, 12, NULL, 5, 0000, NULL, 'Emprestado', 'Ativado', NULL),
+(30, 'A CRUZ PERDIDA', NULL, 14, NULL, 1, 0000, NULL, 'Emprestado', 'Ativado', NULL),
+(31, 'o poeta', NULL, 12, NULL, 877, 0000, NULL, 'Emprestado', 'Ativado', NULL),
+(32, 'HARRY POTTER', NULL, 12, NULL, 5, 0000, NULL, 'Emprestado', 'Ativado', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `telefone`
+--
+
+CREATE TABLE `telefone` (
+  `codigoTelefone` int(11) NOT NULL,
+  `ddd` int(11) NOT NULL,
+  `numero` int(11) NOT NULL,
+  `cliente_codigoCliente` int(11) DEFAULT NULL,
+  `editora_codigoEditora` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `codigoUsuario` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `perfil` tinyint(4) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `senha` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -311,6 +384,18 @@ INSERT INTO `obra` (`codigoObra`, `titulo`, `codigoEditora`, `edicao`, `situacao
 --
 ALTER TABLE `autor`
   ADD PRIMARY KEY (`codigoAutor`);
+
+--
+-- Indexes for table `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`codigoCategoria`);
+
+--
+-- Indexes for table `cidade`
+--
+ALTER TABLE `cidade`
+  ADD PRIMARY KEY (`codigoCidade`);
 
 --
 -- Indexes for table `cliente`
@@ -337,11 +422,35 @@ ALTER TABLE `endereco`
   ADD PRIMARY KEY (`codigoEndereco`);
 
 --
+-- Indexes for table `estado`
+--
+ALTER TABLE `estado`
+  ADD PRIMARY KEY (`codigoEstado`);
+
+--
+-- Indexes for table `estoque`
+--
+ALTER TABLE `estoque`
+  ADD PRIMARY KEY (`codigoEstoque`);
+
+--
 -- Indexes for table `obra`
 --
 ALTER TABLE `obra`
   ADD PRIMARY KEY (`codigoObra`),
-  ADD KEY `fk_Obra_Editora_idx` (`codigoEditora`);
+  ADD KEY `fk_Obra_Editora_idx` (`editora_codigoEditora`);
+
+--
+-- Indexes for table `telefone`
+--
+ALTER TABLE `telefone`
+  ADD PRIMARY KEY (`codigoTelefone`);
+
+--
+-- Indexes for table `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`codigoUsuario`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -352,37 +461,61 @@ ALTER TABLE `obra`
 --
 ALTER TABLE `autor`
   MODIFY `codigoAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
+--
+-- AUTO_INCREMENT for table `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `codigoCategoria` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `cidade`
+--
+ALTER TABLE `cidade`
+  MODIFY `codigoCidade` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `codigoCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
 --
 -- AUTO_INCREMENT for table `editora`
 --
 ALTER TABLE `editora`
   MODIFY `codigoEditora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
 --
 -- AUTO_INCREMENT for table `emprestimo`
 --
 ALTER TABLE `emprestimo`
   MODIFY `codigoEmprestimo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
-
 --
 -- AUTO_INCREMENT for table `endereco`
 --
 ALTER TABLE `endereco`
   MODIFY `codigoEndereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+--
+-- AUTO_INCREMENT for table `estado`
+--
+ALTER TABLE `estado`
+  MODIFY `codigoEstado` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `estoque`
+--
+ALTER TABLE `estoque`
+  MODIFY `codigoEstoque` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `obra`
 --
 ALTER TABLE `obra`
   MODIFY `codigoObra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
+--
+-- AUTO_INCREMENT for table `telefone`
+--
+ALTER TABLE `telefone`
+  MODIFY `codigoTelefone` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `codigoUsuario` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -391,8 +524,7 @@ ALTER TABLE `obra`
 -- Limitadores para a tabela `obra`
 --
 ALTER TABLE `obra`
-  ADD CONSTRAINT `fk_Obra_Editora` FOREIGN KEY (`codigoEditora`) REFERENCES `editora` (`codigoEditora`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
+  ADD CONSTRAINT `fk_Obra_Editora` FOREIGN KEY (`editora_codigoEditora`) REFERENCES `editora` (`codigoEditora`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
