@@ -1,0 +1,8 @@
+git config --global user.name "Jefferson Guedes"
+git config --global user.email "jefferson.guedess@gmail.com"
+
+ssh-keygen -t rsa -C "jefferson.guedess@gmail.com"
+
+git remote add origin git@github.com:PrismaSoftGC/LibBugGC.git
+
+git clone git@github.com:PrismaSoftGC/LibBugGC.git
