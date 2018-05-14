@@ -197,7 +197,7 @@ public class Obra extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         textTitulo = new javax.swing.JTextField();
-        labelCpf = new javax.swing.JLabel();
+        labelEdicao = new javax.swing.JLabel();
         textEdicao = new javax.swing.JTextField();
         cbStatus = new javax.swing.JComboBox<>();
         labelStatus = new javax.swing.JLabel();
@@ -218,7 +218,6 @@ public class Obra extends javax.swing.JDialog {
         labelSubtitulo = new javax.swing.JLabel();
         textCidade = new javax.swing.JTextField();
         labelCidade = new javax.swing.JLabel();
-        calendarioAno = new com.toedter.calendar.JDateChooser();
         labelAno = new javax.swing.JLabel();
         cbCategoria = new javax.swing.JComboBox<>();
         labelCategoria = new javax.swing.JLabel();
@@ -228,6 +227,7 @@ public class Obra extends javax.swing.JDialog {
         labelEstoqueTotal = new javax.swing.JLabel();
         textEstoqueDisponivel = new javax.swing.JTextField();
         labelEstoqueDisponivel = new javax.swing.JLabel();
+        calendarioAno = new com.toedter.calendar.JDateChooser();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -263,10 +263,12 @@ public class Obra extends javax.swing.JDialog {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelEditora.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelEditora.setForeground(new java.awt.Color(204, 204, 204));
         labelEditora.setText("Obra");
+        getContentPane().add(labelEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 11, -1, -1));
 
         botaoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/Cancel_icon-icons.com_73703.png"))); // NOI18N
         botaoCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -282,6 +284,7 @@ public class Obra extends javax.swing.JDialog {
                 botaoCancelarActionPerformed(evt);
             }
         });
+        getContentPane().add(botaoCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(785, 34, 50, 50));
 
         botaoNovo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         botaoNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/new_page_document_16676 (1).png"))); // NOI18N
@@ -301,6 +304,7 @@ public class Obra extends javax.swing.JDialog {
                 botaoNovoActionPerformed(evt);
             }
         });
+        getContentPane().add(botaoNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(855, 34, 50, 50));
 
         botaoSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/Save_37110 (1).png"))); // NOI18N
         botaoSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -316,6 +320,7 @@ public class Obra extends javax.swing.JDialog {
                 botaoSalvarActionPerformed(evt);
             }
         });
+        getContentPane().add(botaoSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(925, 34, 50, 50));
 
         jPanel1.setLayout(null);
 
@@ -492,9 +497,9 @@ public class Obra extends javax.swing.JDialog {
         jPanel3.add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, 20));
         jPanel3.add(textTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 250, 30));
 
-        labelCpf.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelCpf.setText("Edicao");
-        jPanel3.add(labelCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+        labelEdicao.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelEdicao.setText("Edicao");
+        jPanel3.add(labelEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
 
         textEdicao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -610,7 +615,6 @@ public class Obra extends javax.swing.JDialog {
         labelCidade.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelCidade.setText("Cidade");
         jPanel3.add(labelCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-        jPanel3.add(calendarioAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 130, 30));
 
         labelAno.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelAno.setText("Ano*");
@@ -655,46 +659,11 @@ public class Obra extends javax.swing.JDialog {
         labelEstoqueDisponivel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelEstoqueDisponivel.setText("Estoque Disponível*");
         jPanel3.add(labelEstoqueDisponivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 150, -1));
+        jPanel3.add(calendarioAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 130, 30));
 
         abas.addTab("Cadastro / Edição", jPanel3);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 985, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelEditora)
-                    .addGap(213, 213, 213)
-                    .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(20, 20, 20)
-                    .addComponent(botaoNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(20, 20, 20)
-                    .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(abas)
-                    .addContainerGap()))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 616, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(labelEditora))
-                        .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(17, 17, 17)
-                    .addComponent(abas, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 28, Short.MAX_VALUE)))
-        );
+        getContentPane().add(abas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 72, 975, 517));
 
         pack();
         setLocationRelativeTo(null);
@@ -1180,7 +1149,7 @@ public class Obra extends javax.swing.JDialog {
     private javax.swing.JLabel labelCategoria;
     private javax.swing.JLabel labelCidade;
     private javax.swing.JLabel labelCodigo;
-    private javax.swing.JLabel labelCpf;
+    private javax.swing.JLabel labelEdicao;
     private javax.swing.JLabel labelEdit;
     private javax.swing.JLabel labelEditora;
     private javax.swing.JLabel labelEstoqueDisponivel;
