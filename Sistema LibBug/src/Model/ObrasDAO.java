@@ -20,15 +20,20 @@ public class ObrasDAO {
     }
 
     public long create(ObrasBEAN obra) {
-        String query = "INSERT INTO OBRA (titulo, codigoEditora, edicao, situacao, status) VALUES (?,?,?,?,?)";
-        return MySQLDAO.executeQuery(query, obra.getTitulo(), obra.getCodigoEditora(), obra.getEdicao(), obra.getSituacao(), obra.getStatus());
+        String query = "INSERT INTO OBRA ( titulo,subititulo, codigoEditora,codigoCidade, edicao,ano,codigoCategoria, situacao, status,"
+                + " codBarras, qtdEstoqueTotal, qtdEstoqueDisponivel) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        return MySQLDAO.executeQuery(query, obra.getTitulo(),obra.getSubititulo(), obra.getCodigoEditora(),obra.getCodigoCidade(),obra.getEdicao(),
+                obra.getAno(),obra.getCodigoCategoria(), obra.getSituacao(), obra.getStatus(), 
+                obra.getCodBarras(),obra.getQtdEstoqueTotal(), obra.getQtdEstoqueDisponivel());
     }
 
     public void update(ObrasBEAN obra) {
-        String query = "UPDATE OBRA SET titulo=?, codigoEditora=?, edicao=?, situacao=?, status=? WHERE codigoObra =?";
+        String query = "UPDATE OBRA SET titulo=?,subtitulo=?, codigoEditora=?,codigoCidade=?, edicao=?,ano=?,codigoCategoria=?, situacao=?, status=?,"
+                + " codBarras=?, qtdEstoqueTotal=?, qtdEstoqueDisponivel=? WHERE codigoObra =?";
 
-        MySQLDAO.executeQuery(query,  obra.getTitulo(), obra.getCodigoEditora(), obra.getEdicao(), obra.getSituacao(),
-                obra.getStatus(), obra.getCodigoObra());
+        MySQLDAO.executeQuery(obra.getTitulo(),obra.getSubititulo(), obra.getCodigoEditora(),obra.getCodigoCidade(),
+                obra.getEdicao(),obra.getAno(),obra.getCodigoCategoria(), obra.getSituacao(), obra.getStatus(), 
+                obra.getCodBarras(),obra.getQtdEstoqueTotal(), obra.getQtdEstoqueDisponivel(), obra.getCodigoObra());
     }
 
     public void updateStatus(ObrasBEAN obra) {
@@ -51,8 +56,9 @@ public class ObrasDAO {
         rs = MySQLDAO.getResultSet(query);
         try {
             while (rs.next()) {
-                lista.add(new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"), rs.getInt("codigoEditora"),
-                        rs.getInt("edicao"), rs.getString("situacao"), rs.getString("status")));
+                lista.add(new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"),rs.getString("subtitulo"),rs.getInt("codigoEditora"),
+                        rs.getInt("codigoCidade"),rs.getInt("edicao"),rs.getDate("ano"),rs.getInt("codigoCategoria"), rs.getString("situacao"), rs.getString("status"),
+                        rs.getString("codBarras"),rs.getInt("qtdEstoqueTotal"),rs.getInt("qtdEstoqueDisponivel")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -67,8 +73,9 @@ public class ObrasDAO {
         rs = MySQLDAO.getResultSet("SELECT * FROM OBRA WHERE codigoObra=?", codigoObra);
         try {
             if (rs.next()) {
-                result = new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"), rs.getInt("codigoEditora"),
-                        rs.getInt("edicao"), rs.getString("situacao"), rs.getString("status"));
+                result = new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"),rs.getString("subtitulo"),rs.getInt("codigoEditora"),
+                        rs.getInt("codigoCidade"),rs.getInt("edicao"),rs.getDate("ano"),rs.getInt("codigoCategoria"), rs.getString("situacao"), rs.getString("status"),
+                        rs.getString("codBarras"),rs.getInt("qtdEstoqueTotal"),rs.getInt("qtdEstoqueDisponivel"));
             }
             rs.close();
         } catch (SQLException e) {
@@ -84,8 +91,9 @@ public class ObrasDAO {
         rs = MySQLDAO.getResultSet("SELECT * FROM OBRA WHERE titulo like ?", "%" +titulo+ "%");
         try {
             while (rs.next()) {
-                lista.add( new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"), rs.getInt("codigoEditora"),
-                        rs.getInt("edicao"), rs.getString("situacao"), rs.getString("status")));
+                lista.add( new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"),rs.getString("subtitulo"),rs.getInt("codigoEditora"),
+                        rs.getInt("codigoCidade"),rs.getInt("edicao"),rs.getDate("ano"),rs.getInt("codigoCategoria"), rs.getString("situacao"), rs.getString("status"),
+                        rs.getString("codBarras"),rs.getInt("qtdEstoqueTotal"),rs.getInt("qtdEstoqueDisponivel")));
             }
             rs.close();
         } catch (SQLException e) {
