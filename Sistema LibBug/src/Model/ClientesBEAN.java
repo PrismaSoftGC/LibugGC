@@ -5,27 +5,17 @@ public class ClientesBEAN {
     private String status;
     private String cpf;
     private int idade;
-    private String rua;
-    private String bairro;
-    private String complemento;
-    private String cidade;
+    private String email;
 
-    public ClientesBEAN(int codigoCliente, String nome, String status, String cpf, int idade, String rua, String bairro, String complemento, String cidade) {
+    public ClientesBEAN(int codigoCliente, String nome, String status, String cpf, int idade, String email) {
         this.codigoCliente = codigoCliente;
         this.nome = nome;
         this.status = status;
         this.cpf = cpf;
         this.idade = idade;
-        this.rua = rua;
-        this.bairro = bairro;
-        this.complemento = complemento;
-        this.cidade = cidade;
+        this.email = email;
     }
     
-    public ClientesBEAN(){
-        
-    }
-
     public int getCodigoCliente() {
         return codigoCliente;
     }
@@ -66,38 +56,12 @@ public class ClientesBEAN {
         this.idade = idade;
     }
 
-    public String getRua() {
-        return rua;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRua(String rua) {
-        this.rua = rua;
+    public void setEmail(String email) {
+        this.email = email;
     }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-    
-    
 
 }
