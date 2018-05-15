@@ -25,13 +25,13 @@ public class AutoresDAO {
     }
 
     public long create(AutoresBEAN autor) {
-        String query = "INSERT INTO AUTOR (nome, status, conteudo, cpf) VALUES (?,?,?,?)";
-        return MySQLDAO.executeQuery(query, autor.getNome(), autor.getStatus(), autor.getConteudo(), autor.getCpf());
+        String query = "INSERT INTO AUTOR (nome, status) VALUES (?,?)";
+        return MySQLDAO.executeQuery(query, autor.getNome(), autor.getStatus());
     }
 
     public void update(AutoresBEAN autor) {
-        String query = "UPDATE AUTOR SET nome=?, status=?, conteudo=?, cpf=? WHERE codigoAutor = ?";
-        MySQLDAO.executeQuery(query, autor.getNome(), autor.getStatus(), autor.getConteudo(), autor.getCpf(), autor.getCodigoAutor());
+        String query = "UPDATE AUTOR SET nome=?, status=? WHERE codigoAutor = ?";
+        MySQLDAO.executeQuery(query, autor.getNome(), autor.getStatus(), autor.getCodigoAutor());
     }
 
     public void delete(AutoresBEAN autor) {
@@ -48,7 +48,7 @@ public class AutoresDAO {
         rs = MySQLDAO.getResultSet(query);
         try {
             while (rs.next()) {
-                lista.add(new AutoresBEAN(rs.getInt("codigoAutor"), rs.getString("nome"), rs.getString("status"), rs.getString("conteudo"), rs.getString("cpf")));
+                lista.add(new AutoresBEAN(rs.getInt("codigoAutor"), rs.getString("nome"), rs.getString("status")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -64,7 +64,7 @@ public class AutoresDAO {
         rs = MySQLDAO.getResultSet("SELECT * FROM AUTOR WHERE codigoAutor=?", codigoAutor);
         try {
             if (rs.next()) {
-                result = new AutoresBEAN(rs.getInt("codigoAutor"), rs.getString("nome"), rs.getString("status"), rs.getString("conteudo"), rs.getString("cpf"));
+                result = new AutoresBEAN(rs.getInt("codigoAutor"), rs.getString("nome"), rs.getString("status"));
             }
             rs.close();
         } catch (SQLException e) {
@@ -76,10 +76,10 @@ public class AutoresDAO {
     public ArrayList<AutoresBEAN> findAutorNome(String nomeAutor) {
         ArrayList<AutoresBEAN> lista = new ArrayList<AutoresBEAN>();
         ResultSet rs = null;
-        rs = MySQLDAO.getResultSet("SELECT * FROM AUTOR WHERE nome like ?", "%" +nomeAutor+ "%");
+        rs = MySQLDAO.getResultSet("SELECT * FROM AUTOR WHERE nome like '%" +nomeAutor+ "%'");
         try {
             while (rs.next()) {
-                lista.add( new AutoresBEAN(rs.getInt("codigoAutor"), rs.getString("nome"), rs.getString("status"), rs.getString("conteudo"), rs.getString("cpf")));
+                lista.add( new AutoresBEAN(rs.getInt("codigoAutor"), rs.getString("nome"), rs.getString("status")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -91,7 +91,7 @@ public class AutoresDAO {
     public int findId(AutoresBEAN autor) {
         int result = 0;
         ResultSet rs = null;
-        rs = MySQLDAO.getResultSet("SELECT * FROM AUTOR WHERE nome= ? and status= ? and conteudo= ? amd cpf= ?",autor.getNome(), autor.getStatus());
+        rs = MySQLDAO.getResultSet("SELECT * FROM AUTOR WHERE nome= ? and status= ?",autor.getNome(), autor.getStatus());
 
  try {
             if (rs.next()) {

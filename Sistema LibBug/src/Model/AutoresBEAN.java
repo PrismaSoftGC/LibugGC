@@ -7,12 +7,10 @@ public class AutoresBEAN {
     private String conteudo;
     private String cpf;
 
-    public AutoresBEAN(int codigoAutor, String nome, String status, String conteudo, String cpf) {
+    public AutoresBEAN(int codigoAutor, String nome, String status) {
         this.codigoAutor = codigoAutor;
         this.nome = nome;
         this.status = status;
-        this.conteudo = conteudo;
-        this.cpf = cpf;
     }
 
     public AutoresBEAN(){
@@ -42,22 +40,5 @@ public class AutoresBEAN {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public String getConteudo() {
-        return conteudo;
-    }
-
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-    
     
 }
