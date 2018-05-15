@@ -13,7 +13,7 @@ public class EditorasDAO {
     private EditorasDAO(){
         MySQLDAO.getConnection();
     }
-    
+     
     public static EditorasDAO getInstance(){
         if(instance == null){
             instance = new EditorasDAO();
@@ -22,16 +22,14 @@ public class EditorasDAO {
     }
     
     public long create(EditorasBEAN editora){
-        String query = "INSERT INTO EDITORA (nomeFantasia, razaoSocial, cnpj, rua, bairro, complemento, cidade, telefone, status) VALUES (?,?,?,?,?,?,?,?,?)";
-        return MySQLDAO.executeQuery(query, editora.getNomeFantasia(), editora.getRazaoSocial(), editora.getCnpj(), editora.getRua(),
-                editora.getBairro(), editora.getComplemento(), editora.getCidade(), editora.getTelefone(), editora.getStatus());
+        String query = "INSERT INTO EDITORA (nomeFantasia, razaoSocial, cnpj, status) VALUES (?,?,?,?)";
+        return MySQLDAO.executeQuery(query, editora.getNomeFantasia(), editora.getRazaoSocial(), editora.getCnpj(),editora.getStatus());
     }
     
     public void update(EditorasBEAN editora){
-        String query = "UPDATE EDITORA SET nomeFantasia=?, razaoSocial=?, cnpj=?, rua=?, bairro=?, complemento=?, cidade=?, telefone=?, status=? WHERE codigoEditora =?";
+        String query = "UPDATE EDITORA SET nomeFantasia=?, razaoSocial=?, cnpj=?, status=? WHERE codigoEditora =?";
        
-        MySQLDAO.executeQuery(query, editora.getNomeFantasia(), editora.getRazaoSocial(), editora.getCnpj(), editora.getRua(),
-                editora.getBairro(), editora.getComplemento(), editora.getCidade(), editora.getTelefone(), editora.getStatus(), editora.getCodigoEditora());
+        MySQLDAO.executeQuery(query, editora.getNomeFantasia(), editora.getRazaoSocial(), editora.getCnpj(), editora.getStatus(), editora.getCodigoEditora());
     }
     
     public void delete(EditorasBEAN editora) {
@@ -49,8 +47,7 @@ public class EditorasDAO {
         try {
             while (rs.next()) {
                 lista.add(new EditorasBEAN(rs.getInt("codigoEditora"), rs.getString("nomeFantasia"), rs.getString("razaoSocial"),
-                        rs.getString("cnpj"), rs.getString("rua"), rs.getString("bairro"), rs.getString("complemento"), 
-                        rs.getString("cidade"), rs.getString("telefone"), rs.getString("status")));
+                        rs.getString("cnpj"), rs.getString("status")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -66,8 +63,7 @@ public class EditorasDAO {
         try {
             if (rs.next()) {
                 result = new EditorasBEAN(rs.getInt("codigoEditora"), rs.getString("nomeFantasia"), rs.getString("razaoSocial"),
-                        rs.getString("cnpj"), rs.getString("rua"), rs.getString("bairro"), rs.getString("complemento"), 
-                        rs.getString("cidade"), rs.getString("telefone"), rs.getString("status"));
+                        rs.getString("cnpj"), rs.getString("status"));
             }
             rs.close();
         } catch (SQLException e) {
@@ -83,8 +79,7 @@ public class EditorasDAO {
         try {
             while (rs.next()) {
                 lista.add( new EditorasBEAN(rs.getInt("codigoEditora"), rs.getString("nomeFantasia"), rs.getString("razaoSocial"),
-                        rs.getString("cnpj"), rs.getString("rua"), rs.getString("bairro"), rs.getString("complemento"), 
-                        rs.getString("cidade"), rs.getString("telefone"), rs.getString("status")));
+                        rs.getString("cnpj"), rs.getString("status")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -96,10 +91,8 @@ public class EditorasDAO {
     public int findId(EditorasBEAN editora) {
         int result = 0;
         ResultSet rs = null;
-        rs = MySQLDAO.getResultSet("SELECT * FROM EDITORA WHERE nomeFantasia=? and razaoSocial=? and cnpj=?"
-                + " and rua=? and bairro=? and complemento=? and cidade=? and telefone=? and status=?",
-                editora.getNomeFantasia(), editora.getRazaoSocial(), editora.getCnpj(), editora.getRua(),
-                editora.getBairro(), editora.getComplemento(), editora.getCidade(), editora.getStatus());
+        rs = MySQLDAO.getResultSet("SELECT * FROM EDITORA WHERE nomeFantasia=? and razaoSocial=? and cnpj=? and status=?",
+                editora.getNomeFantasia(), editora.getRazaoSocial(), editora.getCnpj(), editora.getStatus());
  try {
             if (rs.next()) {
                 result = rs.getInt("codigoEditora");
