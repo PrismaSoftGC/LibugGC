@@ -20,24 +20,19 @@ public class ClientesDAO {
     }
 
     public long create(ClientesBEAN cliente) {
-        String query = "INSERT INTO CLIENTE (nome, status, cpf, idade, rua, bairro, complemento, "
-                + "cidade ) VALUES (?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO CLIENTE (nome, status, cpf, idade, email) VALUES (?,?,?,?,?)";
         return MySQLDAO.executeQuery(query, cliente.getNome(), cliente.getStatus(),
-                cliente.getCpf(), cliente.getIdade(), cliente.getRua(), cliente.getBairro(),
-                cliente.getComplemento(), cliente.getCidade());
+                cliente.getCpf(), cliente.getIdade(), cliente.getEmail());
     }
 
     public void update(ClientesBEAN cliente) {
-        String query = "UPDATE CLIENTE SET nome=?, status=?, cpf=?, idade=?, rua=?, bairro=?, "
-                + "complemento=?, cidade=? WHERE codigoCliente =?";
-
-        MySQLDAO.executeQuery(query, cliente.getNome(), cliente.getStatus(), cliente.getCpf(),
-                cliente.getIdade(), cliente.getRua(), cliente.getBairro(),
-                cliente.getComplemento(), cliente.getCidade(), cliente.getCodigoCliente());
+        String query = "UPDATE CLIENTE SET nome=?, status=?, cpf=?, idade=?, email=? WHERE codigoCliente =?";
+        MySQLDAO.executeQuery(query, cliente.getNome(), cliente.getStatus(),
+                cliente.getCpf(), cliente.getIdade(), cliente.getEmail());
     }
 
     public void delete(ClientesBEAN cliente) {
-        MySQLDAO.executeQuery("DELETE FROM CLIENTE WHERE codigoCLiente = ?", cliente.getCodigoCliente());
+        MySQLDAO.executeQuery("DELETE FROM CLIENTE WHERE codigoCliente = ?", cliente.getCodigoCliente());
     }
 
     public ArrayList<ClientesBEAN> findAllCliente() {
@@ -51,8 +46,7 @@ public class ClientesDAO {
         try {
             while (rs.next()) {
                 lista.add(new ClientesBEAN(rs.getInt("codigoCliente"), rs.getString("nome"), rs.getString("status"),
-                        rs.getString("cpf"), rs.getInt("idade"), rs.getString("rua"), rs.getString("bairro"),
-                        rs.getString("complemento"), rs.getString("cidade")));
+                        rs.getString("cpf"), rs.getInt("idade"),rs.getString("email")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -68,8 +62,7 @@ public class ClientesDAO {
         try {
             if (rs.next()) {
                 result = new ClientesBEAN(rs.getInt("codigoCliente"), rs.getString("nome"), rs.getString("status"),
-                        rs.getString("cpf"), rs.getInt("idade"), rs.getString("rua"), rs.getString("bairro"),
-                        rs.getString("complemento"), rs.getString("cidade"));
+                        rs.getString("cpf"), rs.getInt("idade"),rs.getString("email"));
             }
             rs.close();
         } catch (SQLException e) {
@@ -86,8 +79,7 @@ public class ClientesDAO {
         try {
             if (rs.next()) {
                 result = new ClientesBEAN(rs.getInt("codigoCliente"), rs.getString("nome"), rs.getString("status"),
-                        rs.getString("cpf"), rs.getInt("idade"), rs.getString("rua"), rs.getString("bairro"),
-                        rs.getString("complemento"), rs.getString("cidade"));
+                        rs.getString("cpf"), rs.getInt("idade"),rs.getString("email"));
             }
             rs.close();
         } catch (SQLException e) {
@@ -105,8 +97,7 @@ public class ClientesDAO {
         try {
             while (rs.next()) {
                 lista.add(new ClientesBEAN(rs.getInt("codigoCliente"), rs.getString("nome"), rs.getString("status"),
-                        rs.getString("cpf"), rs.getInt("idade"), rs.getString("rua"), rs.getString("bairro"),
-                        rs.getString("complemento"), rs.getString("cidade")));
+                        rs.getString("cpf"), rs.getInt("idade"),rs.getString("email")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -119,9 +110,8 @@ public class ClientesDAO {
         int result = 0;
         ResultSet rs = null;
         rs = MySQLDAO.getResultSet("SELECT * FROM CLIENTE WHERE nome= ? and status= ? and cpf = ? and idade =? ",
-                cliente.getNome(), cliente.getStatus(), cliente.getCpf(), cliente.getIdade(),
-                cliente.getRua(), cliente.getBairro(),
-                cliente.getComplemento(), cliente.getCidade(), cliente.getCodigoCliente());
+                cliente.getNome(), cliente.getStatus(), cliente.getCpf(),
+                cliente.getIdade());
         try {
             if (rs.next()) {
                 result = rs.getInt("codigoCliente");
