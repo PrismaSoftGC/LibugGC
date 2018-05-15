@@ -7,6 +7,10 @@ public class ClientesBEAN {
     private int idade;
     private String email;
 
+    public ClientesBEAN(){
+        
+    }
+    
     public ClientesBEAN(int codigoCliente, String nome, String status, String cpf, int idade, String email) {
         this.codigoCliente = codigoCliente;
         this.nome = nome;
