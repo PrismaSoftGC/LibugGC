@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 15-Maio-2018 às 19:38
+-- Generation Time: 16-Maio-2018 às 01:08
 -- Versão do servidor: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -23,51 +23,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `obra`
+-- Estrutura da tabela `estado`
 --
 
-CREATE TABLE IF NOT EXISTS `obra` (
-  `codigoObra` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(45) NOT NULL,
-  `subtitulo` varchar(50) DEFAULT NULL,
-  `editora_codigoEditora` int(11) NOT NULL,
-  `cidade_codigoCidade` int(11) DEFAULT NULL,
-  `edicao` int(11) DEFAULT NULL,
-  `ano` date NOT NULL,
-  `categoria_codigoCategoria` int(11) NOT NULL,
-  `situacao` varchar(12) NOT NULL,
-  `status` varchar(12) NOT NULL,
-  `codBarras` varchar(50) DEFAULT NULL,
-  `qtdEstoqueTotal` int(11) NOT NULL,
-  `qtdEstoqueDisponivel` int(11) NOT NULL,
-  PRIMARY KEY (`codigoObra`),
-  KEY `fk_Obra_Editora_idx` (`editora_codigoEditora`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+CREATE TABLE IF NOT EXISTS `estado` (
+  `codigoEstado` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(30) NOT NULL,
+  PRIMARY KEY (`codigoEstado`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
--- Extraindo dados da tabela `obra`
+-- Extraindo dados da tabela `estado`
 --
 
-INSERT INTO `obra` (`codigoObra`, `titulo`, `subtitulo`, `editora_codigoEditora`, `cidade_codigoCidade`, `edicao`, `ano`, `categoria_codigoCategoria`, `situacao`, `status`, `codBarras`, `qtdEstoqueTotal`, `qtdEstoqueDisponivel`) VALUES
-(24, 'DOM CASMURRO', NULL, 14, NULL, 1, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(25, 'A ROSA DO POVO', NULL, 12, NULL, 3, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(26, 'CAPITAES DA AREIA', NULL, 13, NULL, 4, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(27, 'COMPILADORES', NULL, 13, NULL, 1, '0000-00-00', 0, 'Prateleira', 'Ativado', NULL, 0, 0),
-(28, 'CADILACKES', NULL, 12, NULL, 4, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(29, 'a culpa', NULL, 12, NULL, 5, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(30, 'A CRUZ PERDIDA', NULL, 14, NULL, 1, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(31, 'o poeta', NULL, 12, NULL, 877, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(32, 'HARRY POTTER', NULL, 12, NULL, 5, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0);
-
---
--- Constraints for dumped tables
---
-
---
--- Limitadores para a tabela `obra`
---
-ALTER TABLE `obra`
-  ADD CONSTRAINT `fk_Obra_Editora` FOREIGN KEY (`editora_codigoEditora`) REFERENCES `editora` (`codigoEditora`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+INSERT INTO `estado` (`codigoEstado`, `nome`) VALUES
+(1, 'Goiás '),
+(2, 'São Paulo'),
+(3, 'Rio de Janeiro '),
+(4, 'Bahia'),
+(5, 'Minas Gerais'),
+(6, 'Distrito Federal'),
+(7, 'Rio Grande do Sul'),
+(8, 'Pará'),
+(9, 'Acre'),
+(10, 'Rio Grande do Norte'),
+(11, 'Mato Grosso'),
+(12, 'Espirito Santo'),
+(13, 'Amapá'),
+(14, 'Ceará'),
+(15, 'Mato Grosso do Sul'),
+(16, 'Alagoas '),
+(17, 'Amazonas'),
+(18, 'Maranhão'),
+(19, 'Paraiba'),
+(20, 'Pernambuco'),
+(21, 'Piauí'),
+(22, 'Rondônia'),
+(23, 'Roraima'),
+(24, 'Tocantins'),
+(25, 'Sergipe'),
+(26, 'Santa Catarina');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
