@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 15-Maio-2018 às 01:31
+-- Generation Time: 15-Maio-2018 às 19:38
 -- Versão do servidor: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `obra` (
   `editora_codigoEditora` int(11) NOT NULL,
   `cidade_codigoCidade` int(11) DEFAULT NULL,
   `edicao` int(11) DEFAULT NULL,
-  `ano` date DEFAULT NULL,
+  `ano` date NOT NULL,
   `categoria_codigoCategoria` int(11) NOT NULL,
   `situacao` varchar(12) NOT NULL,
   `status` varchar(12) NOT NULL,
