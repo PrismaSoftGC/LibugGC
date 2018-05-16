@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 16-Maio-2018 às 12:28
+-- Generation Time: 16-Maio-2018 às 13:09
 -- Versão do servidor: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -368,20 +368,6 @@ INSERT INTO `obra` (`codigoObra`, `titulo`, `subtitulo`, `editora_codigoEditora`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `telefone`
---
-
-CREATE TABLE `telefone` (
-  `codigoTelefone` int(11) NOT NULL,
-  `ddd` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `cliente_codigoCliente` int(11) DEFAULT NULL,
-  `editora_codigoEditora` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `usuario`
 --
 
@@ -453,12 +439,6 @@ ALTER TABLE `obra`
   ADD KEY `fk_Obra_Editora_idx` (`editora_codigoEditora`);
 
 --
--- Indexes for table `telefone`
---
-ALTER TABLE `telefone`
-  ADD PRIMARY KEY (`codigoTelefone`);
-
---
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
@@ -513,11 +493,6 @@ ALTER TABLE `estado`
 --
 ALTER TABLE `obra`
   MODIFY `codigoObra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
---
--- AUTO_INCREMENT for table `telefone`
---
-ALTER TABLE `telefone`
-  MODIFY `codigoTelefone` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `usuario`
 --
