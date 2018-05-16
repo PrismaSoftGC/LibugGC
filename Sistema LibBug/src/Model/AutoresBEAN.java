@@ -4,8 +4,6 @@ public class AutoresBEAN {
     private int codigoAutor;
     private String nome;
     private String status;
-    private String conteudo;
-    private String cpf;
 
     public AutoresBEAN(int codigoAutor, String nome, String status) {
         this.codigoAutor = codigoAutor;

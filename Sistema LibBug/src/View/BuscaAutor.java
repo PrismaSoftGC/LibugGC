@@ -33,7 +33,7 @@ public class BuscaAutor extends javax.swing.JDialog {
 
         try {
             for (AutoresBEAN autor : listaAutores) {
-                modelo.addRow(new Object[]{autor.getCodigoAutor(), autor.getNome(), autor.getCpf(), autor.getStatus(), autor.getConteudo()});
+                modelo.addRow(new Object[]{autor.getCodigoAutor(), autor.getNome(), autor.getStatus()});
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro ao listar dados - " + erro);
