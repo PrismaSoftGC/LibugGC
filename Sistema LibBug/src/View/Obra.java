@@ -3,10 +3,17 @@ package View;
 import Controller.Controle;
 import Model.AutoresBEAN;
 import Model.AuxAutorObraBEAN;
+import Model.CategoriasBEAN;
+import Model.CidadesBEAN;
 import Model.EditorasBEAN;
 import Model.ObrasBEAN;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Obra extends javax.swing.JDialog {
@@ -28,13 +35,18 @@ public class Obra extends javax.swing.JDialog {
         tabelaObra.setVisible(false);
         tabelaAutores.setVisible(false);
         comboEditora();
+        comboCategoria();
+        comboCidade();
         Desabilita();
         botao();
+        
+        Date datando = new Date();
+        calendarioAno.setDate(datando);
     }
     
     public void Desabilita(){
         textTitulo.setEditable(false);
-        cbEditora.setEnabled(false);
+        cbEditora1.setEnabled(false);
         textEdicao.setEditable(false);
         cbSituacao.setEnabled(false);
         cbStatus.setEnabled(false);
@@ -45,7 +57,7 @@ public class Obra extends javax.swing.JDialog {
 
     public void Habilita(){
         textTitulo.setEditable(true);
-        cbEditora.setEnabled(true);
+        cbEditora1.setEnabled(true);
         textEdicao.setEditable(true);
         cbSituacao.setEnabled(true);
         cbStatus.setEnabled(true);
@@ -57,7 +69,7 @@ public class Obra extends javax.swing.JDialog {
     public void Limpar(){
         textCodigo.setText("");
         textTitulo.setText("");
-        cbEditora.setSelectedIndex(0);
+        cbEditora1.setSelectedIndex(0);
         textEdicao.setText("");
         cbSituacao.setSelectedIndex(0);
         cbStatus.setSelectedIndex(0);
@@ -93,12 +105,37 @@ public class Obra extends javax.swing.JDialog {
         try {
             for (EditorasBEAN editora : listaEditoras) {
                 if(editora.getStatus().equals("Ativado"))
-                cbEditora.addItem(editora.getNomeFantasia());
+                cbEditora1.addItem(editora.getNomeFantasia());
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
         }
     }
+    
+    public void comboCategoria(){
+        ArrayList<CategoriasBEAN> listaCategorias = controle.listaCategorias();
+        
+        try {
+            for (CategoriasBEAN cat : listaCategorias) {
+                 cbCategoria.addItem(cat.getNome());
+            }  
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
+        }
+    }
+    
+    public void comboCidade(){
+        ArrayList<CidadesBEAN> listaCidades = controle.listaCidades();
+        
+        try {
+            for (CidadesBEAN cida : listaCidades) {
+                 cbCidade.addItem(cida.getNome());
+            }  
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
+        }
+    }
+    
     int cont2=0;
      
     public void preencher_tabela(AutoresBEAN autor) {
@@ -120,8 +157,8 @@ public class Obra extends javax.swing.JDialog {
         modelo3.setNumRows(0);
 
         try {
-            modelo3.addRow(new Object[]{obra.getCodigoObra(), obra.getTitulo(), nomeEditora, obra.getEdicao(),
-            obra.getSituacao(), obra.getStatus()});
+            modelo3.addRow(new Object[]{obra.getCodigoObra(), obra.getTitulo(), obra.getSubititulo(), nomeEditora,
+                obra.getEdicao(), obra.getQtdEstoqueTotal(), obra.getQtdEstoqueDisponivel(),obra.getSituacao(), obra.getStatus()});
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
         }
@@ -147,8 +184,9 @@ public class Obra extends javax.swing.JDialog {
 
         try {
             for (int i=0; i<listaObras.size();i++) {
-                modelo3.addRow(new Object[]{listaObras.get(i).getCodigoObra(), listaObras.get(i).getTitulo(), listaEditoras.get(i).getNomeFantasia() ,
-                    listaObras.get(i).getEdicao(), listaObras.get(i).getSituacao(), listaObras.get(i).getStatus()});
+                modelo3.addRow(new Object[]{listaObras.get(i).getCodigoObra(), listaObras.get(i).getTitulo(),listaObras.get(i).getSubititulo(),
+                    listaEditoras.get(i).getNomeFantasia(), listaObras.get(i).getEdicao(), listaObras.get(i).getQtdEstoqueTotal(), 
+                    listaObras.get(i).getQtdEstoqueDisponivel(), listaObras.get(i).getSituacao(), listaObras.get(i).getStatus()});
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro ao listar dados - " + erro);
@@ -204,7 +242,7 @@ public class Obra extends javax.swing.JDialog {
         labelCodigo = new javax.swing.JLabel();
         textCodigo = new javax.swing.JTextField();
         labelEdit = new javax.swing.JLabel();
-        cbEditora = new javax.swing.JComboBox<>();
+        cbCidade = new javax.swing.JComboBox<>();
         cbSituacao = new javax.swing.JComboBox<>();
         labelSitu = new javax.swing.JLabel();
         textAutor = new javax.swing.JTextField();
@@ -216,7 +254,6 @@ public class Obra extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         textSubtitulo = new javax.swing.JTextField();
         labelSubtitulo = new javax.swing.JLabel();
-        textCidade = new javax.swing.JTextField();
         labelCidade = new javax.swing.JLabel();
         labelAno = new javax.swing.JLabel();
         cbCategoria = new javax.swing.JComboBox<>();
@@ -228,6 +265,7 @@ public class Obra extends javax.swing.JDialog {
         textEstoqueDisponivel = new javax.swing.JTextField();
         labelEstoqueDisponivel = new javax.swing.JLabel();
         calendarioAno = new com.toedter.calendar.JDateChooser();
+        cbEditora1 = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -499,14 +537,14 @@ public class Obra extends javax.swing.JDialog {
 
         labelEdicao.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelEdicao.setText("Edicao");
-        jPanel3.add(labelEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+        jPanel3.add(labelEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
 
         textEdicao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 textEdicaoKeyTyped(evt);
             }
         });
-        jPanel3.add(textEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 160, 30));
+        jPanel3.add(textEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 160, 30));
 
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativado", "Desativado" }));
         cbStatus.addActionListener(new java.awt.event.ActionListener() {
@@ -529,8 +567,8 @@ public class Obra extends javax.swing.JDialog {
         labelEdit.setText("Editora*");
         jPanel3.add(labelEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, 20));
 
-        cbEditora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
-        jPanel3.add(cbEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 190, 30));
+        cbCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        jPanel3.add(cbCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 30));
 
         cbSituacao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prateleira", "Emprestado" }));
@@ -605,27 +643,20 @@ public class Obra extends javax.swing.JDialog {
         labelSubtitulo.setText("Subtitulo");
         jPanel3.add(labelSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 20));
 
-        textCidade.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textCidadeKeyTyped(evt);
-            }
-        });
-        jPanel3.add(textCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 160, 30));
-
         labelCidade.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelCidade.setText("Cidade");
         jPanel3.add(labelCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         labelAno.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelAno.setText("Ano*");
-        jPanel3.add(labelAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, 20));
+        jPanel3.add(labelAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, -1, 20));
 
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
-        jPanel3.add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 250, 30));
+        jPanel3.add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 220, 30));
 
         labelCategoria.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelCategoria.setText("Categoria*");
-        jPanel3.add(labelCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, 20));
+        jPanel3.add(labelCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, -1, 20));
 
         textBarras.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -659,7 +690,10 @@ public class Obra extends javax.swing.JDialog {
         labelEstoqueDisponivel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelEstoqueDisponivel.setText("Estoque Disponível*");
         jPanel3.add(labelEstoqueDisponivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 150, -1));
-        jPanel3.add(calendarioAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 130, 30));
+        jPanel3.add(calendarioAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 130, 30));
+
+        cbEditora1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        jPanel3.add(cbEditora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, 190, 30));
 
         abas.addTab("Cadastro / Edição", jPanel3);
 
@@ -744,95 +778,155 @@ public class Obra extends javax.swing.JDialog {
         botaoSalvar.setFocusPainted( false );
     }//GEN-LAST:event_botaoSalvarMouseExited
 
+    public int BuscaEditora(String nome){
+        ArrayList<EditorasBEAN> lista = new ArrayList<>();
+
+        lista = controle.findEditoraNome(nome);
+        int codigoEditora = 0;
+
+        for (EditorasBEAN lis : lista) {
+            if (lis.getNomeFantasia().equals(nome)) {
+                codigoEditora = lis.getCodigoEditora();
+            }
+        }
+        return codigoEditora;
+
+    }
+    
+     public int BuscaCidade(String cidade){
+        ArrayList<CidadesBEAN> lista = new ArrayList<>();
+
+        lista = controle.findCidadeNome(cidade);
+        int codigoCidade = 0;
+
+        for (CidadesBEAN lis : lista) {
+            if (lis.getNome().equals(cidade)) {
+                codigoCidade = lis.getCodigoCidade();
+            }
+        }
+        return codigoCidade;
+    }
+     
+        public int BuscaCat(String cat){
+        ArrayList<CategoriasBEAN> lista = new ArrayList<>();
+
+        lista = controle.findCategoriaNome(cat);
+        int codigoCategoria = 0;
+
+        for (CategoriasBEAN lis : lista) {
+            if (lis.getNome().equals(cat)) {
+                codigoCategoria = lis.getCodigoCategoria();
+            }
+        }
+        return codigoCategoria;
+    }
+    
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         modelo2 = (javax.swing.table.DefaultTableModel) TabelaDestino.getModel();
         int valor = TabelaDestino.getRowCount();
-
-        if (textTitulo.getText().equals("") || cbEditora.getSelectedItem().equals("Selecione") || textEdicao.getText().equals("") || valor <=0) {
+        
+        Date datando2 = calendarioAno.getCalendar().getTime();
+        
+        if (textTitulo.getText().equals("") || cbEditora1.getSelectedItem().equals("Selecione")
+                || cbCategoria.getSelectedItem().equals("Selecione") || textEstoqueTotal.getText().equals("") || 
+                textEstoqueDisponivel.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Preencha para prosseguir");
+            
         } else {
 
-            try {
-                ObrasBEAN obra = new ObrasBEAN();
 
-                obra.setTitulo(textTitulo.getText());
+                    try {
+                        ObrasBEAN obra = new ObrasBEAN();
+                        obra.setTitulo(textTitulo.getText());
+                        obra.setSubititulo(textSubtitulo.getText());
+                        
+                        String nomeEd = (String) cbEditora1.getSelectedItem();
+                        obra.setCodigoEditora(BuscaEditora(nomeEd));
+                        
+                        String nomeCid = (String) cbCidade.getSelectedItem();
+                        obra.setCodigoCidade(BuscaCidade(nomeCid));
+                        
+                        int codigoEdicao = Integer.parseInt(textEdicao.getText());
+                        obra.setEdicao(codigoEdicao);
+                        
+                    //    Date calend = calendarioAno.getCalendar().getTime();
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                        String pesquisaData = sdf.format(datando2);
 
-                String nome = (String) cbEditora.getSelectedItem();
-                ArrayList<EditorasBEAN> lista = new ArrayList<>();
+                        java.sql.Date data = new java.sql.Date(sdf.parse(pesquisaData).getTime());
+                        obra.setAno(data);
+                        
+                        String categNome = (String) cbCategoria.getSelectedItem();
+                        obra.setCodigoCategoria(BuscaCat(categNome));
+                        
+                        String situacao = (String) cbSituacao.getSelectedItem();
+                        obra.setSituacao(situacao);
+                        String status = (String) cbStatus.getSelectedItem();
+                        obra.setStatus(status);
+                        obra.setCodBarras(textBarras.getText());
+                        int estoqueT = Integer.parseInt(textEstoqueTotal.getText());
+                        obra.setQtdEstoqueTotal(estoqueT);
+                        int estoqueD = Integer.parseInt(textEstoqueDisponivel.getText());
+                        obra.setQtdEstoqueDisponivel(estoqueD);
 
-                lista = controle.findEditoraNome(nome);
-                int codigoEditora=0;
+                        AuxAutorObraBEAN aux = new AuxAutorObraBEAN();
 
-                for(EditorasBEAN lis : lista){
-                    if(lis.getNomeFantasia().equals(nome)){
-                        codigoEditora= lis.getCodigoEditora();
+                        if (textCodigo.getText().equals("")) {
+
+                            controle.addObra(obra);
+
+                            int linhasCadastro = TabelaDestino.getRowCount();
+                            int codigoObra = controle.findObra(obra);
+
+                            for (int i = 0; i < linhasCadastro; i++) {
+                                aux.setCodigoObra(codigoObra);
+                                aux.setCodigoAutor((int) TabelaDestino.getValueAt(i, 0));
+
+                                controle.addAuxObra(aux);
+                            }
+                            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+                            Limpar();
+                            Desabilita();
+                            botaoSalvar.setEnabled(false);
+                            botaoCancelar.setEnabled(false);
+                            botaoNovo.setEnabled(true);
+                            abas.setSelectedIndex(0);
+                            abas.setEnabled(true);
+                        } else {
+                            int codigo = Integer.parseInt(textCodigo.getText());
+
+                            obra.setCodigoObra(codigo);
+                            controle.updateObra(obra);
+
+                            int codigoObra = controle.findObra(obra);
+                            int linhasAtualiza = TabelaDestino.getRowCount();
+
+                            for (int i = 0; i < linhasAtualiza; i++) {
+                                aux.setCodigoObra(codigoObra);
+                                controle.deleteAuxObra(aux);
+                            }
+
+                            for (int i = 0; i < linhasAtualiza; i++) {
+                                aux.setCodigoObra(codigoObra);
+                                aux.setCodigoAutor((int) TabelaDestino.getValueAt(i, 0));
+                                controle.addAuxObra(aux);
+                            }
+
+                            JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
+                            Limpar();
+                            Desabilita();
+                            botaoSalvar.setEnabled(false);
+                            botaoCancelar.setEnabled(false);
+                            botaoNovo.setEnabled(true);
+                            abas.setSelectedIndex(0);
+                            abas.setEnabled(true);
+                        }
+
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
                     }
-                }
+               
 
-                obra.setCodigoEditora(codigoEditora);
-                int codigoEdicao = Integer.parseInt(textEdicao.getText());
-                obra.setEdicao(codigoEdicao);
-                String situacao = (String) cbSituacao.getSelectedItem();
-                obra.setSituacao(situacao);
-                String status = (String) cbStatus.getSelectedItem();
-                obra.setStatus(status);
-
-                AuxAutorObraBEAN aux = new AuxAutorObraBEAN();
-
-                if (textCodigo.getText().equals("")) {
-
-                    controle.addObra(obra);
-
-                    int linhasCadastro = TabelaDestino.getRowCount();
-                    int codigoObra = controle.findObra(obra);
-
-                    for (int i = 0; i < linhasCadastro; i++) {
-                        aux.setCodigoObra(codigoObra);
-                        aux.setCodigoAutor((int) TabelaDestino.getValueAt(i, 0));
-
-                        controle.addAuxObra(aux);
-                    }
-                    JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-                    Limpar();
-                    Desabilita();
-                    botaoSalvar.setEnabled(false);
-                    botaoCancelar.setEnabled(false);
-                    botaoNovo.setEnabled(true);
-                    abas.setSelectedIndex(0);
-                    abas.setEnabled(true);
-                } else {
-                    int codigo = Integer.parseInt(textCodigo.getText());
-
-                    obra.setCodigoObra(codigo);
-                    controle.updateObra(obra);
-
-                    int codigoObra = controle.findObra(obra);
-                    int linhasAtualiza = TabelaDestino.getRowCount();
-
-                    for (int i = 0; i < linhasAtualiza; i++) {
-                        aux.setCodigoObra(codigoObra);
-                        controle.deleteAuxObra(aux);
-                    }
-
-                    for (int i = 0; i < linhasAtualiza; i++) {
-                        aux.setCodigoObra(codigoObra);
-                        aux.setCodigoAutor((int) TabelaDestino.getValueAt(i, 0));
-                        controle.addAuxObra(aux);
-                    }
-
-                    JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
-                    Limpar();
-                    Desabilita();
-                    botaoSalvar.setEnabled(false);
-                    botaoCancelar.setEnabled(false);
-                    botaoNovo.setEnabled(true);
-                    abas.setSelectedIndex(0);
-                    abas.setEnabled(true);
-                }
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
         }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
@@ -939,39 +1033,45 @@ public class Obra extends javax.swing.JDialog {
             textCodigo.setEditable(false);
 
             int linha = tabelaObra.getSelectedRow();
+            int codigoObra = (int) tabelaObra.getValueAt(linha, 0);
+            
+            ObrasBEAN obra = controle.findObraCodigo(codigoObra);
+            CidadesBEAN cidade = controle.findCidadeCodigo(obra.getCodigoCidade());
+            CategoriasBEAN categoria = controle.findCategoriaCodigo(obra.getCodigoCategoria());
+            
+            Date anoObra = obra.getAno();
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            String dataFormatada = sdf.format(anoObra);
+                     
 
             textCodigo.setText(tabelaObra.getValueAt(linha, 0).toString());
             textTitulo.setText(tabelaObra.getValueAt(linha, 1).toString());
-            cbEditora.setSelectedItem(tabelaObra.getValueAt(linha, 2));
-            textEdicao.setText(tabelaObra.getValueAt(linha, 3).toString());
-            cbSituacao.setSelectedItem(tabelaObra.getValueAt(linha, 4));
-            cbStatus.setSelectedItem(tabelaObra.getValueAt(linha, 5));
-
-            //preenchendo a tabela de autor selecionado.
+            textSubtitulo.setText(tabelaObra.getValueAt(linha, 2).toString());
+            cbEditora1.setSelectedItem(tabelaObra.getValueAt(linha, 3));
+            cbCidade.setSelectedItem(cidade.getNome());
+            textEdicao.setText(tabelaObra.getValueAt(linha, 4).toString());
+            try {
+                java.sql.Date dataBrasil = new java.sql.Date(sdf.parse(dataFormatada).getTime());
+                calendarioAno.setDate(dataBrasil);
+            } catch (ParseException ex) {
+                Logger.getLogger(Obra.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            cbCategoria.setSelectedItem(categoria.getNome());
+            cbSituacao.setSelectedItem(tabelaObra.getValueAt(linha, 7));
+            cbStatus.setSelectedItem(tabelaObra.getValueAt(linha, 8));
+            textBarras.setText(obra.getCodBarras());
+            textEstoqueTotal.setText(String.valueOf(obra.getQtdEstoqueTotal()));
+            textEstoqueDisponivel.setText(String.valueOf(obra.getQtdEstoqueDisponivel()));
+           
             int qtdLinhaAutores = tabelaAutores.getRowCount();
-
-            //     int vetor[] = new int[qtdLinhaAutores];
 
             modelo2.setNumRows(contador);
 
             for (int i = 0; i < qtdLinhaAutores; i++) {
                 modelo2.addRow(new Object[]{tabelaAutores.getValueAt(i, 0), tabelaAutores.getValueAt(i, 1)});
-                //   vetor[i] = (int) tabelaAutores.getValueAt(i, 0);
             }
 
-            //     ArrayList<AutoresBEAN> listaAutores = controle.listaAutores();
-            /*
-            for (int j = 0; j < listaAutores.size(); j++) {
-                for (int i = 0; i < vetor.length; i++) {
-                    if (listaAutores.get(j).getCodigoAutor() == vetor[i]) {
-                        listaAutores.remove(j);
-                        break;
-                    }
-                }
-            }
-            */
-            //   preencher_tabela(listaAutores);
-            //  listaAutores = null;
         }
     }//GEN-LAST:event_tabelaObraMouseClicked
 
@@ -1059,10 +1159,6 @@ public class Obra extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void textCidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCidadeKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textCidadeKeyTyped
-
     private void textBarrasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBarrasKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_textBarrasKeyTyped
@@ -1127,7 +1223,8 @@ public class Obra extends javax.swing.JDialog {
     private javax.swing.JButton botaoSalvar;
     private com.toedter.calendar.JDateChooser calendarioAno;
     private javax.swing.JComboBox<String> cbCategoria;
-    private javax.swing.JComboBox<String> cbEditora;
+    private javax.swing.JComboBox<String> cbCidade;
+    private javax.swing.JComboBox<String> cbEditora1;
     private javax.swing.JComboBox<String> cbSituacao;
     private javax.swing.JComboBox<String> cbStatus;
     private javax.swing.JButton jButton1;
@@ -1165,7 +1262,6 @@ public class Obra extends javax.swing.JDialog {
     private javax.swing.JTextField textBarras;
     private javax.swing.JTextField textBuscaCodigo;
     private javax.swing.JTextField textBuscaNome;
-    private javax.swing.JTextField textCidade;
     private javax.swing.JTextField textCodigo;
     private javax.swing.JTextField textEdicao;
     private javax.swing.JTextField textEstoqueDisponivel;

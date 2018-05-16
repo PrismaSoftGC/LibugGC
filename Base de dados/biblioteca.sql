@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 16-Maio-2018 às 13:09
--- Versão do servidor: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: 16-Maio-2018 às 21:06
+-- Versão do servidor: 10.1.29-MariaDB
+-- PHP Version: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -79,7 +81,11 @@ INSERT INTO `aux_autor_obra` (`codigoAutor`, `codigoObra`) VALUES
 (29, 30),
 (25, 31),
 (26, 32),
-(28, 32);
+(28, 32),
+(26, 34),
+(28, 35),
+(29, 36),
+(26, 37);
 
 -- --------------------------------------------------------
 
@@ -122,6 +128,14 @@ CREATE TABLE `categoria` (
   `nome` varchar(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `categoria`
+--
+
+INSERT INTO `categoria` (`codigoCategoria`, `nome`) VALUES
+(1, 'ROMANCE'),
+(2, 'TERROR');
+
 -- --------------------------------------------------------
 
 --
@@ -133,6 +147,13 @@ CREATE TABLE `cidade` (
   `nome` varchar(30) NOT NULL,
   `estado_codigoEstado` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `cidade`
+--
+
+INSERT INTO `cidade` (`codigoCidade`, `nome`, `estado_codigoEstado`) VALUES
+(1, 'RIO VERDE', 1);
 
 -- --------------------------------------------------------
 
@@ -355,15 +376,34 @@ CREATE TABLE `obra` (
 --
 
 INSERT INTO `obra` (`codigoObra`, `titulo`, `subtitulo`, `editora_codigoEditora`, `cidade_codigoCidade`, `edicao`, `ano`, `categoria_codigoCategoria`, `situacao`, `status`, `codBarras`, `qtdEstoqueTotal`, `qtdEstoqueDisponivel`) VALUES
-(24, 'DOM CASMURRO', NULL, 14, NULL, 1, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(25, 'A ROSA DO POVO', NULL, 12, NULL, 3, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(26, 'CAPITAES DA AREIA', NULL, 13, NULL, 4, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(27, 'COMPILADORES', NULL, 13, NULL, 1, '0000-00-00', 0, 'Prateleira', 'Ativado', NULL, 0, 0),
-(28, 'CADILACKES', NULL, 12, NULL, 4, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(29, 'a culpa', NULL, 12, NULL, 5, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(30, 'A CRUZ PERDIDA', NULL, 14, NULL, 1, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(31, 'o poeta', NULL, 12, NULL, 877, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
-(32, 'HARRY POTTER', NULL, 12, NULL, 5, '0000-00-00', 0, 'Emprestado', 'Ativado', NULL, 0, 0);
+(24, 'DOM CASMURRO', NULL, 14, NULL, 1, '2018-05-01', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(25, 'A ROSA DO POVO', NULL, 12, NULL, 3, '2018-05-14', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(26, 'CAPITAES DA AREIA', NULL, 13, NULL, 4, '2018-05-13', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(27, 'COMPILADORES', NULL, 13, NULL, 1, '2018-05-08', 0, 'Prateleira', 'Ativado', NULL, 0, 0),
+(28, 'CADILACKES', NULL, 12, NULL, 4, '2018-01-15', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(29, 'a culpa', NULL, 12, NULL, 5, '2018-05-16', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(30, 'A CRUZ PERDIDA', NULL, 14, NULL, 1, '2018-01-15', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(31, 'o poeta', 'a magia da poesia', 12, 1, 877, '2018-01-15', 1, 'Emprestado', 'Ativado', NULL, 5, 4),
+(32, 'HARRY POTTER', NULL, 12, NULL, 5, '2018-01-15', 0, 'Emprestado', 'Ativado', NULL, 0, 0),
+(33, 'A JARRA PRETA', 'CLASSICO', 14, 0, 3, '2018-05-16', 0, 'Prateleira', 'Ativado', '343243244', 4, 2),
+(34, 'A JARRA', 'CLASSICO', 14, 0, 3, '2018-05-11', 0, 'Prateleira', 'Ativado', '343434', 3, 4),
+(35, 'A MARMITA VELHA', '', 13, 0, 2, '2018-05-05', 0, 'Prateleira', 'Ativado', '', 36, 7),
+(36, 'A FACA PRETA', 'NAO SEI DE COR', 16, 1, 3, '2016-05-16', 1, 'Prateleira', 'Ativado', '4242', 21, 3),
+(37, 'MARCOS NAS', 'NAO SEI', 16, 1, 3, '2018-05-16', 1, 'Prateleira', 'Ativado', '343434', 4, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `telefone`
+--
+
+CREATE TABLE `telefone` (
+  `codigoTelefone` int(11) NOT NULL,
+  `ddd` int(11) NOT NULL,
+  `numero` int(11) NOT NULL,
+  `cliente_codigoCliente` int(11) DEFAULT NULL,
+  `editora_codigoEditora` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -439,6 +479,12 @@ ALTER TABLE `obra`
   ADD KEY `fk_Obra_Editora_idx` (`editora_codigoEditora`);
 
 --
+-- Indexes for table `telefone`
+--
+ALTER TABLE `telefone`
+  ADD PRIMARY KEY (`codigoTelefone`);
+
+--
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
@@ -453,51 +499,67 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `autor`
   MODIFY `codigoAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
 -- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `codigoCategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codigoCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `cidade`
 --
 ALTER TABLE `cidade`
-  MODIFY `codigoCidade` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codigoCidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `codigoCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- AUTO_INCREMENT for table `editora`
 --
 ALTER TABLE `editora`
   MODIFY `codigoEditora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `emprestimo`
 --
 ALTER TABLE `emprestimo`
   MODIFY `codigoEmprestimo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
 --
 -- AUTO_INCREMENT for table `endereco`
 --
 ALTER TABLE `endereco`
   MODIFY `codigoEndereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `estado`
 --
 ALTER TABLE `estado`
   MODIFY `codigoEstado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
 --
 -- AUTO_INCREMENT for table `obra`
 --
 ALTER TABLE `obra`
-  MODIFY `codigoObra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `codigoObra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `telefone`
+--
+ALTER TABLE `telefone`
+  MODIFY `codigoTelefone` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `codigoUsuario` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Constraints for dumped tables
 --
@@ -507,6 +569,7 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `obra`
   ADD CONSTRAINT `fk_Obra_Editora` FOREIGN KEY (`editora_codigoEditora`) REFERENCES `editora` (`codigoEditora`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

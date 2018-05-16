@@ -14,6 +14,10 @@ public class CategoriasBEAN {
     public CategoriasBEAN(String nome) {
         this.nome = nome;
     }
+    
+    public CategoriasBEAN(){
+        
+    }
 
     public int getCodigoCategoria() {
         return codigoCategoria;

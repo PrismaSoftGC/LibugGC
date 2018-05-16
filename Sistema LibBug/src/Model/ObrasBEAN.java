@@ -34,6 +34,10 @@ public class ObrasBEAN {
         this.qtdEstoqueDisponivel = qtdEstoqueDisponivel;
     }
 
+    public ObrasBEAN(){
+        
+    }
+    
     public int getCodigoObra() {
         return codigoObra;
     }

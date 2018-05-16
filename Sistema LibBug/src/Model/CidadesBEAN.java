@@ -17,6 +17,10 @@ public class CidadesBEAN {
         this.nome = nome;
         this.estado_codigoEstado = estado_codigoEstado;
     }
+    
+    public CidadesBEAN(){
+        
+    }
 
     public int getCodigoCidade() {
         return codigoCidade;
