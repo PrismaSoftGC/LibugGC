@@ -3,9 +3,15 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: 16-Maio-2018 às 21:06
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.1.12
+=======
+-- Generation Time: 16-Maio-2018 às 13:09
+-- Versão do servidor: 5.7.14
+-- PHP Version: 5.6.25
+>>>>>>> 319c3bc5bfc29c039f37370aebb7e64452163675
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -394,20 +400,6 @@ INSERT INTO `obra` (`codigoObra`, `titulo`, `subtitulo`, `editora_codigoEditora`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `telefone`
---
-
-CREATE TABLE `telefone` (
-  `codigoTelefone` int(11) NOT NULL,
-  `ddd` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `cliente_codigoCliente` int(11) DEFAULT NULL,
-  `editora_codigoEditora` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `usuario`
 --
 
@@ -479,12 +471,6 @@ ALTER TABLE `obra`
   ADD KEY `fk_Obra_Editora_idx` (`editora_codigoEditora`);
 
 --
--- Indexes for table `telefone`
---
-ALTER TABLE `telefone`
-  ADD PRIMARY KEY (`codigoTelefone`);
-
---
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
@@ -549,12 +535,15 @@ ALTER TABLE `obra`
   MODIFY `codigoObra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `telefone`
 --
 ALTER TABLE `telefone`
   MODIFY `codigoTelefone` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+=======
+>>>>>>> 319c3bc5bfc29c039f37370aebb7e64452163675
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
