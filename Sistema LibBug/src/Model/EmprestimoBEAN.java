@@ -5,15 +5,17 @@ import java.util.Date;
 
 public class EmprestimoBEAN {
     int codigoEmprestimo;
+    int funcionario_codigoFuncionario;
     Date saida;
-    int codigoCliente;
+    int cliente_codigoCliente;
     Date devolucao;
 
-    public EmprestimoBEAN(int codigoEmprestimo, Date saida, int codigoCliente, Date devolucao) {
+    public EmprestimoBEAN(int codigoEmprestimo,int funcionario_codigoFuncionario ,Date saida, int cliente_codigoCliente, Date devolucao) {
         this.codigoEmprestimo = codigoEmprestimo;
         this.saida = saida;
-        this.codigoCliente = codigoCliente;
+        this.cliente_codigoCliente = cliente_codigoCliente;
         this.devolucao = devolucao;
+        this.funcionario_codigoFuncionario = funcionario_codigoFuncionario;
     }
 
     public EmprestimoBEAN(){
@@ -37,11 +39,11 @@ public class EmprestimoBEAN {
     }
 
     public int getCodigoCliente() {
-        return codigoCliente;
+        return cliente_codigoCliente;
     }
 
-    public void setCodigoCliente(int codigoCliente) {
-        this.codigoCliente = codigoCliente;
+    public void setCodigoCliente(int cliente_codigoCliente) {
+        this.cliente_codigoCliente = cliente_codigoCliente;
     }
 
     public Date getDevolucao() {
@@ -50,6 +52,14 @@ public class EmprestimoBEAN {
 
     public void setDevolucao(Date devolucao) {
         this.devolucao = devolucao;
+    }
+
+    public int getCodigoFuncionario() {
+        return funcionario_codigoFuncionario;
+    }
+
+    public void setCodigoFuncionario(int funcionario_codigoFuncionario) {
+        this.funcionario_codigoFuncionario = funcionario_codigoFuncionario;
     }
     
     

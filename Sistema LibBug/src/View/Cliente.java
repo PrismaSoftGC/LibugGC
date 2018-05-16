@@ -25,10 +25,7 @@ public class Cliente extends javax.swing.JDialog {
         textCpf.setText("");
         textIdade.setText("");
         comboboxStatus.setSelectedIndex(0);
-        textRua.setText("");
-        textBairro.setText("");
-        textComplemento.setText("");
-        textCidade.setText("");
+        textEmail.setText("");
     }
     
       public void habilitaComp(){
@@ -36,10 +33,7 @@ public class Cliente extends javax.swing.JDialog {
        textCpf.setEditable(true);
        textIdade.setEditable(true);
        comboboxStatus.setEnabled(true);
-       textRua.setEditable(true);
-       textBairro.setEditable(true);
-       textComplemento.setEditable(true);
-       textCidade.setEditable(true);
+       textEmail.setEditable(true);
     } 
     
     public void desabilitaComp(){
@@ -47,10 +41,7 @@ public class Cliente extends javax.swing.JDialog {
        textCpf.setEditable(false);
        textIdade.setEditable(false);
        comboboxStatus.setEnabled(false);
-       textRua.setEditable(false);
-       textBairro.setEditable(false);
-       textComplemento.setEditable(false);
-       textCidade.setEditable(false);
+       textEmail.setEditable(false);
     } 
     
     public void preencher_tabela(ClientesBEAN cliente){
@@ -59,7 +50,7 @@ public class Cliente extends javax.swing.JDialog {
 
         try {
             modelo.addRow(new Object[]{cliente.getCodigoCliente(), cliente.getNome(), cliente.getCpf(), cliente.getIdade(), cliente.getStatus(),
-            cliente.getRua(), cliente.getBairro(), cliente.getComplemento(), cliente.getCidade()});
+            cliente.getEmail()});
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
         }
@@ -71,7 +62,7 @@ public class Cliente extends javax.swing.JDialog {
         try {
             for (ClientesBEAN cliente : listaClientes) {
                 modelo.addRow(new Object[]{cliente.getCodigoCliente(), cliente.getNome(), cliente.getCpf(), cliente.getIdade(), cliente.getStatus(),
-                cliente.getRua(), cliente.getBairro(), cliente.getComplemento(), cliente.getCidade()});
+            cliente.getEmail()});
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
@@ -104,14 +95,8 @@ public class Cliente extends javax.swing.JDialog {
         labelCpf = new javax.swing.JLabel();
         labelIdade = new javax.swing.JLabel();
         textIdade = new javax.swing.JTextField();
-        labelRua = new javax.swing.JLabel();
-        textRua = new javax.swing.JTextField();
-        labelBairro = new javax.swing.JLabel();
-        textBairro = new javax.swing.JTextField();
         labelCidade = new javax.swing.JLabel();
-        textCidade = new javax.swing.JTextField();
-        labelComplemento = new javax.swing.JLabel();
-        textComplemento = new javax.swing.JTextField();
+        textEmail = new javax.swing.JTextField();
         comboboxStatus = new javax.swing.JComboBox<>();
         labelStatus = new javax.swing.JLabel();
         labelCodigo = new javax.swing.JLabel();
@@ -186,17 +171,17 @@ public class Cliente extends javax.swing.JDialog {
 
         tabelaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nome", "CPF", "Idade", "Status", "Rua", "Bairro", "Complemento", "Cidade"
+                "Codigo", "Nome", "CPF", "Idade", "Status", "Email"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -288,25 +273,10 @@ public class Cliente extends javax.swing.JDialog {
         });
         jPanel3.add(textIdade, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 82, 43, 27));
 
-        labelRua.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelRua.setText("Rua");
-        jPanel3.add(labelRua, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 122, -1, -1));
-        jPanel3.add(textRua, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 142, 250, 30));
-
-        labelBairro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelBairro.setText("Bairro");
-        jPanel3.add(labelBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 122, -1, -1));
-        jPanel3.add(textBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 142, 150, 30));
-
         labelCidade.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelCidade.setText("Cidade");
-        jPanel3.add(labelCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 182, -1, -1));
-        jPanel3.add(textCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 202, 250, 30));
-
-        labelComplemento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelComplemento.setText("Complemento");
-        jPanel3.add(labelComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 122, -1, -1));
-        jPanel3.add(textComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 142, 200, 30));
+        labelCidade.setText("Email*");
+        jPanel3.add(labelCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jPanel3.add(textEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 250, 30));
 
         comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativado", "Desativado" }));
         jPanel3.add(comboboxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 82, 110, 30));
@@ -389,7 +359,6 @@ public class Cliente extends javax.swing.JDialog {
             if (cpf.isCPF() == false) {
                 JOptionPane.showMessageDialog(null, "Digite um Cpf Valido");
             } else {
-
                 try {
                     ClientesBEAN cliente = new ClientesBEAN();
 
@@ -398,10 +367,7 @@ public class Cliente extends javax.swing.JDialog {
                     cliente.setStatus(status);
                     cliente.setCpf(textCpf.getText());
                     cliente.setIdade(idade);
-                    cliente.setRua(textRua.getText());
-                    cliente.setBairro(textBairro.getText());
-                    cliente.setComplemento(textComplemento.getText());
-                    cliente.setCidade(textCidade.getText());
+                    cliente.setEmail(textEmail.getText());
 
                     if (textCodigo.getText().equals("")) {
                         controle.addCliente(cliente);
@@ -519,10 +485,7 @@ public class Cliente extends javax.swing.JDialog {
             textCpf.setText(tabelaCliente.getValueAt(linha, 2).toString());
             textIdade.setText(tabelaCliente.getValueAt(linha, 3).toString());
             comboboxStatus.setSelectedItem(tabelaCliente.getValueAt(linha, 4));
-            textRua.setText(tabelaCliente.getValueAt(linha, 5).toString());
-            textBairro.setText(tabelaCliente.getValueAt(linha, 6).toString());
-            textComplemento.setText(tabelaCliente.getValueAt(linha, 7).toString());
-            textCidade.setText(tabelaCliente.getValueAt(linha, 8).toString());
+            textEmail.setText(tabelaCliente.getValueAt(linha, 5).toString());
 
             textCodigo.setEnabled(false);
         }
@@ -575,26 +538,20 @@ public class Cliente extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelBairro;
     private javax.swing.JLabel labelCidade;
     private javax.swing.JLabel labelCodigo;
-    private javax.swing.JLabel labelComplemento;
     private javax.swing.JLabel labelCpf;
     private javax.swing.JLabel labelEditora;
     private javax.swing.JLabel labelIdade;
     private javax.swing.JLabel labelNome;
-    private javax.swing.JLabel labelRua;
     private javax.swing.JLabel labelStatus;
     public javax.swing.JTable tabelaCliente;
-    private javax.swing.JTextField textBairro;
     private javax.swing.JTextField textBuscaCodigo;
     private javax.swing.JTextField textBuscaNome;
-    private javax.swing.JTextField textCidade;
     private javax.swing.JTextField textCodigo;
-    private javax.swing.JTextField textComplemento;
     private javax.swing.JFormattedTextField textCpf;
+    private javax.swing.JTextField textEmail;
     private javax.swing.JTextField textIdade;
     private javax.swing.JTextField textNome;
-    private javax.swing.JTextField textRua;
     // End of variables declaration//GEN-END:variables
 }

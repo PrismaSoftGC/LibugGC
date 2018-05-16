@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Editora extends javax.swing.JDialog {
-
+     
     private javax.swing.table.DefaultTableModel modelo; 
     static Controle controle = new Controle();
     
@@ -49,23 +49,13 @@ public class Editora extends javax.swing.JDialog {
         textRazao.setText("");
         textCnpj.setText("");
         comboboxStatus.setSelectedIndex(0);
-        textRua.setText("");
-        textBairro.setText("");
-        textComplemento.setText("");
-        textCidade.setText("");
-        textTelefone.setText("");
     }
     
     public void habilitaComp(){
        textNome.setEditable(true);
-       textRazao.setEditable(true);
+       textRazao.setEditable(true); 
        textCnpj.setEditable(true);
        comboboxStatus.setEnabled(true);
-       textRua.setEditable(true);
-       textBairro.setEditable(true);
-       textComplemento.setEditable(true);
-       textCidade.setEditable(true);
-       textTelefone.setEditable(true);
     } 
     
     public void desabilitaComp(){
@@ -74,11 +64,6 @@ public class Editora extends javax.swing.JDialog {
        textRazao.setEditable(false);
        textCnpj.setEditable(false);
        comboboxStatus.setEnabled(false);
-       textRua.setEditable(false);
-       textBairro.setEditable(false);
-       textComplemento.setEditable(false);
-       textCidade.setEditable(false);
-       textTelefone.setEditable(false);
     } 
     
     public void preencher_tabela(EditorasBEAN editora){
@@ -86,8 +71,7 @@ public class Editora extends javax.swing.JDialog {
         modelo.setNumRows(0);
 
         try {
-            modelo.addRow(new Object[]{editora.getCodigoEditora(), editora.getNomeFantasia(), editora.getRazaoSocial(), editora.getCnpj(), editora.getTelefone(),
-            editora.getRua(), editora.getBairro(), editora.getComplemento(), editora.getCidade(), editora.getStatus()});
+            modelo.addRow(new Object[]{editora.getCodigoEditora(), editora.getNomeFantasia(), editora.getRazaoSocial(), editora.getCnpj(), editora.getStatus()});
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
         }
@@ -98,8 +82,7 @@ public class Editora extends javax.swing.JDialog {
         
         try {
             for (EditorasBEAN editora : listaEditoras) {
-               modelo.addRow(new Object[]{editora.getCodigoEditora(), editora.getNomeFantasia(), editora.getRazaoSocial(), editora.getCnpj(), editora.getTelefone(),
-               editora.getRua(), editora.getBairro(), editora.getComplemento(), editora.getCidade(), editora.getStatus()});
+               modelo.addRow(new Object[]{editora.getCodigoEditora(), editora.getNomeFantasia(), editora.getRazaoSocial(), editora.getCnpj(), editora.getStatus()});
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
@@ -132,16 +115,6 @@ public class Editora extends javax.swing.JDialog {
         textCodigo = new javax.swing.JTextField();
         labelRazao = new javax.swing.JLabel();
         textRazao = new javax.swing.JTextField();
-        labelRua = new javax.swing.JLabel();
-        textRua = new javax.swing.JTextField();
-        labelBairro = new javax.swing.JLabel();
-        textBairro = new javax.swing.JTextField();
-        labelComplemento = new javax.swing.JLabel();
-        textComplemento = new javax.swing.JTextField();
-        labelCidade = new javax.swing.JLabel();
-        textCidade = new javax.swing.JTextField();
-        textTelefone = new javax.swing.JTextField();
-        labelTelefone = new javax.swing.JLabel();
         labelEditora = new javax.swing.JLabel();
         botaoCancelar = new javax.swing.JButton();
         botaoNovo = new javax.swing.JButton();
@@ -189,17 +162,17 @@ public class Editora extends javax.swing.JDialog {
         tebelaEditora.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tebelaEditora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nome Fantasia", "Razão Social", "Cnpj", "Telefone", "Rua", "Bairro", "Complemento", "Cidade", "Status"
+                "Codigo", "Nome Fantasia", "Razão Social", "Cnpj", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -227,6 +200,7 @@ public class Editora extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tebelaEditora);
+        tebelaEditora.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(10, 100, 940, 150);
@@ -278,7 +252,7 @@ public class Editora extends javax.swing.JDialog {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/IMG_1870.JPG"))); // NOI18N
         jLabel4.setText("jLabel4");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(0, -240, 1638, 1500);
+        jLabel4.setBounds(0, -240, 1645, 1500);
 
         abas.addTab("Pesquisa", jPanel1);
 
@@ -301,11 +275,11 @@ public class Editora extends javax.swing.JDialog {
         jPanel3.add(textCnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 150, 28));
 
         comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativado", "Desativado" }));
-        jPanel3.add(comboboxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 110, 30));
+        jPanel3.add(comboboxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 110, 30));
 
         labelStatus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelStatus.setText("Status");
-        jPanel3.add(labelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, -1, -1));
+        jPanel3.add(labelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 20, -1, -1));
 
         labelCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelCodigo.setText("Codigo*");
@@ -316,31 +290,6 @@ public class Editora extends javax.swing.JDialog {
         labelRazao.setText("Razão Social*");
         jPanel3.add(labelRazao, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 20));
         jPanel3.add(textRazao, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 250, 30));
-
-        labelRua.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelRua.setText("Rua");
-        jPanel3.add(labelRua, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-        jPanel3.add(textRua, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 250, 30));
-
-        labelBairro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelBairro.setText("Bairro");
-        jPanel3.add(labelBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
-        jPanel3.add(textBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 150, 30));
-
-        labelComplemento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelComplemento.setText("Complemento");
-        jPanel3.add(labelComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
-        jPanel3.add(textComplemento, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 200, 30));
-
-        labelCidade.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelCidade.setText("Cidade");
-        jPanel3.add(labelCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
-        jPanel3.add(textCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 250, 30));
-        jPanel3.add(textTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 150, 30));
-
-        labelTelefone.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelTelefone.setText("Telefone");
-        jPanel3.add(labelTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
 
         abas.addTab("Cadastro / Edição", jPanel3);
 
@@ -504,12 +453,7 @@ public class Editora extends javax.swing.JDialog {
             textNome.setText(tebelaEditora.getValueAt(linha, 1).toString());
             textRazao.setText(tebelaEditora.getValueAt(linha, 2).toString());
             textCnpj.setText(tebelaEditora.getValueAt(linha, 3).toString());
-            textTelefone.setText(tebelaEditora.getValueAt(linha, 4).toString());
-            textRua.setText(tebelaEditora.getValueAt(linha, 5).toString());
-            textBairro.setText(tebelaEditora.getValueAt(linha, 6).toString());
-            textComplemento.setText(tebelaEditora.getValueAt(linha, 7).toString());
-            textCidade.setText(tebelaEditora.getValueAt(linha, 8).toString());
-            comboboxStatus.setSelectedItem(tebelaEditora.getValueAt(linha, 9));
+            comboboxStatus.setSelectedItem(tebelaEditora.getValueAt(linha, 4));
         }
     }//GEN-LAST:event_tebelaEditoraMouseClicked
 
@@ -630,11 +574,6 @@ public class Editora extends javax.swing.JDialog {
                 editora.setNomeFantasia(textNome.getText());
                 editora.setRazaoSocial(textRazao.getText());
                 editora.setCnpj(textCnpj.getText());
-                editora.setRua(textRua.getText());
-                editora.setBairro(textBairro.getText());
-                editora.setComplemento(textComplemento.getText());
-                editora.setCidade(textCidade.getText());
-                editora.setTelefone(textTelefone.getText());
                 String status = (String) comboboxStatus.getSelectedItem();
                 editora.setStatus(status);
 
@@ -724,28 +663,18 @@ public class Editora extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelBairro;
-    private javax.swing.JLabel labelCidade;
     private javax.swing.JLabel labelCodigo;
-    private javax.swing.JLabel labelComplemento;
     private javax.swing.JLabel labelCpf;
     private javax.swing.JLabel labelEditora;
     private javax.swing.JLabel labelNome;
     private javax.swing.JLabel labelRazao;
-    private javax.swing.JLabel labelRua;
     private javax.swing.JLabel labelStatus;
-    private javax.swing.JLabel labelTelefone;
     public javax.swing.JTable tebelaEditora;
-    private javax.swing.JTextField textBairro;
     private javax.swing.JTextField textBuscaCodigo;
     private javax.swing.JTextField textBuscaNome;
-    private javax.swing.JTextField textCidade;
     private javax.swing.JTextField textCnpj;
     private javax.swing.JTextField textCodigo;
-    private javax.swing.JTextField textComplemento;
     private javax.swing.JTextField textNome;
     private javax.swing.JTextField textRazao;
-    private javax.swing.JTextField textRua;
-    private javax.swing.JTextField textTelefone;
     // End of variables declaration//GEN-END:variables
 }

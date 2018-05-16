@@ -19,10 +19,16 @@ public class EmprestimoDAO {
         }
         return instance;
     }
-
+/*
+    int codigoEmprestimo;
+    int funcionario_codigoFuncionario;
+    Date saida;
+    int cliente_codigoCliente;
+    Date devolucao;
+    */
     public long create(EmprestimoBEAN emprestimo) {
-        String query = "INSERT INTO EMPRESTIMO (saida, codigoCliente, devolucao) VALUES (?,?,?)";
-        return MySQLDAO.executeQuery(query, emprestimo.getSaida(), emprestimo.getCodigoCliente(), emprestimo.getDevolucao());
+        String query = "INSERT INTO EMPRESTIMO (funcionario_codigoFuncionario,saida, cliente_codigoCliente, devolucao) VALUES (?,?,?,?)";
+        return MySQLDAO.executeQuery(query,emprestimo.getCodigoFuncionario() ,emprestimo.getSaida(), emprestimo.getCodigoCliente(), emprestimo.getDevolucao());
     }
     
     public void delete(EmprestimoBEAN emprestimo) {
@@ -36,7 +42,7 @@ public class EmprestimoDAO {
         rs = MySQLDAO.getResultSet("SELECT * FROM emprestimo WHERE devolucao = ?", data);
         try {
             while (rs.next()) {
-                lista.add(new EmprestimoBEAN(rs.getInt("codigoEmprestimo"), rs.getDate("saida"), rs.getInt("codigoCliente"), rs.getDate("devolucao")));
+                lista.add(new EmprestimoBEAN(rs.getInt("codigoEmprestimo"),rs.getInt("funcionario_codigoFuncionario") ,rs.getDate("saida"), rs.getInt("cliente_codigoCliente"), rs.getDate("devolucao")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -53,7 +59,7 @@ public class EmprestimoDAO {
         rs = MySQLDAO.getResultSet("SELECT * FROM emprestimo WHERE codigoCliente = ?", codigoCliente);
         try {
             while (rs.next()) {
-                lista.add(new EmprestimoBEAN(rs.getInt("codigoEmprestimo"), rs.getDate("saida"), rs.getInt("codigoCliente"), rs.getDate("devolucao")));
+                lista.add(new EmprestimoBEAN(rs.getInt("codigoEmprestimo"), rs.getInt("funcionario_codigoFuncionario"), rs.getDate("saida"), rs.getInt("codigoCliente"), rs.getDate("devolucao")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -66,8 +72,8 @@ public class EmprestimoDAO {
     public int findId(EmprestimoBEAN emprestimo) {
         int result = 0;
         ResultSet rs = null;
-        rs = MySQLDAO.getResultSet("SELECT * FROM EMPRESTIMO WHERE saida= ? and codigoCliente= ? and devolucao =?",
-           emprestimo.getSaida(), emprestimo.getCodigoCliente(), emprestimo.getDevolucao());
+        rs = MySQLDAO.getResultSet("SELECT * FROM EMPRESTIMO WHERE funcionario_codigoFuncionario= ? and saida= ? and cliente_codigoCliente= ? and devolucao =?",
+           emprestimo.getCodigoFuncionario(),emprestimo.getSaida(), emprestimo.getCodigoCliente(), emprestimo.getDevolucao());
         try {
             if (rs.next()) {
                 result = rs.getInt("codigoEmprestimo");

@@ -7,14 +7,26 @@ import Model.AuxAutorObraBEAN;
 import Model.AuxAutorObraDAO;
 import Model.AuxEmprestimoObraBEAN;
 import Model.AuxEmprestimoObraDAO;
+import Model.CategoriasBEAN;
+import Model.CategoriasDAO;
+import Model.CidadesBEAN;
+import Model.CidadesDAO;
 import Model.ClientesBEAN;
 import Model.ClientesDAO;
 import Model.EditorasBEAN;
 import Model.EditorasDAO;
 import Model.EmprestimoBEAN;
 import Model.EmprestimoDAO;
+import Model.EnderecosBEAN;
+import Model.EnderecosDAO;
+import Model.EstadosBEAN;
+import Model.EstadosDAO;
 import Model.ObrasBEAN;
 import Model.ObrasDAO;
+import Model.TelefonesBEAN;
+import Model.TelefonesDAO;
+import Model.UsuariosBEAN;
+import Model.UsuariosDAO;
 import java.sql.Date;
 
 
@@ -96,6 +108,192 @@ public class Controle {
 
     public ArrayList<ClientesBEAN> listaClientes() {
         return ClientesDAO.getInstance().findAllCliente();
+    }
+
+    
+    //*****************************************************************
+    // Abaixo estão os métodos controladores referentes a tabela categoria.
+
+
+    public CategoriasBEAN findCategoriaCodigo(int id) {
+        return CategoriasDAO.getInstance().findCategoriaCodigo(id);
+    }
+    
+    public ArrayList<CategoriasBEAN> findCategoriaNome(String nomeCategoria) {
+        return CategoriasDAO.getInstance().findCategoriaNome(nomeCategoria);
+    }
+     
+    public int findCategoria(CategoriasBEAN categoria) {
+        return CategoriasDAO.getInstance().findId(categoria);
+    }
+
+    public Boolean isExistCategoria(int id) {
+        return CategoriasDAO.getInstance().isExist(id);
+    }
+
+    public ArrayList<CategoriasBEAN> listaCategorias() {
+        return CategoriasDAO.getInstance().findAllCategoria();
+    }
+    
+    
+    //*****************************************************************
+    // Abaixo estão os métodos controladores referentes a tabela cidade.
+    
+    
+
+    public CidadesBEAN findCidadeCodigo(int id) {
+        return CidadesDAO.getInstance().findCidadeCodigo(id);
+    }
+    
+    public ArrayList<CidadesBEAN> findCidadeNome(String nomeCidade) {
+        return CidadesDAO.getInstance().findCidadeNome(nomeCidade);
+    }
+     
+    public int findCidade(CidadesBEAN cidade) {
+        return CidadesDAO.getInstance().findId(cidade);
+    }
+
+    public Boolean isExistCidade(int id) {
+        return CidadesDAO.getInstance().isExist(id);
+    }
+
+    public ArrayList<CidadesBEAN> listaCidades() {
+        return CidadesDAO.getInstance().findAllCidade();
+    }
+    
+    
+    //*****************************************************************
+    // Abaixo estão os métodos controladores referentes a tabela endereco.
+    
+    
+    public void addEndereco(EnderecosBEAN endereco) {
+        EnderecosDAO.getInstance().create(endereco);
+    }
+
+    public void updateEndereco(EnderecosBEAN endereco) {
+        EnderecosDAO.getInstance().update(endereco);
+    }
+    
+    public void deleteEndereco(EnderecosBEAN endereco) {
+        EnderecosDAO.getInstance().delete(endereco);
+    }
+
+    public EnderecosBEAN findEnderecoCodigo(int id) {
+        return EnderecosDAO.getInstance().findEnderecoCodigo(id);
+    }
+    
+    public ArrayList<EnderecosBEAN> findEnderecoRua(String ruaEndereco) {
+        return EnderecosDAO.getInstance().findEnderecoRua(ruaEndereco);
+    }
+     
+    public int findEndereco(EnderecosBEAN endereco) {
+        return EnderecosDAO.getInstance().findId(endereco);
+    }
+
+    public Boolean isExistEndereco(int id) {
+        return EnderecosDAO.getInstance().isExist(id);
+    }
+
+    public ArrayList<EnderecosBEAN> listaEnderecos() {
+        return EnderecosDAO.getInstance().findAllEndereco();
+    }
+    
+    
+    //*****************************************************************
+    // Abaixo estão os métodos controladores referentes a tabela estado.
+    
+
+    public EstadosBEAN findEstadoCodigo(int id) {
+        return EstadosDAO.getInstance().findEstadoCodigo(id);
+    }
+    
+    public ArrayList<EstadosBEAN> findEstadoNome(String nomeEstado) {
+        return EstadosDAO.getInstance().findEstadoNome(nomeEstado);
+    }
+     
+    public int findEstado(EstadosBEAN estado) {
+        return EstadosDAO.getInstance().findId(estado);
+    }
+
+    public Boolean isExistEstado(int id) {
+        return EstadosDAO.getInstance().isExist(id);
+    }
+
+    public ArrayList<EstadosBEAN> listaEstados() {
+        return EstadosDAO.getInstance().findAllEstado();
+    }
+    
+    //*****************************************************************
+    // Abaixo estão os métodos controladores referentes a tabela telefone.
+    
+    
+    public void addTelefone(TelefonesBEAN telefone) {
+        TelefonesDAO.getInstance().create(telefone);
+    }
+
+    public void updateTelefone(TelefonesBEAN telefone) {
+        TelefonesDAO.getInstance().update(telefone);
+    }
+    
+    public void deleteTelefone(TelefonesBEAN telefone) {
+        TelefonesDAO.getInstance().delete(telefone);
+    }
+
+    public TelefonesBEAN findTelefoneCodigo(int id) {
+        return TelefonesDAO.getInstance().findTelefoneCodigo(id);
+    }
+
+    public ArrayList<TelefonesBEAN> findTelefoneNumero(int numeroTelefone) {
+        return TelefonesDAO.getInstance().findTelefoneNumero(numeroTelefone);
+    }
+     
+    public int findTelefone(TelefonesBEAN telefone) {
+        return TelefonesDAO.getInstance().findId(telefone);
+    }
+
+    public Boolean isExistTelefone(int id) {
+        return TelefonesDAO.getInstance().isExist(id);
+    }
+
+    public ArrayList<TelefonesBEAN> listaTelefones() {
+        return TelefonesDAO.getInstance().findAllTelefone();
+    }
+    
+    
+    //*****************************************************************
+    // Abaixo estão os métodos controladores referentes a tabela usuario.
+    
+    
+    public void addUsuario(UsuariosBEAN usuario) {
+        UsuariosDAO.getInstance().create(usuario);
+    }
+
+    public void updateUsuario(UsuariosBEAN usuario) {
+        UsuariosDAO.getInstance().update(usuario);
+    }
+    
+    public void deleteUsuario(UsuariosBEAN usuario) {
+        UsuariosDAO.getInstance().delete(usuario);
+    }
+
+    public UsuariosBEAN findUsuarioCodigo(int id) {
+        return UsuariosDAO.getInstance().findUsuarioCodigo(id);
+    }
+
+    public ArrayList<UsuariosBEAN> findUsuarioNome(String nomeUsuario) {
+        return UsuariosDAO.getInstance().findUsuarioNome(nomeUsuario);
+    }
+     
+    public int findUsuario(UsuariosBEAN usuario) {
+        return UsuariosDAO.getInstance().findId(usuario);
+    }
+
+    public Boolean isExistUsuario(int id) {
+        return UsuariosDAO.getInstance().isExist(id);
+    }
+
+    public ArrayList<UsuariosBEAN> listaUsuarios() {
+        return UsuariosDAO.getInstance().findAllUsuario();
     }
     
     //*****************************************************************
