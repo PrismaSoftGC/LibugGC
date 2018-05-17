@@ -5,21 +5,10 @@ public class CidadesBEAN {
     
     private int codigoCidade;
     private String nome;
-    private int estado_codigoEstado;
 
-    public CidadesBEAN(int codigoCidade, String nome, int estado_codigoEstado) {
+    public CidadesBEAN(int codigoCidade, String nome) {
         this.codigoCidade = codigoCidade;
         this.nome = nome;
-        this.estado_codigoEstado = estado_codigoEstado;
-    }
-
-    public CidadesBEAN(String nome, int estado_codigoEstado) {
-        this.nome = nome;
-        this.estado_codigoEstado = estado_codigoEstado;
-    }
-    
-    public CidadesBEAN(){
-        
     }
 
     public int getCodigoCidade() {
@@ -38,12 +27,5 @@ public class CidadesBEAN {
         this.nome = nome;
     }
 
-    public int getEstado_codigoEstado() {
-        return estado_codigoEstado;
-    }
-
-    public void setEstado_codigoEstado(int estado_codigoEstado) {
-        this.estado_codigoEstado = estado_codigoEstado;
-    }
     
 }
