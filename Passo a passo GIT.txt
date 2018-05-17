@@ -1,0 +1,24 @@
+Quando for iniciar algum trabalho nos códigos, sempre antes abrir o git bash dentro
+da pasta LibBugGC(a segunda que tem as outras pastas), e rodar o comando:
+
+git pull origin master
+
+Este comando vai sicronizar baixando tudo que tem de novo no repositorio remoto e
+baixando pro seu repositorio local. Blz.
+Quando vc terminar de mexer nos codigos vc roda o seguinte comando:
+
+git add .
+
+e depois 
+
+git commit -a -m "Descriçao sobre o que vc alterou , por exemplo: tableas alteradas, ou Beans alterados"
+
+estes dois comandos irao adicionar e commitar suas alteraçoes. blz
+Agora é so enviar estas alteraçoes para o repositorio remoto  para isso é so rodar o comando:
+
+git push -u origin master
+
+Pronto. suas alteraçoes vao ser atualizadas lá.
+Ai tipo toda vez antes de vc commitar suas alteraçoes e enviar vc da o git pull origin master pra sincroniza
+pra nao dar erro se alguem salvar outra coisa la enquanto vc estiver mexendo no codigo
+
