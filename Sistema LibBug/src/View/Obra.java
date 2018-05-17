@@ -50,9 +50,20 @@ public class Obra extends javax.swing.JDialog {
         textEdicao.setEditable(false);
         cbSituacao.setEnabled(false);
         cbStatus.setEnabled(false);
+        cbEditora1.setEnabled(false);
+        cbCidade.setEnabled(false);
+        cbCategoria.setEnabled(false);
+        textSubtitulo.setEditable(false);
+        calendarioAno.setEnabled(false);
+        textBarras.setEditable(false);
+        textEstoqueTotal.setEditable(false);
+        textEstoqueDisponivel.setEditable(false);
         TabelaDestino.setVisible(false);
         tabelaObra.setVisible(false);
         tabelaAutores.setVisible(false);
+        btnBuscaAutor.setEnabled(false);
+        btnRemover.setEnabled(false);
+        textAutor.setEditable(false);
     }
 
     public void Habilita(){
@@ -60,17 +71,33 @@ public class Obra extends javax.swing.JDialog {
         cbEditora1.setEnabled(true);
         textEdicao.setEditable(true);
         cbSituacao.setEnabled(true);
+        cbCidade.setEnabled(true);
+        cbCategoria.setEnabled(true);
+        textSubtitulo.setEditable(true);
+        calendarioAno.setEnabled(true);
+        textBarras.setEditable(true);
+        textEstoqueTotal.setEditable(true);
+        textEstoqueDisponivel.setEditable(true);
         cbStatus.setEnabled(true);
         TabelaDestino.setVisible(true);
         tabelaObra.setVisible(true);
         tabelaAutores.setVisible(true);
+        btnBuscaAutor.setEnabled(true);
+        btnRemover.setEnabled(true);
+        textAutor.setEditable(true);
     }
     
     public void Limpar(){
         textCodigo.setText("");
         textTitulo.setText("");
         cbEditora1.setSelectedIndex(0);
+        cbCidade.setSelectedIndex(0);
+        cbCategoria.setSelectedIndex(0);
         textEdicao.setText("");
+        textSubtitulo.setText("");
+        textEstoqueTotal.setText("");
+        textEstoqueDisponivel.setText("");
+        textBarras.setText("");
         cbSituacao.setSelectedIndex(0);
         cbStatus.setSelectedIndex(0);
         modelo2 = (javax.swing.table.DefaultTableModel)TabelaDestino.getModel();
@@ -247,11 +274,11 @@ public class Obra extends javax.swing.JDialog {
         labelSitu = new javax.swing.JLabel();
         textAutor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBuscaAutor = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         TabelaDestino = new javax.swing.JTable();
         labelAutor = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnRemover = new javax.swing.JButton();
         textSubtitulo = new javax.swing.JTextField();
         labelSubtitulo = new javax.swing.JLabel();
         labelCidade = new javax.swing.JLabel();
@@ -589,13 +616,13 @@ public class Obra extends javax.swing.JDialog {
         jLabel2.setText("Pesquise aqui o autor");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscaAutor.setText("Buscar");
+        btnBuscaAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscaAutorActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 90, 30));
+        jPanel3.add(btnBuscaAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 90, 30));
 
         TabelaDestino.setBackground(new java.awt.Color(153, 204, 255));
         TabelaDestino.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -630,13 +657,13 @@ public class Obra extends javax.swing.JDialog {
         labelAutor.setText("Autores Selecionados");
         jPanel3.add(labelAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, -1, -1));
 
-        jButton2.setText("Remover");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnRemoverActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, -1, -1));
+        jPanel3.add(btnRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, -1, -1));
         jPanel3.add(textSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 200, 30));
 
         labelSubtitulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1142,12 +1169,12 @@ public class Obra extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_textAutorKeyPressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBuscaAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaAutorActionPerformed
         BuscaAutor janela = new BuscaAutor(this, true, textAutor.getText(),this);
         janela.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBuscaAutorActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         modelo2 = (javax.swing.table.DefaultTableModel)TabelaDestino.getModel();
         int linha = TabelaDestino.getSelectedRow();
         
@@ -1157,7 +1184,7 @@ public class Obra extends javax.swing.JDialog {
         else{
         modelo2.removeRow(linha);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void textBarrasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBarrasKeyTyped
         // TODO add your handling code here:
@@ -1221,14 +1248,14 @@ public class Obra extends javax.swing.JDialog {
     private javax.swing.JButton botaoListar;
     private javax.swing.JButton botaoNovo;
     private javax.swing.JButton botaoSalvar;
+    private javax.swing.JButton btnBuscaAutor;
+    private javax.swing.JButton btnRemover;
     private com.toedter.calendar.JDateChooser calendarioAno;
     private javax.swing.JComboBox<String> cbCategoria;
     private javax.swing.JComboBox<String> cbCidade;
     private javax.swing.JComboBox<String> cbEditora1;
     private javax.swing.JComboBox<String> cbSituacao;
     private javax.swing.JComboBox<String> cbStatus;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
