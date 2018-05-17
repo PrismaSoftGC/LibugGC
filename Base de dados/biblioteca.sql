@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 17-Maio-2018 às 14:25
+-- Generation Time: 17-Maio-2018 às 16:30
 -- Versão do servidor: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `biblioteca`
 --
+CREATE DATABASE IF NOT EXISTS `biblioteca` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `biblioteca`;
 
 -- --------------------------------------------------------
 
@@ -144,7 +146,6 @@ DROP TABLE IF EXISTS `cidade`;
 CREATE TABLE IF NOT EXISTS `cidade` (
   `codigoCidade` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(30) NOT NULL,
-  `estado_codigoEstado` int(11) NOT NULL,
   PRIMARY KEY (`codigoCidade`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -152,8 +153,8 @@ CREATE TABLE IF NOT EXISTS `cidade` (
 -- Extraindo dados da tabela `cidade`
 --
 
-INSERT INTO `cidade` (`codigoCidade`, `nome`, `estado_codigoEstado`) VALUES
-(1, 'RIO VERDE', 1);
+INSERT INTO `cidade` (`codigoCidade`, `nome`) VALUES
+(1, 'RIO VERDE');
 
 -- --------------------------------------------------------
 
@@ -170,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `idade` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   PRIMARY KEY (`codigoCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `cliente`
@@ -189,7 +190,8 @@ INSERT INTO `cliente` (`codigoCliente`, `nome`, `status`, `cpf`, `idade`, `email
 (10, 'JOAO PARAIBA', 'Ativado', '75373785172', 33, ''),
 (11, 'MARCELO VOAVENTURA', 'Ativado', '343434344', 5, ''),
 (12, 'Esdras Goulart Bueno', 'Ativado', '02555939105', 14, ''),
-(13, 'GUEDES', 'Desativado', '05223284151', 23, '');
+(13, 'GUEDES', 'Desativado', '05223284151', 23, ''),
+(14, 'Erick Moraes', 'Ativado', '70000000000', 24, 'erickmoraes_rv@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -200,9 +202,9 @@ INSERT INTO `cliente` (`codigoCliente`, `nome`, `status`, `cpf`, `idade`, `email
 DROP TABLE IF EXISTS `editora`;
 CREATE TABLE IF NOT EXISTS `editora` (
   `codigoEditora` int(11) NOT NULL AUTO_INCREMENT,
-  `nomeFantasia` varchar(45) DEFAULT NULL,
+  `nomeFantasia` varchar(45) NOT NULL,
   `razaoSocial` varchar(45) NOT NULL,
-  `cnpj` varchar(20) DEFAULT NULL,
+  `cnpj` varchar(20) NOT NULL,
   `status` varchar(11) NOT NULL,
   PRIMARY KEY (`codigoEditora`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
@@ -231,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `emprestimo` (
   `funcionario_codigoFuncionario` int(11) NOT NULL,
   `saida` date NOT NULL,
   `codigoCliente` int(11) NOT NULL,
-  `devolucao` date NOT NULL,
+  `devolucao` date DEFAULT NULL,
   PRIMARY KEY (`codigoEmprestimo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -252,10 +254,10 @@ DROP TABLE IF EXISTS `endereco`;
 CREATE TABLE IF NOT EXISTS `endereco` (
   `codigoEndereco` int(11) NOT NULL AUTO_INCREMENT,
   `cliente_codigoCliente` int(11) DEFAULT NULL,
-  `cidade_codigoCidade` int(11) DEFAULT NULL,
+  `cidade_codigoCidade` int(11) NOT NULL,
   `editora_codigoEditora` int(11) DEFAULT NULL,
-  `rua` varchar(45) DEFAULT NULL,
-  `bairro` varchar(45) DEFAULT NULL,
+  `rua` varchar(45) NOT NULL,
+  `bairro` varchar(45) NOT NULL,
   `complemento` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`codigoEndereco`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
@@ -273,51 +275,6 @@ INSERT INTO `endereco` (`codigoEndereco`, `cliente_codigoCliente`, `cidade_codig
 (6, 3, 0, NULL, 'Av. Cândido de Abreu', 'centro', 'n 817'),
 (7, 3, 0, NULL, 'Av. Anhanguera', 'St.Central', '4603'),
 (8, 4, 0, NULL, 'Norte Rua', 'NORTE', ' Q. 104 ');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `estado`
---
-
-DROP TABLE IF EXISTS `estado`;
-CREATE TABLE IF NOT EXISTS `estado` (
-  `codigoEstado` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) NOT NULL,
-  PRIMARY KEY (`codigoEstado`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `estado`
---
-
-INSERT INTO `estado` (`codigoEstado`, `nome`) VALUES
-(1, 'Goiás '),
-(2, 'São Paulo'),
-(3, 'Rio de Janeiro '),
-(4, 'Bahia'),
-(5, 'Minas Gerais'),
-(6, 'Distrito Federal'),
-(7, 'Rio Grande do Sul'),
-(8, 'Pará'),
-(9, 'Acre'),
-(10, 'Rio Grande do Norte'),
-(11, 'Mato Grosso'),
-(12, 'Espirito Santo'),
-(13, 'Amapá'),
-(14, 'Ceará'),
-(15, 'Mato Grosso do Sul'),
-(16, 'Alagoas '),
-(17, 'Amazonas'),
-(18, 'Maranhão'),
-(19, 'Paraiba'),
-(20, 'Pernambuco'),
-(21, 'Piauí'),
-(22, 'Rondônia'),
-(23, 'Roraima'),
-(24, 'Tocantins'),
-(25, 'Sergipe'),
-(26, 'Santa Catarina');
 
 -- --------------------------------------------------------
 
