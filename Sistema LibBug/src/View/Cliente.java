@@ -5,7 +5,7 @@ import Controller.Controle;
 import Model.ClientesBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
+ 
 public class Cliente extends javax.swing.JDialog {
     
     private javax.swing.table.DefaultTableModel modelo; 
@@ -352,7 +352,7 @@ public class Cliente extends javax.swing.JDialog {
         
         int idade = Integer.parseInt(textIdade.getText());
 
-        if ((textCpf.getText().equals("") || textNome.getText().equals("") || idade <=0)) {
+        if ((textCpf.getText().equals("") || textNome.getText().equals("") || idade <0)) {
             JOptionPane.showMessageDialog(null, "Preecha os campos obrigatorios");
         } else {
 
