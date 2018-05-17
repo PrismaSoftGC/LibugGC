@@ -28,7 +28,7 @@ public class ClientesDAO {
     public void update(ClientesBEAN cliente) {
         String query = "UPDATE CLIENTE SET nome=?, status=?, cpf=?, idade=?, email=? WHERE codigoCliente =?";
         MySQLDAO.executeQuery(query, cliente.getNome(), cliente.getStatus(),
-                cliente.getCpf(), cliente.getIdade(), cliente.getEmail());
+                cliente.getCpf(), cliente.getIdade(), cliente.getEmail(), cliente.getCodigoCliente());
     }
 
     public void delete(ClientesBEAN cliente) {

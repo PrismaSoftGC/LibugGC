@@ -133,11 +133,6 @@ public class Cliente extends javax.swing.JDialog {
 
         jPanel1.setLayout(null);
 
-        textBuscaNome.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                textBuscaNomeFocusLost(evt);
-            }
-        });
         textBuscaNome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 textBuscaNomeMouseClicked(evt);
@@ -221,11 +216,6 @@ public class Cliente extends javax.swing.JDialog {
         jPanel1.add(botaoListar);
         botaoListar.setBounds(780, 20, 120, 30);
 
-        textBuscaCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                textBuscaCodigoFocusLost(evt);
-            }
-        });
         textBuscaCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 textBuscaCodigoMouseClicked(evt);
@@ -352,7 +342,7 @@ public class Cliente extends javax.swing.JDialog {
         
         int idade = Integer.parseInt(textIdade.getText());
 
-        if ((textCpf.getText().equals("") || textNome.getText().equals("") || idade <=0)) {
+        if ((textCpf.getText().equals("") || textNome.getText().equals("") || textEmail.getText().equals("") || idade <=0)) {
             JOptionPane.showMessageDialog(null, "Preecha os campos obrigatorios");
         } else {
 
@@ -415,13 +405,10 @@ public class Cliente extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_textIdadeKeyTyped
 
-    private void textBuscaNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textBuscaNomeFocusLost
-        textBuscaCodigo.setEnabled(true);
-    }//GEN-LAST:event_textBuscaNomeFocusLost
-
     private void textBuscaNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textBuscaNomeMouseClicked
         textBuscaCodigo.setEnabled(false);
         textBuscaCodigo.setText("");
+        textBuscaNome.setEnabled(true);
     }//GEN-LAST:event_textBuscaNomeMouseClicked
 
     private void textBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBuscaNomeActionPerformed
@@ -507,14 +494,10 @@ public class Cliente extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_botaoListarActionPerformed
 
-    private void textBuscaCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textBuscaCodigoFocusLost
-        // textBuscaCodigo.setText("");
-        textBuscaNome.setEnabled(true);
-    }//GEN-LAST:event_textBuscaCodigoFocusLost
-
     private void textBuscaCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textBuscaCodigoMouseClicked
         textBuscaNome.setText("");
         textBuscaNome.setEnabled(false);
+        textBuscaCodigo.setEnabled(true);
     }//GEN-LAST:event_textBuscaCodigoMouseClicked
 
     private void textBuscaCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscaCodigoKeyTyped
