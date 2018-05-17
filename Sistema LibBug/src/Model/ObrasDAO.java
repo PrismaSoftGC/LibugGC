@@ -32,7 +32,7 @@ public class ObrasDAO {
         String query = "UPDATE OBRA SET titulo=?,subtitulo=?, editora_codigoEditora=?, cidade_codigoCidade=?, edicao=?,ano=?, categoria_codigoCategoria=?, situacao=?, status=?,"
                 + " codBarras=?, qtdEstoqueTotal=?, qtdEstoqueDisponivel=? WHERE codigoObra =?";
 
-        MySQLDAO.executeQuery(obra.getTitulo(),obra.getSubititulo(), obra.getCodigoEditora(),obra.getCodigoCidade(),
+        MySQLDAO.executeQuery(query, obra.getTitulo(),obra.getSubititulo(), obra.getCodigoEditora(),obra.getCodigoCidade(),
                 obra.getEdicao(),obra.getAno(),obra.getCodigoCategoria(), obra.getSituacao(), obra.getStatus(), 
                 obra.getCodBarras(),obra.getQtdEstoqueTotal(), obra.getQtdEstoqueDisponivel(), obra.getCodigoObra());
     }

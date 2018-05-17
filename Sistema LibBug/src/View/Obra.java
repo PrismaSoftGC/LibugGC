@@ -868,7 +868,7 @@ public class Obra extends javax.swing.JDialog {
                         obra.setQtdEstoqueTotal(estoqueT);
                         int estoqueD = Integer.parseInt(textEstoqueDisponivel.getText());
                         obra.setQtdEstoqueDisponivel(estoqueD);
-
+                        
                         AuxAutorObraBEAN aux = new AuxAutorObraBEAN();
 
                         if (textCodigo.getText().equals("")) {

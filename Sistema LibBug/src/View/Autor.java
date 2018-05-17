@@ -101,10 +101,6 @@ public class Autor extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         labelNome = new javax.swing.JLabel();
         textNome = new javax.swing.JTextField();
-        labelCpf = new javax.swing.JLabel();
-        textCpf = new javax.swing.JTextField();
-        labelGenero = new javax.swing.JLabel();
-        textConteudo = new javax.swing.JTextField();
         comboboxStatus = new javax.swing.JComboBox<>();
         labelStatus = new javax.swing.JLabel();
         labelCodigo = new javax.swing.JLabel();
@@ -154,17 +150,17 @@ public class Autor extends javax.swing.JDialog {
         tabelaAutor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tabelaAutor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "Codigo", "Nome", "CPF", "Status", "Conteúdo"
+                "Codigo", "Nome", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -242,22 +238,6 @@ public class Autor extends javax.swing.JDialog {
         labelNome.setText("Nome*");
         jPanel3.add(labelNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 59, -1, 20));
         jPanel3.add(textNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 82, 250, 30));
-
-        labelCpf.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelCpf.setText("CPF*");
-        jPanel3.add(labelCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 62, -1, -1));
-
-        textCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textCpfActionPerformed(evt);
-            }
-        });
-        jPanel3.add(textCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 82, 150, 28));
-
-        labelGenero.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelGenero.setText("Conteúdo");
-        jPanel3.add(labelGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
-        jPanel3.add(textConteudo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 200, 30));
 
         comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativado", "Desativado" }));
         jPanel3.add(comboboxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 110, 30));
@@ -577,10 +557,6 @@ public class Autor extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
-    private void textCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textCpfActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -598,16 +574,12 @@ public class Autor extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAutor;
     private javax.swing.JLabel labelCodigo;
-    private javax.swing.JLabel labelCpf;
-    private javax.swing.JLabel labelGenero;
     private javax.swing.JLabel labelNome;
     private javax.swing.JLabel labelStatus;
     public javax.swing.JTable tabelaAutor;
     private javax.swing.JTextField textBuscaCodigo;
     private javax.swing.JTextField textBuscaNome;
     private javax.swing.JTextField textCodigo;
-    private javax.swing.JTextField textConteudo;
-    private javax.swing.JTextField textCpf;
     private javax.swing.JTextField textNome;
     // End of variables declaration//GEN-END:variables
 }
