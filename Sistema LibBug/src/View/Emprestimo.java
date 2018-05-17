@@ -668,11 +668,14 @@ public class Emprestimo extends javax.swing.JDialog {
 
             controle.deleteAuxEmprestimo(codigoEmp);
 
-            for(int i=0; i<linhasOrigem; i++){
-                obra2.setCodigoObra((int) tabelaOrigem.getValueAt(i, 0));
+            for(int i=0; i<linhasOrigem; i++){ // Alteração Felipe
+                int id_obra = (int) tabelaOrigem.getValueAt(i, 0);
+                obra2 = controle.findObraCodigo(id_obra);
                 obra2.setSituacao("Prateleira");
+                obra2.setQtdEstoqueDisponivel((obra2.getQtdEstoqueDisponivel()+1));
                 controle.updateObraStatus(obra2);
-            }
+                controle.updateObraEstoque(obra2);
+            } // Alteração Felipe
 
             if (valor>=0) {
                 Date data1 = new Date();
@@ -752,15 +755,22 @@ public class Emprestimo extends javax.swing.JDialog {
                     int linhaDestino = tabelaDestino.getRowCount();
                     int codigoEmprestimo = controle.findEmprestimo(emprestimo);
 
-                    for (int i = 0; i < linhaDestino; i++) {
-                        aux.setCodigoEmprestimo(codigoEmprestimo);
-                        aux.setCodigoObra((int) tabelaDestino.getValueAt(i, 0));
-                        aux.setChegada(data);
-                        controle.addAuxEmprestimoObra(aux);
-                        obra.setCodigoObra((int) tabelaDestino.getValueAt(i, 0));
-                        obra.setSituacao("Emprestado");
-                        controle.updateObraStatus(obra);
-                    }
+                    for (int i = 0; i < linhaDestino; i++) { // Alteração Felipe
+                        int cod_obra = (int) tabelaDestino.getValueAt(i, 0);
+                        if(controle.findObraCodigo(cod_obra).getQtdEstoqueDisponivel()>1){
+                            aux.setCodigoEmprestimo(codigoEmprestimo);
+                            aux.setCodigoObra(cod_obra);
+                            aux.setChegada(data);
+                            controle.addAuxEmprestimoObra(aux);
+                            obra = controle.findObraCodigo(cod_obra);
+                            obra.setSituacao("Emprestado");
+                            obra.setQtdEstoqueDisponivel((obra.getQtdEstoqueDisponivel()-1));
+                            controle.updateObraEstoque(obra);
+                            controle.updateObraStatus(obra);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Quantidade Minima atingida!");
+                        }                      
+                    }// Alteração Felipe
 
                     JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
                     Limpar();
@@ -948,9 +958,9 @@ public class Emprestimo extends javax.swing.JDialog {
         //    modelo1 = (javax.swing.table.DefaultTableModel)tabelaOrigem.getModel();
         modelo2 = (javax.swing.table.DefaultTableModel)tabelaDestino.getModel();
 
-        //      if (textCodigo.getText().length() > 0) {
-            //       modelo1.setNumRows(0);
-            //     }
+        //if (textCodigo.getText().length() > 0) {
+        //  modelo1.setNumRows(0);
+        //}
 
         int linha = tabelaDestino.getSelectedRow();
 

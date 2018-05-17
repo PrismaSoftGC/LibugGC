@@ -43,6 +43,11 @@ public class ObrasDAO {
         MySQLDAO.executeQuery(query, obra.getSituacao(), obra.getCodigoObra());
     }
     
+    public void updateEstoque(ObrasBEAN obra){
+        String query = "UPDATE OBRA SET qtdEstoqueDisponivel=? WHERE codigoObra =?";
+        MySQLDAO.executeQuery(query, obra.getQtdEstoqueDisponivel(), obra.getCodigoObra());
+    }
+    
     public void delete(ObrasBEAN obra) {
         MySQLDAO.executeQuery("DELETE FROM OBRA WHERE codigoObra = ?", obra.getCodigoObra());
     }

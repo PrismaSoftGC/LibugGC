@@ -347,6 +347,10 @@ public class Controle {
         ObrasDAO.getInstance().updateStatus(obra);
     }
     
+    public void updateObraEstoque(ObrasBEAN obra){
+        ObrasDAO.getInstance().updateEstoque(obra);
+    }
+    
     public void deleteObra(ObrasBEAN obra) {
         ObrasDAO.getInstance().delete(obra);
     }
