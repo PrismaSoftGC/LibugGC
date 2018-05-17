@@ -389,14 +389,6 @@ public class Editora extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textBuscaNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textBuscaNomeFocusLost
-        textBuscaCodigo.setEnabled(true);
-    }//GEN-LAST:event_textBuscaNomeFocusLost
-
-    private void textBuscaNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textBuscaNomeMouseClicked
-        textBuscaCodigo.setEnabled(false);
-        textBuscaCodigo.setText("");
-    }//GEN-LAST:event_textBuscaNomeMouseClicked
 
     private void textBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBuscaNomeActionPerformed
         // TODO add your handling code here:
@@ -474,16 +466,19 @@ public class Editora extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_botaoListarActionPerformed
 
-    private void textBuscaCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textBuscaCodigoFocusLost
-        // textBuscaCodigo.setText("");
-        textBuscaNome.setEnabled(true);
-    }//GEN-LAST:event_textBuscaCodigoFocusLost
 
     private void textBuscaCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textBuscaCodigoMouseClicked
         textBuscaNome.setText("");
         textBuscaNome.setEnabled(false);
+		textBuscaCodigo.setEnabled(true);
     }//GEN-LAST:event_textBuscaCodigoMouseClicked
 
+    private void textBuscaNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textBuscaNomeMouseClicked
+        textBuscaCodigo.setEnabled(false);
+        textBuscaCodigo.setText("");
+		textBuscaNome.setEnabled(true);
+    }//GEN-LAST:event_textBuscaNomeMouseClicked
+	
     private void textBuscaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBuscaCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textBuscaCodigoActionPerformed

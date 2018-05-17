@@ -68,7 +68,7 @@ public class Autor extends javax.swing.JDialog {
         try {
             modelo.addRow(new Object[]{autor.getCodigoAutor(), autor.getNome(), autor.getStatus()});
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar dados - " + erro);
+            JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
         }
     }
     
@@ -79,7 +79,7 @@ public class Autor extends javax.swing.JDialog {
                 modelo.addRow(new Object[]{autor.getCodigoAutor(), autor.getNome(), autor.getStatus()});
             }
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar dados - " + erro);
+            JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
         }
     }
 
@@ -354,14 +354,7 @@ public class Autor extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textBuscaNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textBuscaNomeFocusLost
-        textBuscaCodigo.setEnabled(true);
-    }//GEN-LAST:event_textBuscaNomeFocusLost
-
-    private void textBuscaNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textBuscaNomeMouseClicked
-        textBuscaCodigo.setEnabled(false);
-        textBuscaCodigo.setText("");
-    }//GEN-LAST:event_textBuscaNomeMouseClicked
+    
 
     private void textBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBuscaNomeActionPerformed
         // TODO add your handling code here:
@@ -441,16 +434,18 @@ public class Autor extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_botaoListarActionPerformed
 
-    private void textBuscaCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textBuscaCodigoFocusLost
-        // textBuscaCodigo.setText("");
-        textBuscaNome.setEnabled(true);
-    }//GEN-LAST:event_textBuscaCodigoFocusLost
-
     private void textBuscaCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textBuscaCodigoMouseClicked
         textBuscaNome.setText("");
         textBuscaNome.setEnabled(false);
+		textBuscaCodigo.setEnabled(true);
     }//GEN-LAST:event_textBuscaCodigoMouseClicked
 
+    private void textBuscaNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textBuscaNomeMouseClicked
+        textBuscaCodigo.setEnabled(false);
+		textBuscaNome.setEnabled(true);
+        textBuscaCodigo.setText("");
+    }//GEN-LAST:event_textBuscaNomeMouseClicked
+	
     private void textBuscaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBuscaCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textBuscaCodigoActionPerformed
@@ -461,7 +456,9 @@ public class Autor extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_textBuscaCodigoKeyTyped
-
+	
+	
+	
     private void botaoCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCancelarMouseEntered
         botaoCancelar.setBorderPainted( true );
         botaoCancelar.setContentAreaFilled( true );
