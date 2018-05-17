@@ -124,11 +124,6 @@ public class Editora extends javax.swing.JDialog {
 
         jPanel1.setLayout(null);
 
-        textBuscaNome.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                textBuscaNomeFocusLost(evt);
-            }
-        });
         textBuscaNome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 textBuscaNomeMouseClicked(evt);
@@ -216,11 +211,6 @@ public class Editora extends javax.swing.JDialog {
         jPanel1.add(botaoListar);
         botaoListar.setBounds(430, 20, 110, 40);
 
-        textBuscaCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                textBuscaCodigoFocusLost(evt);
-            }
-        });
         textBuscaCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 textBuscaCodigoMouseClicked(evt);
@@ -252,7 +242,7 @@ public class Editora extends javax.swing.JDialog {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/IMG_1870.JPG"))); // NOI18N
         jLabel4.setText("jLabel4");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(0, -240, 1645, 1500);
+        jLabel4.setBounds(0, -240, 1638, 1500);
 
         abas.addTab("Pesquisa", jPanel1);
 
