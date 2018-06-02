@@ -104,10 +104,10 @@ public class UsuariosDAO {
         return result;
     }
 
-    public Boolean isExist(int codigoUsuario) {
+    public Boolean isExistUser(String login) {
         Boolean result = false;
         ResultSet rs = null;
-        rs = MySQLDAO.getResultSet("SELECT * FROM USUARIO WHERE codigoUsuario= ?", codigoUsuario);
+        rs = MySQLDAO.getResultSet("SELECT * FROM USUARIO WHERE login= ?", login);
         try {
             if (rs.next()) {
                 result = true;
@@ -119,6 +119,36 @@ public class UsuariosDAO {
         return result;
     }
 
+    public Boolean autenticaUsuario(String login, String senha) {
+        Boolean result = false;
+        ResultSet rs = null;
+        rs = MySQLDAO.getResultSet("SELECT * FROM USUARIO WHERE login= ? and senha=? ", login, senha);
+        try {
+            if (rs.next()) {
+                result = true;
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
+    public Boolean autenticaAdministrador(String login, String senha, int perfil) {
+        Boolean result = false;
+        ResultSet rs = null;
+        rs = MySQLDAO.getResultSet("SELECT * FROM USUARIO WHERE login= ? and senha=? and perfil =?", login, senha, perfil);
+        try {
+            if (rs.next()) {
+                result = true;
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
     public int LastId() {
         int result =0 ;
         ResultSet rs = null;

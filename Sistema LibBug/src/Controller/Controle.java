@@ -288,12 +288,20 @@ public class Controle {
         return UsuariosDAO.getInstance().findId(usuario);
     }
 
-    public Boolean isExistUsuario(int id) {
-        return UsuariosDAO.getInstance().isExist(id);
-    }
-
     public ArrayList<UsuariosBEAN> listaUsuarios() {
         return UsuariosDAO.getInstance().findAllUsuario();
+    }
+    
+    public boolean autenticUser(String login, String senha){
+        return UsuariosDAO.getInstance().autenticaUsuario(login, senha);
+    }
+    
+    public boolean autenticAdmin(String login, String senha, int perfil){
+        return UsuariosDAO.getInstance().autenticaAdministrador(login, senha, perfil);
+    }
+    
+     public boolean isExistUser(String login){
+        return UsuariosDAO.getInstance().isExistUser(login);
     }
     
     //*****************************************************************

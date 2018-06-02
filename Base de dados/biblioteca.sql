@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: 17-Maio-2018 às 16:30
--- Versão do servidor: 5.7.19
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Generation Time: 02-Jun-2018 às 23:16
+-- Versão do servidor: 10.1.29-MariaDB
+-- PHP Version: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,13 +30,11 @@ USE `biblioteca`;
 -- Estrutura da tabela `autor`
 --
 
-DROP TABLE IF EXISTS `autor`;
-CREATE TABLE IF NOT EXISTS `autor` (
-  `codigoAutor` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `autor` (
+  `codigoAutor` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
-  `status` varchar(45) NOT NULL,
-  PRIMARY KEY (`codigoAutor`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+  `status` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `autor`
@@ -60,8 +58,7 @@ INSERT INTO `autor` (`codigoAutor`, `nome`, `status`) VALUES
 -- Estrutura da tabela `aux_autor_obra`
 --
 
-DROP TABLE IF EXISTS `aux_autor_obra`;
-CREATE TABLE IF NOT EXISTS `aux_autor_obra` (
+CREATE TABLE `aux_autor_obra` (
   `codigoAutor` int(11) NOT NULL,
   `codigoObra` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -92,7 +89,8 @@ INSERT INTO `aux_autor_obra` (`codigoAutor`, `codigoObra`) VALUES
 (24, 0),
 (24, 1),
 (24, 2),
-(25, 3);
+(25, 3),
+(25, 4);
 
 -- --------------------------------------------------------
 
@@ -100,8 +98,7 @@ INSERT INTO `aux_autor_obra` (`codigoAutor`, `codigoObra`) VALUES
 -- Estrutura da tabela `aux_emprestimo_obra`
 --
 
-DROP TABLE IF EXISTS `aux_emprestimo_obra`;
-CREATE TABLE IF NOT EXISTS `aux_emprestimo_obra` (
+CREATE TABLE `aux_emprestimo_obra` (
   `codigoEmprestimo` int(11) NOT NULL,
   `codigoObra` int(11) NOT NULL,
   `chegada` date NOT NULL
@@ -121,12 +118,10 @@ INSERT INTO `aux_emprestimo_obra` (`codigoEmprestimo`, `codigoObra`, `chegada`) 
 -- Estrutura da tabela `categoria`
 --
 
-DROP TABLE IF EXISTS `categoria`;
-CREATE TABLE IF NOT EXISTS `categoria` (
-  `codigoCategoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) NOT NULL,
-  PRIMARY KEY (`codigoCategoria`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+CREATE TABLE `categoria` (
+  `codigoCategoria` int(11) NOT NULL,
+  `nome` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `categoria`
@@ -142,12 +137,10 @@ INSERT INTO `categoria` (`codigoCategoria`, `nome`) VALUES
 -- Estrutura da tabela `cidade`
 --
 
-DROP TABLE IF EXISTS `cidade`;
-CREATE TABLE IF NOT EXISTS `cidade` (
-  `codigoCidade` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) NOT NULL,
-  PRIMARY KEY (`codigoCidade`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `cidade` (
+  `codigoCidade` int(11) NOT NULL,
+  `nome` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `cidade`
@@ -162,16 +155,14 @@ INSERT INTO `cidade` (`codigoCidade`, `nome`) VALUES
 -- Estrutura da tabela `cliente`
 --
 
-DROP TABLE IF EXISTS `cliente`;
-CREATE TABLE IF NOT EXISTS `cliente` (
-  `codigoCliente` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cliente` (
+  `codigoCliente` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `status` varchar(11) NOT NULL,
   `cpf` varchar(100) NOT NULL,
   `idade` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  PRIMARY KEY (`codigoCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+  `email` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `cliente`
@@ -199,15 +190,13 @@ INSERT INTO `cliente` (`codigoCliente`, `nome`, `status`, `cpf`, `idade`, `email
 -- Estrutura da tabela `editora`
 --
 
-DROP TABLE IF EXISTS `editora`;
-CREATE TABLE IF NOT EXISTS `editora` (
-  `codigoEditora` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `editora` (
+  `codigoEditora` int(11) NOT NULL,
   `nomeFantasia` varchar(45) NOT NULL,
   `razaoSocial` varchar(45) NOT NULL,
   `cnpj` varchar(20) NOT NULL,
-  `status` varchar(11) NOT NULL,
-  PRIMARY KEY (`codigoEditora`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+  `status` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `editora`
@@ -227,15 +216,13 @@ INSERT INTO `editora` (`codigoEditora`, `nomeFantasia`, `razaoSocial`, `cnpj`, `
 -- Estrutura da tabela `emprestimo`
 --
 
-DROP TABLE IF EXISTS `emprestimo`;
-CREATE TABLE IF NOT EXISTS `emprestimo` (
-  `codigoEmprestimo` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `emprestimo` (
+  `codigoEmprestimo` int(11) NOT NULL,
   `funcionario_codigoFuncionario` int(11) NOT NULL,
   `saida` date NOT NULL,
   `codigoCliente` int(11) NOT NULL,
-  `devolucao` date DEFAULT NULL,
-  PRIMARY KEY (`codigoEmprestimo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `devolucao` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `emprestimo`
@@ -250,17 +237,15 @@ INSERT INTO `emprestimo` (`codigoEmprestimo`, `funcionario_codigoFuncionario`, `
 -- Estrutura da tabela `endereco`
 --
 
-DROP TABLE IF EXISTS `endereco`;
-CREATE TABLE IF NOT EXISTS `endereco` (
-  `codigoEndereco` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `endereco` (
+  `codigoEndereco` int(11) NOT NULL,
   `cliente_codigoCliente` int(11) DEFAULT NULL,
   `cidade_codigoCidade` int(11) NOT NULL,
   `editora_codigoEditora` int(11) DEFAULT NULL,
   `rua` varchar(45) NOT NULL,
   `bairro` varchar(45) NOT NULL,
-  `complemento` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`codigoEndereco`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  `complemento` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `endereco`
@@ -282,9 +267,8 @@ INSERT INTO `endereco` (`codigoEndereco`, `cliente_codigoCliente`, `cidade_codig
 -- Estrutura da tabela `obra`
 --
 
-DROP TABLE IF EXISTS `obra`;
-CREATE TABLE IF NOT EXISTS `obra` (
-  `codigoObra` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `obra` (
+  `codigoObra` int(11) NOT NULL,
   `titulo` varchar(45) NOT NULL,
   `subtitulo` varchar(50) DEFAULT NULL,
   `editora_codigoEditora` int(11) NOT NULL,
@@ -296,17 +280,16 @@ CREATE TABLE IF NOT EXISTS `obra` (
   `status` varchar(12) NOT NULL,
   `codBarras` varchar(50) DEFAULT NULL,
   `qtdEstoqueTotal` int(11) NOT NULL,
-  `qtdEstoqueDisponivel` int(11) NOT NULL,
-  PRIMARY KEY (`codigoObra`),
-  KEY `fk_Obra_Editora_idx` (`editora_codigoEditora`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `qtdEstoqueDisponivel` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `obra`
 --
 
 INSERT INTO `obra` (`codigoObra`, `titulo`, `subtitulo`, `editora_codigoEditora`, `cidade_codigoCidade`, `edicao`, `ano`, `categoria_codigoCategoria`, `situacao`, `status`, `codBarras`, `qtdEstoqueTotal`, `qtdEstoqueDisponivel`) VALUES
-(3, 'teste', 'etet', 14, 1, 5, '2018-05-17', 2, 'Prateleira', 'Ativado', '', 5, 5);
+(3, 'teste', 'etet', 14, 1, 5, '2018-05-17', 2, 'Prateleira', 'Ativado', '', 2, 5),
+(4, 'SISTEMAS OPERACIONAIS', 'JANTAR DOS FILOSOFOS', 16, 1, 1, '2018-05-17', 2, 'Prateleira', 'Ativado', '', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -314,15 +297,141 @@ INSERT INTO `obra` (`codigoObra`, `titulo`, `subtitulo`, `editora_codigoEditora`
 -- Estrutura da tabela `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE IF NOT EXISTS `usuario` (
+CREATE TABLE `usuario` (
   `codigoUsuario` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
-  `perfil` tinyint(4) NOT NULL,
+  `perfil` int(1) NOT NULL,
   `login` varchar(50) NOT NULL,
-  `senha` varchar(50) NOT NULL,
-  PRIMARY KEY (`codigoUsuario`)
+  `senha` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`codigoUsuario`, `nome`, `perfil`, `login`, `senha`) VALUES
+(1, 'cristian', 0, 'cristianperes', '12345'),
+(2, 'erick', 0, 'erickmoraes', '12345'),
+(3, 'gerentePrisma', 1, 'prismasoft', '12345'),
+(4, 'felipe', 0, 'felipe_peretti', '12345'),
+(5, 'jefferson', 0, 'jeffersonguedes', '12345');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `autor`
+--
+ALTER TABLE `autor`
+  ADD PRIMARY KEY (`codigoAutor`);
+
+--
+-- Indexes for table `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`codigoCategoria`);
+
+--
+-- Indexes for table `cidade`
+--
+ALTER TABLE `cidade`
+  ADD PRIMARY KEY (`codigoCidade`);
+
+--
+-- Indexes for table `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`codigoCliente`);
+
+--
+-- Indexes for table `editora`
+--
+ALTER TABLE `editora`
+  ADD PRIMARY KEY (`codigoEditora`);
+
+--
+-- Indexes for table `emprestimo`
+--
+ALTER TABLE `emprestimo`
+  ADD PRIMARY KEY (`codigoEmprestimo`);
+
+--
+-- Indexes for table `endereco`
+--
+ALTER TABLE `endereco`
+  ADD PRIMARY KEY (`codigoEndereco`);
+
+--
+-- Indexes for table `obra`
+--
+ALTER TABLE `obra`
+  ADD PRIMARY KEY (`codigoObra`),
+  ADD KEY `fk_Obra_Editora_idx` (`editora_codigoEditora`);
+
+--
+-- Indexes for table `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`codigoUsuario`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `autor`
+--
+ALTER TABLE `autor`
+  MODIFY `codigoAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `codigoCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `cidade`
+--
+ALTER TABLE `cidade`
+  MODIFY `codigoCidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `codigoCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `editora`
+--
+ALTER TABLE `editora`
+  MODIFY `codigoEditora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `emprestimo`
+--
+ALTER TABLE `emprestimo`
+  MODIFY `codigoEmprestimo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `endereco`
+--
+ALTER TABLE `endereco`
+  MODIFY `codigoEndereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `obra`
+--
+ALTER TABLE `obra`
+  MODIFY `codigoObra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `codigoUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
