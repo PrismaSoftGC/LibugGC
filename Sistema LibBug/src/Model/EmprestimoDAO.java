@@ -19,13 +19,7 @@ public class EmprestimoDAO {
         }
         return instance;
     }
-/*
-    int codigoEmprestimo;
-    int funcionario_codigoFuncionario;
-    Date saida;
-    int cliente_codigoCliente;
-    Date devolucao;
-    */
+
     public long create(EmprestimoBEAN emprestimo) {
         String query = "INSERT INTO EMPRESTIMO (funcionario_codigoFuncionario,saida, codigoCliente, devolucao) VALUES (?,?,?,?)";
         return MySQLDAO.executeQuery(query,emprestimo.getCodigoFuncionario() ,emprestimo.getSaida(), emprestimo.getCodigoCliente(), emprestimo.getDevolucao());

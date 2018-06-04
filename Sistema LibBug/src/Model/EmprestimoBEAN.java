@@ -1,9 +1,9 @@
 package Model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class EmprestimoBEAN {
+    
     int codigoEmprestimo;
     int funcionario_codigoFuncionario;
     Date saida;
