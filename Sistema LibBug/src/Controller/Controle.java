@@ -424,6 +424,7 @@ public class Controle {
     public ArrayList<EmprestimoBEAN> findEmprestimoCodigo(int id) {
         return EmprestimoDAO.getInstance().findEmprestimoCodigo(id);
     }
+    
 
      //*****************************************************************
     // Abaixo estão os métodos controladores referentes a tabela aux_emprestimo_obra.

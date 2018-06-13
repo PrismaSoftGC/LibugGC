@@ -27,7 +27,9 @@ public class TelaMenu extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        botaoRelatorio = new javax.swing.JButton();
         botaoEmprestimo = new javax.swing.JButton();
+        labelEmprestimo2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         jMenu1.setText("jMenu1");
@@ -90,8 +92,8 @@ public class TelaMenu extends javax.swing.JFrame {
         getContentPane().add(botaoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 80, 90));
 
         labelEmprestimo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelEmprestimo.setText("Emprestimo");
-        getContentPane().add(labelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
+        labelEmprestimo.setText("Relatório de Empréstimo");
+        getContentPane().add(labelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/logo keyse.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, 183, 127));
@@ -103,6 +105,14 @@ public class TelaMenu extends javax.swing.JFrame {
         jLabel7.setText("Obra");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
 
+        botaoRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/iconeEmprestimo.png"))); // NOI18N
+        botaoRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRelatorioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botaoRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 80, 90));
+
         botaoEmprestimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/iconeEmprestimo.png"))); // NOI18N
         botaoEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +120,10 @@ public class TelaMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botaoEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 80, 90));
+
+        labelEmprestimo2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelEmprestimo2.setText("Emprestimo");
+        getContentPane().add(labelEmprestimo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -139,9 +153,14 @@ public class TelaMenu extends javax.swing.JFrame {
         obra.setVisible(true);
     }//GEN-LAST:event_botaoObraActionPerformed
 
+    private void botaoRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRelatorioActionPerformed
+       RelatorioEmprestimos rel = new RelatorioEmprestimos(this,true);
+       rel.setVisible(true);
+    }//GEN-LAST:event_botaoRelatorioActionPerformed
+
     private void botaoEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEmprestimoActionPerformed
-       Emprestimo emp = new Emprestimo(this,true);
-       emp.setVisible(true);
+        Emprestimo emp = new Emprestimo(this,true);
+        emp.setVisible(true);
     }//GEN-LAST:event_botaoEmprestimoActionPerformed
 
     /**
@@ -154,6 +173,7 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JButton botaoEditora;
     private javax.swing.JButton botaoEmprestimo;
     private javax.swing.JButton botaoObra;
+    private javax.swing.JButton botaoRelatorio;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
@@ -166,6 +186,7 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel labelEmprestimo;
+    private javax.swing.JLabel labelEmprestimo2;
     private javax.swing.JLabel textCliente;
     // End of variables declaration//GEN-END:variables
 }
