@@ -330,8 +330,8 @@ public class Obra extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelEditora.setBackground(new java.awt.Color(0, 0, 0));
         labelEditora.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        labelEditora.setForeground(new java.awt.Color(204, 204, 204));
         labelEditora.setText("Obra");
         getContentPane().add(labelEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 11, -1, -1));
 
@@ -496,15 +496,15 @@ public class Obra extends javax.swing.JDialog {
         jPanel1.add(textBuscaCodigo);
         textBuscaCodigo.setBounds(10, 30, 50, 30);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Codigo");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(10, 10, 50, 20);
 
-        labelTitulo2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelTitulo2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelTitulo2.setText("Titulo");
         jPanel1.add(labelTitulo2);
-        labelTitulo2.setBounds(70, 10, 80, 15);
+        labelTitulo2.setBounds(70, 10, 80, 20);
 
         tabelaAutores.setBackground(new java.awt.Color(153, 204, 255));
         tabelaAutores.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -557,12 +557,12 @@ public class Obra extends javax.swing.JDialog {
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelTitulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelTitulo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelTitulo.setText("Título*");
         jPanel3.add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, 20));
         jPanel3.add(textTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 250, 30));
 
-        labelEdicao.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelEdicao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelEdicao.setText("Edicao");
         jPanel3.add(labelEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
 
@@ -581,16 +581,16 @@ public class Obra extends javax.swing.JDialog {
         });
         jPanel3.add(cbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 110, 30));
 
-        labelStatus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelStatus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelStatus.setText("Status*");
         jPanel3.add(labelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
-        labelCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCodigo.setText("Codigo*");
         jPanel3.add(labelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
         jPanel3.add(textCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 60, 30));
 
-        labelEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelEdit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelEdit.setText("Editora*");
         jPanel3.add(labelEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, 20));
 
@@ -601,7 +601,7 @@ public class Obra extends javax.swing.JDialog {
         cbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prateleira", "Emprestado" }));
         jPanel3.add(cbSituacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 120, 30));
 
-        labelSitu.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelSitu.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelSitu.setText("Situacão*");
         jPanel3.add(labelSitu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
@@ -666,22 +666,22 @@ public class Obra extends javax.swing.JDialog {
         jPanel3.add(btnRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, -1, -1));
         jPanel3.add(textSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 200, 30));
 
-        labelSubtitulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelSubtitulo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelSubtitulo.setText("Subtitulo");
         jPanel3.add(labelSubtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 20));
 
-        labelCidade.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCidade.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCidade.setText("Cidade");
         jPanel3.add(labelCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        labelAno.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelAno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelAno.setText("Ano*");
         jPanel3.add(labelAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, -1, 20));
 
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
         jPanel3.add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 220, 30));
 
-        labelCategoria.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCategoria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCategoria.setText("Categoria*");
         jPanel3.add(labelCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, -1, 20));
 
@@ -692,7 +692,7 @@ public class Obra extends javax.swing.JDialog {
         });
         jPanel3.add(textBarras, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 160, 30));
 
-        labelBarras.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelBarras.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelBarras.setText("Cod. Barras");
         jPanel3.add(labelBarras, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
 
@@ -703,7 +703,7 @@ public class Obra extends javax.swing.JDialog {
         });
         jPanel3.add(textEstoqueTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 130, 30));
 
-        labelEstoqueTotal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelEstoqueTotal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelEstoqueTotal.setText("Estoque Total*");
         jPanel3.add(labelEstoqueTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, -1, -1));
 
@@ -714,7 +714,7 @@ public class Obra extends javax.swing.JDialog {
         });
         jPanel3.add(textEstoqueDisponivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 160, 30));
 
-        labelEstoqueDisponivel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelEstoqueDisponivel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelEstoqueDisponivel.setText("Estoque Disponível*");
         jPanel3.add(labelEstoqueDisponivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 150, -1));
         jPanel3.add(calendarioAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 130, 30));

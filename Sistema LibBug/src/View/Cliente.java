@@ -106,7 +106,6 @@ public class Cliente extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelEditora.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        labelEditora.setForeground(new java.awt.Color(204, 204, 204));
         labelEditora.setText("Cliente");
 
         botaoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/Cancel_icon-icons.com_73703.png"))); // NOI18N
@@ -229,30 +228,30 @@ public class Cliente extends javax.swing.JDialog {
         jPanel1.add(textBuscaCodigo);
         textBuscaCodigo.setBounds(10, 30, 50, 30);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Codigo");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(10, 10, 50, 20);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nome");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(70, 10, 60, 15);
+        jLabel2.setBounds(70, 10, 60, 20);
 
         abas.addTab("Pesquisa", jPanel1);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelNome.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelNome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelNome.setText("Nome*");
         jPanel3.add(labelNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 59, -1, 20));
         jPanel3.add(textNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 82, 250, 30));
 
-        labelCpf.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCpf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCpf.setText("CPF*");
         jPanel3.add(labelCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, -1));
 
-        labelIdade.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelIdade.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelIdade.setText("Idade*");
         jPanel3.add(labelIdade, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 62, -1, -1));
 
@@ -263,7 +262,7 @@ public class Cliente extends javax.swing.JDialog {
         });
         jPanel3.add(textIdade, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 82, 43, 27));
 
-        labelCidade.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCidade.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCidade.setText("Email*");
         jPanel3.add(labelCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
         jPanel3.add(textEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 250, 30));
@@ -271,11 +270,11 @@ public class Cliente extends javax.swing.JDialog {
         comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativado", "Desativado" }));
         jPanel3.add(comboboxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 82, 110, 30));
 
-        labelStatus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelStatus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelStatus.setText("Status");
         jPanel3.add(labelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 62, -1, -1));
 
-        labelCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCodigo.setText("Codigo*");
         jPanel3.add(labelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 62, -1, -1));
         jPanel3.add(textCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 82, 60, 30));

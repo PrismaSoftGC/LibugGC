@@ -210,8 +210,8 @@ public class Emprestimo extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelEditora.setBackground(new java.awt.Color(0, 0, 0));
         labelEditora.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        labelEditora.setForeground(new java.awt.Color(204, 204, 204));
         labelEditora.setText("Empréstimo");
         getContentPane().add(labelEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
@@ -346,11 +346,11 @@ public class Emprestimo extends javax.swing.JDialog {
         });
         jPanel1.add(textCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 80, 30));
 
-        labelCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCliente.setText("CPF");
         jPanel1.add(labelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 90, 20));
 
-        labelTitulo2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelTitulo2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelTitulo2.setText("Data de devolução");
         jPanel1.add(labelTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 120, -1));
 
@@ -425,7 +425,7 @@ public class Emprestimo extends javax.swing.JDialog {
         });
         jPanel1.add(textObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 160, 30));
 
-        labelCliente1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCliente1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCliente1.setText("Obra");
         jPanel1.add(labelCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 90, 20));
 
@@ -433,12 +433,12 @@ public class Emprestimo extends javax.swing.JDialog {
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCodigo.setText("Codigo*");
-        jPanel3.add(labelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        jPanel3.add(labelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 20));
         jPanel3.add(textCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 60, 30));
 
-        labelCalend.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCalend.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCalend.setText("Data Devolução");
         jPanel3.add(labelCalend, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 20));
 
@@ -542,11 +542,11 @@ public class Emprestimo extends javax.swing.JDialog {
         });
         jPanel3.add(botaoAdicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 110, 30));
 
-        labelEdit1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelEdit1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelEdit1.setText("Cliente*");
         jPanel3.add(labelEdit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, 20));
 
-        labelEdit2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelEdit2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelEdit2.setText("Data Saída");
         jPanel3.add(labelEdit2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, 20));
 

@@ -29,20 +29,20 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelTitulo.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        labelTitulo.setForeground(new java.awt.Color(204, 204, 204));
+        labelTitulo.setBackground(new java.awt.Color(0, 0, 0));
+        labelTitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelTitulo.setText("Autenticação do Funcionário");
         getContentPane().add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, 26));
         getContentPane().add(textLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 148, 27));
         getContentPane().add(textSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 148, 29));
 
-        labelLogin.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        labelLogin.setForeground(new java.awt.Color(204, 204, 204));
+        labelLogin.setBackground(new java.awt.Color(0, 0, 0));
+        labelLogin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelLogin.setText("Login");
         getContentPane().add(labelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
 
-        labelSenha.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        labelSenha.setForeground(new java.awt.Color(204, 204, 204));
+        labelSenha.setBackground(new java.awt.Color(0, 0, 0));
+        labelSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelSenha.setText("Senha");
         getContentPane().add(labelSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
@@ -61,8 +61,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(botaoCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, 34));
-
-        labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/azul cortado.jpg"))); // NOI18N
         getContentPane().add(labelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 340));
 
         pack();

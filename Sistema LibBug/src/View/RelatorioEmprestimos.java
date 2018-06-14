@@ -82,13 +82,13 @@ public class RelatorioEmprestimos extends javax.swing.JDialog {
         setPreferredSize(new java.awt.Dimension(950, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelEditora.setBackground(new java.awt.Color(0, 0, 0));
         labelEditora.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        labelEditora.setForeground(new java.awt.Color(204, 204, 204));
         labelEditora.setText("Relatório de empréstimo");
         getContentPane().add(labelEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
         getContentPane().add(cb_data, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 110, 30));
 
-        labelTitulo2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelTitulo2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelTitulo2.setText("Data de devolução");
         getContentPane().add(labelTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 120, -1));
 

@@ -30,6 +30,7 @@ public class TelaMenu extends javax.swing.JFrame {
         botaoRelatorio = new javax.swing.JButton();
         botaoEmprestimo = new javax.swing.JButton();
         labelEmprestimo2 = new javax.swing.JLabel();
+        labelEditora = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         jMenu1.setText("jMenu1");
@@ -53,11 +54,11 @@ public class TelaMenu extends javax.swing.JFrame {
                 botaoClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(botaoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 82, 93));
+        getContentPane().add(botaoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 82, 93));
 
         textCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         textCliente.setText("Cliente");
-        getContentPane().add(textCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 60, -1));
+        getContentPane().add(textCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 60, -1));
 
         botaoAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/Wordpad_icon-icons.com_55518.png"))); // NOI18N
         botaoAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -65,11 +66,11 @@ public class TelaMenu extends javax.swing.JFrame {
                 botaoAutorActionPerformed(evt);
             }
         });
-        getContentPane().add(botaoAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 80, 93));
+        getContentPane().add(botaoAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 80, 93));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Autor");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
 
         botaoEditora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/editnote_edi_9512.png"))); // NOI18N
         botaoEditora.addActionListener(new java.awt.event.ActionListener() {
@@ -77,11 +78,11 @@ public class TelaMenu extends javax.swing.JFrame {
                 botaoEditoraActionPerformed(evt);
             }
         });
-        getContentPane().add(botaoEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 80, 90));
+        getContentPane().add(botaoEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 80, 90));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Editora");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, -1, -1));
 
         botaoObra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/book-bookmark-icon_34486.png"))); // NOI18N
         botaoObra.addActionListener(new java.awt.event.ActionListener() {
@@ -89,11 +90,11 @@ public class TelaMenu extends javax.swing.JFrame {
                 botaoObraActionPerformed(evt);
             }
         });
-        getContentPane().add(botaoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 80, 90));
+        getContentPane().add(botaoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 80, 90));
 
         labelEmprestimo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelEmprestimo.setText("Relatório de Empréstimo");
-        getContentPane().add(labelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, -1));
+        getContentPane().add(labelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/logo keyse.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, 183, 127));
@@ -103,7 +104,7 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Obra");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
 
         botaoRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/iconeEmprestimo.png"))); // NOI18N
         botaoRelatorio.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +112,7 @@ public class TelaMenu extends javax.swing.JFrame {
                 botaoRelatorioActionPerformed(evt);
             }
         });
-        getContentPane().add(botaoRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 80, 90));
+        getContentPane().add(botaoRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 80, 90));
 
         botaoEmprestimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/iconeEmprestimo.png"))); // NOI18N
         botaoEmprestimo.addActionListener(new java.awt.event.ActionListener() {
@@ -119,11 +120,16 @@ public class TelaMenu extends javax.swing.JFrame {
                 botaoEmprestimoActionPerformed(evt);
             }
         });
-        getContentPane().add(botaoEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 80, 90));
+        getContentPane().add(botaoEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 80, 90));
 
         labelEmprestimo2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelEmprestimo2.setText("Emprestimo");
-        getContentPane().add(labelEmprestimo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
+        getContentPane().add(labelEmprestimo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, -1, -1));
+
+        labelEditora.setBackground(new java.awt.Color(0, 0, 0));
+        labelEditora.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        labelEditora.setText("Menu Opções");
+        getContentPane().add(labelEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -185,6 +191,7 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel labelEditora;
     private javax.swing.JLabel labelEmprestimo;
     private javax.swing.JLabel labelEmprestimo2;
     private javax.swing.JLabel textCliente;

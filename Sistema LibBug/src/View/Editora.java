@@ -122,6 +122,8 @@ public class Editora extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        abas.setBackground(new java.awt.Color(0, 0, 0));
+
         jPanel1.setLayout(null);
 
         textBuscaNome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -229,31 +231,32 @@ public class Editora extends javax.swing.JDialog {
         jPanel1.add(textBuscaCodigo);
         textBuscaCodigo.setBounds(10, 30, 50, 30);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Codigo");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(10, 10, 70, 20);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nome");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(70, 10, 50, 15);
+        jLabel2.setBounds(70, 10, 50, 20);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/IMG_1870.JPG"))); // NOI18N
         jLabel4.setText("jLabel4");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(0, -240, 1638, 1500);
+        jLabel4.setBounds(0, -240, 34, 1500);
 
         abas.addTab("Pesquisa", jPanel1);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelNome.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelNome.setBackground(new java.awt.Color(0, 0, 0));
+        labelNome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelNome.setText("Nome Fantasia*");
         jPanel3.add(labelNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, 20));
         jPanel3.add(textNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 250, 30));
 
-        labelCpf.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCpf.setBackground(new java.awt.Color(0, 0, 0));
+        labelCpf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCpf.setText("CNPJ*");
         jPanel3.add(labelCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, -1));
 
@@ -267,16 +270,19 @@ public class Editora extends javax.swing.JDialog {
         comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativado", "Desativado" }));
         jPanel3.add(comboboxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 110, 30));
 
-        labelStatus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelStatus.setBackground(new java.awt.Color(0, 0, 0));
+        labelStatus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelStatus.setText("Status");
         jPanel3.add(labelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 20, -1, -1));
 
-        labelCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCodigo.setBackground(new java.awt.Color(0, 0, 0));
+        labelCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCodigo.setText("Codigo*");
         jPanel3.add(labelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
         jPanel3.add(textCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 60, 30));
 
-        labelRazao.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelRazao.setBackground(new java.awt.Color(0, 0, 0));
+        labelRazao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelRazao.setText("Razão Social*");
         jPanel3.add(labelRazao, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, 20));
         jPanel3.add(textRazao, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 250, 30));
@@ -284,7 +290,6 @@ public class Editora extends javax.swing.JDialog {
         abas.addTab("Cadastro / Edição", jPanel3);
 
         labelEditora.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        labelEditora.setForeground(new java.awt.Color(204, 204, 204));
         labelEditora.setText("Editora");
 
         botaoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/Cancel_icon-icons.com_73703.png"))); // NOI18N
