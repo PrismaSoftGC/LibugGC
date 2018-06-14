@@ -296,6 +296,10 @@ public class Controle {
         return UsuariosDAO.getInstance().autenticaUsuario(login, senha);
     }
     
+    public UsuariosBEAN encontraUsuario(String login, String senha){
+        return UsuariosDAO.getInstance().encontraUsuario(login, senha);
+    }
+    
     public boolean autenticAdmin(String login, String senha, int perfil){
         return UsuariosDAO.getInstance().autenticaAdministrador(login, senha, perfil);
     }

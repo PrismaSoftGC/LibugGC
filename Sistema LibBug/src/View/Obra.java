@@ -7,6 +7,7 @@ import Model.CategoriasBEAN;
 import Model.CidadesBEAN;
 import Model.EditorasBEAN;
 import Model.ObrasBEAN;
+import Model.UsuariosBEAN;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,12 +24,18 @@ public class Obra extends javax.swing.JDialog {
     private javax.swing.table.DefaultTableModel modelo2;
     private javax.swing.table.DefaultTableModel modelo3;
     private javax.swing.table.DefaultTableModel modelo4;
-    
+    private UsuariosBEAN usuario = null;
     int cont,contador=0;
     
-    public Obra(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Obra(UsuariosBEAN usuario) {
+        this.usuario = usuario;
         initComponents();
+        
+        if (usuario.getPerfil() == 0) {
+            comboboxStatus.setVisible(false);
+            labelStatus.setVisible(false);
+        }
+        
         botaoCancelar.setEnabled(false);
         botaoSalvar.setEnabled(false);
         textCodigo.setEditable(false);
@@ -49,7 +56,7 @@ public class Obra extends javax.swing.JDialog {
         cbEditora1.setEnabled(false);
         textEdicao.setEditable(false);
         cbSituacao.setEnabled(false);
-        cbStatus.setEnabled(false);
+        comboboxStatus.setEnabled(false);
         cbEditora1.setEnabled(false);
         cbCidade.setEnabled(false);
         cbCategoria.setEnabled(false);
@@ -78,7 +85,7 @@ public class Obra extends javax.swing.JDialog {
         textBarras.setEditable(true);
         textEstoqueTotal.setEditable(true);
         textEstoqueDisponivel.setEditable(true);
-        cbStatus.setEnabled(true);
+        comboboxStatus.setEnabled(true);
         TabelaDestino.setVisible(true);
         tabelaObra.setVisible(true);
         tabelaAutores.setVisible(true);
@@ -99,7 +106,7 @@ public class Obra extends javax.swing.JDialog {
         textEstoqueDisponivel.setText("");
         textBarras.setText("");
         cbSituacao.setSelectedIndex(0);
-        cbStatus.setSelectedIndex(0);
+        comboboxStatus.setSelectedIndex(0);
         modelo2 = (javax.swing.table.DefaultTableModel)TabelaDestino.getModel();
         modelo2.setNumRows(0);
         modelo3 = (javax.swing.table.DefaultTableModel)tabelaObra.getModel();
@@ -264,7 +271,7 @@ public class Obra extends javax.swing.JDialog {
         textTitulo = new javax.swing.JTextField();
         labelEdicao = new javax.swing.JLabel();
         textEdicao = new javax.swing.JTextField();
-        cbStatus = new javax.swing.JComboBox<>();
+        comboboxStatus = new javax.swing.JComboBox<>();
         labelStatus = new javax.swing.JLabel();
         labelCodigo = new javax.swing.JLabel();
         textCodigo = new javax.swing.JTextField();
@@ -573,13 +580,13 @@ public class Obra extends javax.swing.JDialog {
         });
         jPanel3.add(textEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 160, 30));
 
-        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativado", "Desativado" }));
-        cbStatus.addActionListener(new java.awt.event.ActionListener() {
+        comboboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativado", "Desativado" }));
+        comboboxStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbStatusActionPerformed(evt);
+                comboboxStatusActionPerformed(evt);
             }
         });
-        jPanel3.add(cbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 110, 30));
+        jPanel3.add(comboboxStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 110, 30));
 
         labelStatus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelStatus.setText("Status*");
@@ -788,7 +795,7 @@ public class Obra extends javax.swing.JDialog {
 
         abas.setSelectedIndex(1);
         botaoNovo.setEnabled(false);
-        cbStatus.setEnabled(false);
+        comboboxStatus.setEnabled(false);
         cbSituacao.setEnabled(false);
 
     }//GEN-LAST:event_botaoNovoActionPerformed
@@ -888,7 +895,7 @@ public class Obra extends javax.swing.JDialog {
                         
                         String situacao = (String) cbSituacao.getSelectedItem();
                         obra.setSituacao(situacao);
-                        String status = (String) cbStatus.getSelectedItem();
+                        String status = (String) comboboxStatus.getSelectedItem();
                         obra.setStatus(status);
                         obra.setCodBarras(textBarras.getText());
                         int estoqueT = Integer.parseInt(textEstoqueTotal.getText());
@@ -1086,7 +1093,7 @@ public class Obra extends javax.swing.JDialog {
             }
             cbCategoria.setSelectedItem(categoria.getNome());
             cbSituacao.setSelectedItem(tabelaObra.getValueAt(linha, 7));
-            cbStatus.setSelectedItem(tabelaObra.getValueAt(linha, 8));
+            comboboxStatus.setSelectedItem(tabelaObra.getValueAt(linha, 8));
             textBarras.setText(obra.getCodBarras());
             textEstoqueTotal.setText(String.valueOf(obra.getQtdEstoqueTotal()));
             textEstoqueDisponivel.setText(String.valueOf(obra.getQtdEstoqueDisponivel()));
@@ -1158,9 +1165,9 @@ public class Obra extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_textEdicaoKeyTyped
 
-    private void cbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStatusActionPerformed
+    private void comboboxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxStatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbStatusActionPerformed
+    }//GEN-LAST:event_comboboxStatusActionPerformed
 
     private void textAutorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAutorKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -1198,47 +1205,6 @@ public class Obra extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textEstoqueDisponivelKeyTyped
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Obra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Obra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Obra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Obra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Obra dialog = new Obra(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaDestino;
@@ -1255,7 +1221,7 @@ public class Obra extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbCidade;
     private javax.swing.JComboBox<String> cbEditora1;
     private javax.swing.JComboBox<String> cbSituacao;
-    private javax.swing.JComboBox<String> cbStatus;
+    private javax.swing.JComboBox<String> comboboxStatus;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;

@@ -5,6 +5,7 @@ import Model.AuxEmprestimoObraBEAN;
 import Model.ClientesBEAN;
 import Model.EmprestimoBEAN;
 import Model.ObrasBEAN;
+import Model.UsuariosBEAN;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -20,7 +21,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,9 +33,10 @@ public class RelatorioEmprestimos extends javax.swing.JDialog {
     
     static  Controle controle = new Controle();
     DefaultTableModel modelo;
+    private UsuariosBEAN usuario = null;
 
-    public RelatorioEmprestimos(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public RelatorioEmprestimos(UsuariosBEAN usuario) {
+        this.usuario = usuario;
         initComponents();   
         modelo = (DefaultTableModel) tabela_emp.getModel();
         modelo.setNumRows(0);
@@ -58,7 +59,10 @@ public class RelatorioEmprestimos extends javax.swing.JDialog {
             ObrasBEAN obra = null;
             for( AuxEmprestimoObraBEAN au : aux){
                 obra = controle.findObraCodigo(au.getCodigoObra());
-                modelo.addRow(new Object[]{emp.getCodigoEmprestimo(),obra.getTitulo(), 
+                
+                UsuariosBEAN usuarioAux = controle.findUsuarioCodigo(emp.getCodigoFuncionario());
+                
+                modelo.addRow(new Object[]{usuarioAux.getNome(),obra.getTitulo(), 
                     cliente.getNome(), emp.getSaida(),emp.getDevolucao()});
             }       
         }      
@@ -117,7 +121,7 @@ public class RelatorioEmprestimos extends javax.swing.JDialog {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Obra", "Cliente", "D. EMP", "D. DEV"
+                "Funcionário", "Obra", "Cliente", "D. EMP", "D. DEV"
             }
         ) {
             Class[] types = new Class [] {
@@ -135,13 +139,23 @@ public class RelatorioEmprestimos extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tabela_emp.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tabela_emp);
         if (tabela_emp.getColumnModel().getColumnCount() > 0) {
-            tabela_emp.getColumnModel().getColumn(0).setResizable(false);
+            tabela_emp.getColumnModel().getColumn(0).setMinWidth(150);
+            tabela_emp.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tabela_emp.getColumnModel().getColumn(0).setMaxWidth(150);
             tabela_emp.getColumnModel().getColumn(1).setResizable(false);
-            tabela_emp.getColumnModel().getColumn(2).setResizable(false);
-            tabela_emp.getColumnModel().getColumn(3).setResizable(false);
-            tabela_emp.getColumnModel().getColumn(4).setResizable(false);
+            tabela_emp.getColumnModel().getColumn(1).setPreferredWidth(170);
+            tabela_emp.getColumnModel().getColumn(2).setMinWidth(170);
+            tabela_emp.getColumnModel().getColumn(2).setPreferredWidth(170);
+            tabela_emp.getColumnModel().getColumn(2).setMaxWidth(170);
+            tabela_emp.getColumnModel().getColumn(3).setMinWidth(150);
+            tabela_emp.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tabela_emp.getColumnModel().getColumn(3).setMaxWidth(150);
+            tabela_emp.getColumnModel().getColumn(4).setMinWidth(150);
+            tabela_emp.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tabela_emp.getColumnModel().getColumn(4).setMaxWidth(150);
         }
 
         getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 875, 390));
@@ -285,49 +299,6 @@ public class RelatorioEmprestimos extends javax.swing.JDialog {
         }  
         prencherTabela(aux);
     }//GEN-LAST:event_botaoBusca1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RelatorioEmprestimos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RelatorioEmprestimos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RelatorioEmprestimos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RelatorioEmprestimos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                RelatorioEmprestimos dialog = new RelatorioEmprestimos(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoBusca1;

@@ -5,6 +5,7 @@ import Model.AuxEmprestimoObraBEAN;
 import Model.ClientesBEAN;
 import Model.EmprestimoBEAN;
 import Model.ObrasBEAN;
+import Model.UsuariosBEAN;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,11 +23,13 @@ public class Emprestimo extends javax.swing.JDialog {
     private javax.swing.table.DefaultTableModel modelo4;
     
     static  Controle controle = new Controle();
+    private UsuariosBEAN usuario = null;
    
     int cont,contador=0;
 
-    public Emprestimo(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Emprestimo(UsuariosBEAN usuario) {
+        this.usuario = usuario;
+        
         initComponents();
         tabelaEmprestimo.setDefaultRenderer(Object.class, new CellRenderer());
         
@@ -731,6 +734,8 @@ public class Emprestimo extends javax.swing.JDialog {
                             codigoCliente = lis.getCodigoCliente();
                         }
                     }
+                    
+                    emprestimo.setCodigoFuncionario(usuario.getCodigoUsuario());
 
                     emprestimo.setCodigoCliente(codigoCliente);
                     //recebe a string do jtext e converte em variavel do tipo data
@@ -1021,48 +1026,6 @@ public class Emprestimo extends javax.swing.JDialog {
     private void textObraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textObraKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_textObraKeyTyped
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Emprestimo dialog = new Emprestimo(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abas;

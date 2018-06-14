@@ -1,11 +1,13 @@
 package View;
 
 import Controller.Controle;
+import Model.UsuariosBEAN;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
   static Controle controle = new Controle();
+  private UsuariosBEAN usuario = null;
   
     public Login() {
         initComponents();
@@ -31,20 +33,20 @@ public class Login extends javax.swing.JFrame {
 
         labelTitulo.setBackground(new java.awt.Color(0, 0, 0));
         labelTitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        labelTitulo.setText("Autenticação do Funcionário");
-        getContentPane().add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, 26));
-        getContentPane().add(textLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 148, 27));
-        getContentPane().add(textSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 148, 29));
+        labelTitulo.setText("LIBUG");
+        getContentPane().add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, 26));
+        getContentPane().add(textLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 220, 27));
+        getContentPane().add(textSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 220, 29));
 
         labelLogin.setBackground(new java.awt.Color(0, 0, 0));
         labelLogin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelLogin.setText("Login");
-        getContentPane().add(labelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
+        getContentPane().add(labelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
         labelSenha.setBackground(new java.awt.Color(0, 0, 0));
         labelSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelSenha.setText("Senha");
-        getContentPane().add(labelSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+        getContentPane().add(labelSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
 
         botaoAutentica.setText("Autenticar");
         botaoAutentica.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +54,7 @@ public class Login extends javax.swing.JFrame {
                 botaoAutenticaActionPerformed(evt);
             }
         });
-        getContentPane().add(botaoAutentica, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, 34));
+        getContentPane().add(botaoAutentica, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, 34));
 
         botaoCadastrar.setText("Cadastrar");
         botaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +62,9 @@ public class Login extends javax.swing.JFrame {
                 botaoCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(botaoCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, 34));
+        getContentPane().add(botaoCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, 34));
+
+        labelFundo.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(labelFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 340));
 
         pack();
@@ -70,13 +74,14 @@ public class Login extends javax.swing.JFrame {
     private void botaoAutenticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAutenticaActionPerformed
         String login = textLogin.getText();
         String senha = textSenha.getText();
-
+        
         try {
 
             boolean autenticacao = controle.autenticUser(login, senha);
 
             if (autenticacao == true) {
-                TelaMenu menu = new TelaMenu();
+                usuario = controle.encontraUsuario(login, senha);
+                TelaMenu menu = new TelaMenu(usuario);
                 menu.setVisible(true);
                 this.dispose();
             }

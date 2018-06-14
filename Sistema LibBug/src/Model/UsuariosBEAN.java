@@ -23,7 +23,13 @@ public class UsuariosBEAN {
         this.senha = senha;
         this.nome = nome;
     }
-
+    
+    public UsuariosBEAN(int codigoUsuario, int perfil, String nome) {
+        this.codigoUsuario = codigoUsuario;
+        this.perfil = perfil;
+        this.nome = nome;
+    }
+    
     public int getCodigoUsuario() {
         return codigoUsuario;
     }

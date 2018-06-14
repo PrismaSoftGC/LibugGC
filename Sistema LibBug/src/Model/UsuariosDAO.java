@@ -149,6 +149,21 @@ public class UsuariosDAO {
         return result;
     }
     
+     public UsuariosBEAN encontraUsuario(String login, String senha) {
+        UsuariosBEAN result = null;
+        ResultSet rs = null;
+        rs = MySQLDAO.getResultSet("SELECT * FROM USUARIO WHERE login= ? and senha=?", login, senha);
+        try {
+            if (rs.next()) {
+                result = new UsuariosBEAN(rs.getInt("codigoUsuario"), rs.getInt("perfil"), rs.getString("nome"));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
     public int LastId() {
         int result =0 ;
         ResultSet rs = null;

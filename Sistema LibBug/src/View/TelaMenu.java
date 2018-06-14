@@ -1,9 +1,19 @@
 package View;
 
+import Model.UsuariosBEAN;
+
 public class TelaMenu extends javax.swing.JFrame {
 
-    public TelaMenu() {
+    private UsuariosBEAN usuario = null;
+    
+    public TelaMenu(UsuariosBEAN usuario) {
+      this.usuario = usuario;
       initComponents();
+      
+      if (usuario.getPerfil() == 0) {
+          botaoRelatorio.setVisible(false);
+          labelEmprestimo.setVisible(false);
+      }
       
     }
 
@@ -54,11 +64,11 @@ public class TelaMenu extends javax.swing.JFrame {
                 botaoClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(botaoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 82, 93));
+        getContentPane().add(botaoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 82, 93));
 
         textCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         textCliente.setText("Cliente");
-        getContentPane().add(textCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 60, -1));
+        getContentPane().add(textCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 60, -1));
 
         botaoAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/Wordpad_icon-icons.com_55518.png"))); // NOI18N
         botaoAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +80,7 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Autor");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
 
         botaoEditora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/editnote_edi_9512.png"))); // NOI18N
         botaoEditora.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +92,7 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Editora");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, -1, -1));
 
         botaoObra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/book-bookmark-icon_34486.png"))); // NOI18N
         botaoObra.addActionListener(new java.awt.event.ActionListener() {
@@ -93,8 +103,8 @@ public class TelaMenu extends javax.swing.JFrame {
         getContentPane().add(botaoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 80, 90));
 
         labelEmprestimo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelEmprestimo.setText("Relatório de Empréstimo");
-        getContentPane().add(labelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, -1, -1));
+        labelEmprestimo.setText("Relatório");
+        getContentPane().add(labelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 310, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/logo keyse.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, 183, 127));
@@ -104,7 +114,7 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Obra");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, -1, -1));
 
         botaoRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/iconeEmprestimo.png"))); // NOI18N
         botaoRelatorio.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +122,7 @@ public class TelaMenu extends javax.swing.JFrame {
                 botaoRelatorioActionPerformed(evt);
             }
         });
-        getContentPane().add(botaoRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 80, 90));
+        getContentPane().add(botaoRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 210, 80, 90));
 
         botaoEmprestimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/iconeEmprestimo.png"))); // NOI18N
         botaoEmprestimo.addActionListener(new java.awt.event.ActionListener() {
@@ -128,8 +138,8 @@ public class TelaMenu extends javax.swing.JFrame {
 
         labelEditora.setBackground(new java.awt.Color(0, 0, 0));
         labelEditora.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        labelEditora.setText("Menu Opções");
-        getContentPane().add(labelEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
+        labelEditora.setText("Gerenciamento Libug");
+        getContentPane().add(labelEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -138,40 +148,36 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void botaoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoClienteActionPerformed
      
-     Cliente cliente = new Cliente(this,true);
+     Cliente cliente = new Cliente(usuario);
      cliente.setVisible(true);
        
     }//GEN-LAST:event_botaoClienteActionPerformed
 
     private void botaoAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAutorActionPerformed
-       Autor autor = new Autor(this,true);
+       Autor autor = new Autor(usuario);
        autor.setVisible(true);
       
     }//GEN-LAST:event_botaoAutorActionPerformed
 
     private void botaoEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditoraActionPerformed
-        Editora editora = new Editora(this,true);
+        Editora editora = new Editora(usuario);
         editora.setVisible(true);
     }//GEN-LAST:event_botaoEditoraActionPerformed
 
     private void botaoObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoObraActionPerformed
-        Obra obra = new Obra(this,true);
+        Obra obra = new Obra(usuario);
         obra.setVisible(true);
     }//GEN-LAST:event_botaoObraActionPerformed
 
     private void botaoRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRelatorioActionPerformed
-       RelatorioEmprestimos rel = new RelatorioEmprestimos(this,true);
+       RelatorioEmprestimos rel = new RelatorioEmprestimos(usuario);
        rel.setVisible(true);
     }//GEN-LAST:event_botaoRelatorioActionPerformed
 
     private void botaoEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEmprestimoActionPerformed
-        Emprestimo emp = new Emprestimo(this,true);
+        Emprestimo emp = new Emprestimo(usuario);
         emp.setVisible(true);
     }//GEN-LAST:event_botaoEmprestimoActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAutor;

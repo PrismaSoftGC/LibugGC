@@ -2,6 +2,7 @@ package View;
 
 import Controller.Controle;
 import Model.AutoresBEAN;
+import Model.UsuariosBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -9,11 +10,17 @@ public class Autor extends javax.swing.JDialog {
     
     static Controle controle = new Controle();
     private javax.swing.table.DefaultTableModel modelo;
+    private UsuariosBEAN usuario = null;
     
-    public Autor(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Autor(UsuariosBEAN usuario) {
+        this.usuario = usuario;
         initComponents();
-         
+        
+        if (usuario.getPerfil() == 0) {
+            comboboxStatus.setVisible(false);
+            labelStatus.setVisible(false);
+        }
+        
         modelo = (javax.swing.table.DefaultTableModel)tabelaAutor.getModel();
         
         desabilitaComp();

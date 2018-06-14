@@ -3,18 +3,24 @@ package View;
 import Controller.CPF;
 import Controller.Controle;
 import Model.ClientesBEAN;
+import Model.UsuariosBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Cliente extends javax.swing.JDialog {
     
     private javax.swing.table.DefaultTableModel modelo; 
-    
+    private UsuariosBEAN usuario = null;
     static Controle controle = new Controle();
 
-    public Cliente(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Cliente(UsuariosBEAN usuario) {
+        this.usuario = usuario;
         initComponents();
+        
+        if (usuario.getPerfil() == 0) {
+            comboboxStatus.setVisible(false);
+            labelStatus.setVisible(false);
+        }
         
         modelo = (javax.swing.table.DefaultTableModel)tabelaCliente.getModel();
     }

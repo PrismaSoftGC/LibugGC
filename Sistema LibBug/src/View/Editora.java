@@ -2,6 +2,7 @@ package View;
 
 import Controller.Controle;
 import Model.EditorasBEAN;
+import Model.UsuariosBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -9,10 +10,17 @@ public class Editora extends javax.swing.JDialog {
      
     private javax.swing.table.DefaultTableModel modelo; 
     static Controle controle = new Controle();
+    private UsuariosBEAN usuario = null;
     
-    public Editora(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Editora(UsuariosBEAN usuario) {
+        this.usuario = usuario;
         initComponents();
+        
+        if (usuario.getPerfil() == 0) {
+            comboboxStatus.setVisible(false);
+            labelStatus.setVisible(false);
+        }
+        
         modelo = (javax.swing.table.DefaultTableModel)tebelaEditora.getModel();
         textCodigo.setEnabled(false);
         desabilitaComp();
@@ -597,47 +605,6 @@ public class Editora extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Editora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Editora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Editora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Editora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Editora dialog = new Editora(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abas;
