@@ -76,8 +76,10 @@ public class Emprestimo extends javax.swing.JDialog {
 
         try {
             for (ObrasBEAN obra : listaObras) {
-                if(obra.getStatus().equals("Ativado") && (obra.getSituacao().equals("Prateleira")))
-                modelo1.addRow(new Object[]{obra.getCodigoObra(), obra.getTitulo()});
+                if(obra.getStatus().equals("Ativado") && (obra.getQtdEstoqueDisponivel()!=1)){
+                    
+                    modelo1.addRow(new Object[]{obra.getCodigoObra(), obra.getTitulo()});
+                }
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro ao listar dados - " + erro);

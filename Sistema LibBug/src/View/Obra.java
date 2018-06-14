@@ -35,7 +35,7 @@ public class Obra extends javax.swing.JDialog {
             comboboxStatus.setVisible(false);
             labelStatus.setVisible(false);
         }
-        
+        textEstoqueDisponivel.setEnabled(false);
         botaoCancelar.setEnabled(false);
         botaoSalvar.setEnabled(false);
         textCodigo.setEditable(false);
@@ -704,6 +704,9 @@ public class Obra extends javax.swing.JDialog {
         jPanel3.add(labelBarras, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
 
         textEstoqueTotal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textEstoqueTotalKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 textEstoqueTotalKeyTyped(evt);
             }
@@ -867,8 +870,6 @@ public class Obra extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Preencha para prosseguir");
             
         } else {
-
-
                     try {
                         ObrasBEAN obra = new ObrasBEAN();
                         obra.setTitulo(textTitulo.getText());
@@ -927,33 +928,37 @@ public class Obra extends javax.swing.JDialog {
                             abas.setSelectedIndex(0);
                             abas.setEnabled(true);
                         } else {
-                            int codigo = Integer.parseInt(textCodigo.getText());
+                            if(Integer.parseInt(textEstoqueTotal.getText())<Integer.parseInt(textEstoqueDisponivel.getText())){
+                                JOptionPane.showMessageDialog(null, "Valor total não pode ser menor que o disponivel");
+                            }else{
+                                int codigo = Integer.parseInt(textCodigo.getText());
 
-                            obra.setCodigoObra(codigo);
-                            controle.updateObra(obra);
+                                obra.setCodigoObra(codigo);
+                                controle.updateObra(obra);
 
-                            int codigoObra = controle.findObra(obra);
-                            int linhasAtualiza = TabelaDestino.getRowCount();
+                                int codigoObra = controle.findObra(obra);
+                                int linhasAtualiza = TabelaDestino.getRowCount();
 
-                            for (int i = 0; i < linhasAtualiza; i++) {
-                                aux.setCodigoObra(codigoObra);
-                                controle.deleteAuxObra(aux);
+                                for (int i = 0; i < linhasAtualiza; i++) {
+                                    aux.setCodigoObra(codigoObra);
+                                    controle.deleteAuxObra(aux);
+                                }
+
+                                for (int i = 0; i < linhasAtualiza; i++) {
+                                    aux.setCodigoObra(codigoObra);
+                                    aux.setCodigoAutor((int) TabelaDestino.getValueAt(i, 0));
+                                    controle.addAuxObra(aux);
+                                }
+
+                                JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
+                                Limpar();
+                                Desabilita();
+                                botaoSalvar.setEnabled(false);
+                                botaoCancelar.setEnabled(false);
+                                botaoNovo.setEnabled(true);
+                                abas.setSelectedIndex(0);
+                                abas.setEnabled(true);
                             }
-
-                            for (int i = 0; i < linhasAtualiza; i++) {
-                                aux.setCodigoObra(codigoObra);
-                                aux.setCodigoAutor((int) TabelaDestino.getValueAt(i, 0));
-                                controle.addAuxObra(aux);
-                            }
-
-                            JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
-                            Limpar();
-                            Desabilita();
-                            botaoSalvar.setEnabled(false);
-                            botaoCancelar.setEnabled(false);
-                            botaoNovo.setEnabled(true);
-                            abas.setSelectedIndex(0);
-                            abas.setEnabled(true);
                         }
 
                     } catch (Exception e) {
@@ -1204,6 +1209,13 @@ public class Obra extends javax.swing.JDialog {
     private void textEstoqueDisponivelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textEstoqueDisponivelKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_textEstoqueDisponivelKeyTyped
+
+    private void textEstoqueTotalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textEstoqueTotalKeyPressed
+        if (evt.getKeyCode() == 10 || evt.getKeyCode() == 9) {
+            textEstoqueDisponivel.setText(textEstoqueTotal.getText());
+        }
+
+    }//GEN-LAST:event_textEstoqueTotalKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
