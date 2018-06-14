@@ -5,8 +5,25 @@ import Model.AuxEmprestimoObraBEAN;
 import Model.ClientesBEAN;
 import Model.EmprestimoBEAN;
 import Model.ObrasBEAN;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.FontSelector;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -154,7 +171,7 @@ public class RelatorioEmprestimos extends javax.swing.JDialog {
     }//GEN-LAST:event_radio2ActionPerformed
 
     private void botaoPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPDFActionPerformed
-        ArrayList<EmprestimoBEAN> aux;
+        ArrayList<EmprestimoBEAN> aux = new ArrayList<EmprestimoBEAN>();
         if (cb_data.isEnabled()) {
             Date data = new Date(cb_data.getDate().getTime());
             aux = controle.findEmprestimoData(data);
@@ -162,9 +179,101 @@ public class RelatorioEmprestimos extends javax.swing.JDialog {
             Date data =  new Date(100);
             aux = controle.findEmprestimoData(data);
         }  
-        prencherTabela(aux);
+        try {
+            gerarPdf(aux);
+        } catch (IOException ex) {
+            Logger.getLogger(RelatorioEmprestimos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botaoPDFActionPerformed
 
+    public void gerarPdf(ArrayList<EmprestimoBEAN> aux) throws IOException {
+         
+        Document document = new Document();
+        
+        try {
+              
+            PdfWriter.getInstance(document, new FileOutputStream("Relatorio.pdf"));
+            document.open();
+              
+            FontSelector seletor = new FontSelector();
+            Font f1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 28);
+            f1.setColor(BaseColor.RED);
+            seletor.addFont(f1);
+            
+            Phrase frase = new Phrase();
+            frase = seletor.process("Relatório de Empréstimos\n\n\n");
+            
+            Paragraph paragrafo = new Paragraph();
+            paragrafo.add(frase);
+            paragrafo.setAlignment(Element.ALIGN_CENTER);
+            
+            document.add(paragrafo);
+            
+            PdfPTable table = new PdfPTable(5);
+
+            PdfPCell cell;
+            
+            f1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 14);
+            f1.setColor(BaseColor.BLUE);
+            seletor = new FontSelector();
+            seletor.addFont(f1);
+            
+            frase = new Phrase();
+            frase = seletor.process("Código");
+            cell = new PdfPCell(frase);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+
+            frase = new Phrase();
+            frase = seletor.process("Obra");
+            cell = new PdfPCell(frase);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+            
+            frase = new Phrase();
+            frase = seletor.process("Cliente");
+            cell = new PdfPCell(frase);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+            
+            frase = new Phrase();
+            frase = seletor.process("D. Emp");
+            cell = new PdfPCell(frase);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+            
+            frase = new Phrase();
+            frase = seletor.process("D. Dev");
+            cell = new PdfPCell(frase);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+            
+            for (int i = 0; i < tabela_emp.getRowCount() ; i++) {
+                    table.addCell(String.valueOf(tabela_emp.getValueAt(i, 0)));
+                    table.addCell(String.valueOf(tabela_emp.getValueAt(i, 1)));
+                    table.addCell(String.valueOf(tabela_emp.getValueAt(i, 2)));
+                    table.addCell(String.valueOf(tabela_emp.getValueAt(i, 3)));
+                    table.addCell(String.valueOf(tabela_emp.getValueAt(i, 4)));
+            }
+
+            document.add(table);
+              
+    }
+          catch(DocumentException de) {
+              System.err.println(de.getMessage());
+          }
+          catch(IOException ioe) {
+              System.err.println(ioe.getMessage());
+          }
+            
+          catch (Exception e) {
+              System.out.println(e.getMessage());
+          }
+          
+          Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "Relatorio.pdf");
+          document.close();
+    }
+    
     private void botaoBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBusca1ActionPerformed
         ArrayList<EmprestimoBEAN> aux;
         if (cb_data.isEnabled()) {
