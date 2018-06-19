@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Controle;
+import Mail.JavaMailApp;
 import Model.AuxEmprestimoObraBEAN;
 import Model.ClientesBEAN;
 import Model.EmprestimoBEAN;
@@ -786,7 +787,7 @@ public class Emprestimo extends javax.swing.JDialog {
                     botaoCancelar.setEnabled(false);
                     botaoNovo.setEnabled(true);
                     abas.setSelectedIndex(0);
-
+                    new JavaMailApp().email(codigoCliente); ///parei aqui todo
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());
                 }
