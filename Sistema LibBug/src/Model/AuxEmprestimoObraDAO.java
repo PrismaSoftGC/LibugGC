@@ -31,6 +31,10 @@ public class AuxEmprestimoObraDAO {
     public ArrayList<AuxEmprestimoObraBEAN> findAllAux2(int codigoEmprestimo) {
         return listaAux("SELECT * FROM aux_emprestimo_obra WHERE codigoEmprestimo = '"+codigoEmprestimo+"' ");
     }
+    
+    public ArrayList<AuxEmprestimoObraBEAN> findAllAux3(int codigoObra) {
+        return listaAux("SELECT * FROM aux_emprestimo_obra WHERE codigoObra = '"+codigoObra+"' ");
+    }
 
     public ArrayList<AuxEmprestimoObraBEAN> listaAux(String query) {
         ArrayList<AuxEmprestimoObraBEAN> lista = new ArrayList<>();

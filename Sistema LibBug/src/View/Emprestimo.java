@@ -754,40 +754,69 @@ public class Emprestimo extends javax.swing.JDialog {
                     data = new java.sql.Date(sdf.parse(pesquisaData).getTime());
 
                     emprestimo.setDevolucao(data);
-
-                    controle.addEmprestimo(emprestimo);
-
+                    
+                    int validador = 0;
+                    int linhaDestino = tabelaDestino.getRowCount();
                     AuxEmprestimoObraBEAN aux = new AuxEmprestimoObraBEAN();
                     ObrasBEAN obra = new ObrasBEAN();
-
-                    int linhaDestino = tabelaDestino.getRowCount();
-                    int codigoEmprestimo = controle.findEmprestimo(emprestimo);
-
-                    for (int i = 0; i < linhaDestino; i++) { // Alteração Felipe
+                    
+                    for (int i = 0; i < linhaDestino; i++) {
                         int cod_obra = (int) tabelaDestino.getValueAt(i, 0);
-                        if(controle.findObraCodigo(cod_obra).getQtdEstoqueDisponivel()>1){
-                            aux.setCodigoEmprestimo(codigoEmprestimo);
-                            aux.setCodigoObra(cod_obra);
-                            aux.setChegada(data);
-                            controle.addAuxEmprestimoObra(aux);
-                            obra = controle.findObraCodigo(cod_obra);
-                            obra.setSituacao("Emprestado");
-                            obra.setQtdEstoqueDisponivel((obra.getQtdEstoqueDisponivel()-1));
-                            controle.updateObraEstoque(obra);
-                            controle.updateObraStatus(obra);
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Quantidade Minima atingida!");
-                        }                      
-                    }// Alteração Felipe
+                        obra = controle.findObraCodigo(cod_obra);
+                        ArrayList<AuxEmprestimoObraBEAN> obras = controle.listaAuxEmprestimoObra(cod_obra);
+                        ArrayList<EmprestimoBEAN> emprestimoAux = controle.findEmprestimoCodigo(codigoCliente);
+                        for (AuxEmprestimoObraBEAN obraAux : obras) {
+                            for (EmprestimoBEAN emprestimoT : emprestimoAux) {
+                                if (emprestimoT.getCodigoEmprestimo() == obraAux.getCodigoEmprestimo()) {
+                                    JOptionPane.showMessageDialog(null, "Obra selecionada já emprestada para este cliente, limite atingido!");
+                                    validador = 1;
+                                }
+                            }
+                        }
+                        
+                        int contador = 0;
+                        for (EmprestimoBEAN emprestimoT : emprestimoAux) {
+                            contador++;
+                        }
+                        
+                        if (contador > 4) {
+                            validador = 1;
+                        }
+                        
+                     }
+                    
+                    if (validador == 0) {
+                        controle.addEmprestimo(emprestimo);
+                        
+                        obra = new ObrasBEAN();
+                        int codigoEmprestimo = controle.findEmprestimo(emprestimo);
 
-                    JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-                    Limpar();
-                    //   Desabilita();
-                    botaoSalvar.setEnabled(false);
-                    botaoCancelar.setEnabled(false);
-                    botaoNovo.setEnabled(true);
-                    abas.setSelectedIndex(0);
-                    new JavaMailApp().email(codigoCliente); ///parei aqui todo
+                        for (int i = 0; i < linhaDestino; i++) { // Alteração Felipe
+                            int cod_obra = (int) tabelaDestino.getValueAt(i, 0);
+                            if(controle.findObraCodigo(cod_obra).getQtdEstoqueDisponivel()>1){
+                                aux.setCodigoEmprestimo(codigoEmprestimo);
+                                aux.setCodigoObra(cod_obra);
+                                aux.setChegada(data);
+                                controle.addAuxEmprestimoObra(aux);
+                                obra = controle.findObraCodigo(cod_obra);
+                                obra.setSituacao("Emprestado");
+                                obra.setQtdEstoqueDisponivel((obra.getQtdEstoqueDisponivel()-1));
+                                controle.updateObraEstoque(obra);
+                                controle.updateObraStatus(obra);
+                            }else{
+                                JOptionPane.showMessageDialog(null, "Quantidade Minima atingida!");
+                            }                      
+                        }// Alteração Felipe
+
+                        JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+                        Limpar();
+                        //   Desabilita();
+                        botaoSalvar.setEnabled(false);
+                        botaoCancelar.setEnabled(false);
+                        botaoNovo.setEnabled(true);
+                        abas.setSelectedIndex(0);
+                        new JavaMailApp().email(codigoCliente); ///parei aqui todo
+                    }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());
                 }

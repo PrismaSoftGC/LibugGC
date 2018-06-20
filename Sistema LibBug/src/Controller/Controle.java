@@ -449,4 +449,8 @@ public class Controle {
         return AuxEmprestimoObraDAO.getInstance().findAllAux2(codigoEmprestimo);
     }
     
+    public ArrayList<AuxEmprestimoObraBEAN> listaAuxEmprestimoObra(int codigoObra) {
+        return AuxEmprestimoObraDAO.getInstance().findAllAux3(codigoObra);
+    }
+    
 }
