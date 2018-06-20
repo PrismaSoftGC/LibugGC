@@ -1,0 +1,12 @@
+O envio de e-mail diario roda em um squedule do windows, juntamente com um arquivo .php com as configuracoes
+
+A rotina é disparada 1x ao dia e verifica quais emprestimos irao vencer no proximo dia.
+
+
+
+
+
+
+
+
+C:\xampp\htdocs
