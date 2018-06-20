@@ -53,7 +53,11 @@ public class ObrasDAO {
     }
 
     public ArrayList<ObrasBEAN> findAllObra() {
-        return listaObras("SELECT * FROM OBRA ORDER BY titulo");
+        return listaObras("SELECT obra.codigoObra, obra.titulo, obra.subtitulo, editora.nomeFantasia, cidade.nomeCidade,"
+                + " obra.edicao, obra.ano, categoria.nomeCategoria, obra.situacao, obra.status, obra.codBarras, obra.qtdEstoqueTotal,"
+                + " obra.qtdEstoqueDisponivel FROM obra INNER JOIN editora ON (editora.codigoEditora=obra.editora_codigoEditora)"
+                + " INNER JOIN cidade ON (cidade.codigoCidade=obra.cidade_codigoCidade) INNER JOIN categoria"
+                + " ON (categoria.codigoCategoria=obra.categoria_codigoCategoria) ORDER BY TITULO");
     }
 
     public ArrayList<ObrasBEAN> listaObras(String query) {
@@ -62,9 +66,9 @@ public class ObrasDAO {
         rs = MySQLDAO.getResultSet(query);
         try {
             while (rs.next()) {
-                lista.add(new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"),rs.getString("subtitulo"),rs.getInt("editora_codigoEditora"),
-                        rs.getInt("cidade_codigoCidade"),rs.getInt("edicao"),rs.getDate("ano"),rs.getInt("categoria_codigoCategoria"), rs.getString("situacao"), rs.getString("status"),
-                        rs.getString("codBarras"),rs.getInt("qtdEstoqueTotal"),rs.getInt("qtdEstoqueDisponivel")));
+                lista.add(new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"),rs.getString("subtitulo"), rs.getInt("edicao"), rs.getDate("ano"),
+                rs.getString("situacao"), rs.getString("status"), rs.getString("codBarras"), rs.getInt("qtdEstoqueTotal"), rs.getInt("qtdEstoqueDisponivel"),
+                rs.getString("nomeFantasia"), rs.getString("nomeCidade"), rs.getString("nomeCategoria")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -76,12 +80,37 @@ public class ObrasDAO {
     public ObrasBEAN findObraCodigo(int codigoObra) {
         ObrasBEAN result = null;
         ResultSet rs = null;
-        rs = MySQLDAO.getResultSet("SELECT * FROM OBRA WHERE codigoObra=?", codigoObra);
+        rs = MySQLDAO.getResultSet("SELECT obra.codigoObra, obra.titulo, obra.subtitulo, editora.nomeFantasia, cidade.nomeCidade,"
+                + " obra.edicao, obra.ano, categoria.nomeCategoria, obra.situacao, obra.status, obra.codBarras, obra.qtdEstoqueTotal,"
+                + " obra.qtdEstoqueDisponivel FROM obra INNER JOIN editora ON (editora.codigoEditora=obra.editora_codigoEditora)"
+                + " INNER JOIN cidade ON (cidade.codigoCidade=obra.cidade_codigoCidade) INNER JOIN categoria"
+                + " ON (categoria.codigoCategoria=obra.categoria_codigoCategoria)WHERE codigoObra=?", codigoObra);
         try {
             if (rs.next()) {
-                result = new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"),rs.getString("subtitulo"),rs.getInt("editora_codigoEditora"),
-                        rs.getInt("cidade_codigoCidade"),rs.getInt("edicao"),rs.getDate("ano"),rs.getInt("categoria_codigoCategoria"), rs.getString("situacao"), rs.getString("status"),
-                        rs.getString("codBarras"),rs.getInt("qtdEstoqueTotal"),rs.getInt("qtdEstoqueDisponivel"));
+                result = new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"),rs.getString("subtitulo"), rs.getInt("edicao"), rs.getDate("ano"),
+                rs.getString("situacao"), rs.getString("status"), rs.getString("codBarras"), rs.getInt("qtdEstoqueTotal"), rs.getInt("qtdEstoqueDisponivel"),
+                rs.getString("nomeFantasia"), rs.getString("nomeCidade"), rs.getString("nomeCategoria"));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
+     public ObrasBEAN findObraBarras(String codBarras) {
+        ObrasBEAN result = null;
+        ResultSet rs = null;
+        rs = MySQLDAO.getResultSet("SELECT obra.codigoObra, obra.titulo, obra.subtitulo, editora.nomeFantasia, cidade.nomeCidade,"
+                + " obra.edicao, obra.ano, categoria.nomeCategoria, obra.situacao, obra.status, obra.codBarras, obra.qtdEstoqueTotal,"
+                + " obra.qtdEstoqueDisponivel FROM obra INNER JOIN editora ON (editora.codigoEditora=obra.editora_codigoEditora)"
+                + " INNER JOIN cidade ON (cidade.codigoCidade=obra.cidade_codigoCidade) INNER JOIN categoria"
+                + " ON (categoria.codigoCategoria=obra.categoria_codigoCategoria)WHERE codBarras=?", codBarras);
+        try {
+            if (rs.next()) {
+                result = new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"),rs.getString("subtitulo"), rs.getInt("edicao"), rs.getDate("ano"),
+                rs.getString("situacao"), rs.getString("status"), rs.getString("codBarras"), rs.getInt("qtdEstoqueTotal"), rs.getInt("qtdEstoqueDisponivel"),
+                rs.getString("nomeFantasia"), rs.getString("nomeCidade"), rs.getString("nomeCategoria"));
             }
             rs.close();
         } catch (SQLException e) {
@@ -94,12 +123,16 @@ public class ObrasDAO {
         ArrayList<ObrasBEAN> lista = new ArrayList<ObrasBEAN>();
         
         ResultSet rs = null;
-        rs = MySQLDAO.getResultSet("SELECT * FROM OBRA WHERE titulo like ?", "%" +titulo+ "%");
+        rs = MySQLDAO.getResultSet("SELECT obra.codigoObra, obra.titulo, obra.subtitulo, editora.nomeFantasia, cidade.nomeCidade,"
+                + " obra.edicao, obra.ano, categoria.nomeCategoria, obra.situacao, obra.status, obra.codBarras, obra.qtdEstoqueTotal,"
+                + " obra.qtdEstoqueDisponivel FROM obra INNER JOIN editora ON (editora.codigoEditora=obra.editora_codigoEditora)"
+                + " INNER JOIN cidade ON (cidade.codigoCidade=obra.cidade_codigoCidade) INNER JOIN categoria"
+                + " ON (categoria.codigoCategoria=obra.categoria_codigoCategoria) WHERE titulo like ?", "%" +titulo+ "%");
         try {
             while (rs.next()) {
-                lista.add( new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"),rs.getString("subtitulo"),rs.getInt("editora_codigoEditora"),
-                        rs.getInt("cidade_codigoCidade"),rs.getInt("edicao"),rs.getDate("ano"),rs.getInt("categoria_codigoCategoria"), rs.getString("situacao"), rs.getString("status"),
-                        rs.getString("codBarras"),rs.getInt("qtdEstoqueTotal"),rs.getInt("qtdEstoqueDisponivel")));
+                lista.add(new ObrasBEAN(rs.getInt("codigoObra"), rs.getString("titulo"),rs.getString("subtitulo"), rs.getInt("edicao"), rs.getDate("ano"),
+                rs.getString("situacao"), rs.getString("status"), rs.getString("codBarras"), rs.getInt("qtdEstoqueTotal"), rs.getInt("qtdEstoqueDisponivel"),
+                rs.getString("nomeFantasia"), rs.getString("nomeCidade"), rs.getString("nomeCategoria")));
             }
             rs.close();
         } catch (SQLException e) {

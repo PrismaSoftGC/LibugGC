@@ -371,6 +371,10 @@ public class Controle {
         return ObrasDAO.getInstance().findObraCodigo(codigo);
     }
     
+    public ObrasBEAN findObraBarras(String codBarras) {
+        return ObrasDAO.getInstance().findObraBarras(codBarras);
+    }
+    
     public ArrayList<ObrasBEAN> findObraTitulo(String titulo) {
         return ObrasDAO.getInstance().findObraTitulo(titulo);
     }

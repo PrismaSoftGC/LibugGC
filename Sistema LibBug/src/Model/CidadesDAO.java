@@ -30,7 +30,7 @@ public class CidadesDAO {
         rs = MySQLDAO.getResultSet(query);
         try {
             while (rs.next()) {
-                lista.add(new CidadesBEAN(rs.getInt("codigoCidade"), rs.getString("nome")));
+                lista.add(new CidadesBEAN(rs.getInt("codigoCidade"), rs.getString("nomeCidade")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -45,7 +45,7 @@ public class CidadesDAO {
         rs = MySQLDAO.getResultSet("SELECT * FROM CIDADE WHERE codigoCidade=?", codigoCidade);
         try {
             if (rs.next()) {
-                result = new CidadesBEAN(rs.getInt("codigoCidade"), rs.getString("nome"));
+                result = new CidadesBEAN(rs.getInt("codigoCidade"), rs.getString("nomeCidade"));
             }
             rs.close();
         } catch (SQLException e) {
@@ -58,10 +58,10 @@ public class CidadesDAO {
         ArrayList<CidadesBEAN> lista = new ArrayList<CidadesBEAN>();
         
         ResultSet rs = null;
-        rs = MySQLDAO.getResultSet("SELECT * FROM CIDADE WHERE nome like ?", "%" +cidade+ "%");
+        rs = MySQLDAO.getResultSet("SELECT * FROM CIDADE WHERE nomeCidade like ?", "%" +cidade+ "%");
         try {
             while (rs.next()) {
-                lista.add( new CidadesBEAN(rs.getInt("codigoCidade"), rs.getString("nome")));
+                lista.add( new CidadesBEAN(rs.getInt("codigoCidade"), rs.getString("nomeCidade")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -73,7 +73,7 @@ public class CidadesDAO {
     public int findId(CidadesBEAN cidade) {
         int result = 0;
         ResultSet rs = null;
-        rs = MySQLDAO.getResultSet("SELECT * FROM CIDADE WHERE nome= ?",
+        rs = MySQLDAO.getResultSet("SELECT * FROM CIDADE WHERE nomeCidade= ?",
                 cidade.getNome());
         try {
             if (rs.next()) {

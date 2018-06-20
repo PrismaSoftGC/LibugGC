@@ -17,6 +17,11 @@ public class ObrasBEAN {
    private String codBarras;
    private int qtdEstoqueTotal;
    private int qtdEstoqueDisponivel;
+   
+   private String nomeEditora;
+   private String nomeCidade;
+   private String nomeCategoria;
+   
 
     public ObrasBEAN(int codigoObra, String titulo, String subititulo, int codigoEditora, int codigoCidade, int edicao, Date ano, int codigoCategoria, String situacao, String status, String codBarras, int qtdEstoqueTotal, int qtdEstoqueDisponivel) {
         this.codigoObra = codigoObra;
@@ -141,7 +146,55 @@ public class ObrasBEAN {
     public void setQtdEstoqueDisponivel(int qtdEstoqueDisponivel) {
         this.qtdEstoqueDisponivel = qtdEstoqueDisponivel;
     }
+
+    public ObrasBEAN(int codigoObra, String titulo, String subtitulo, int edicao, Date ano, String situacao, String status, String codBarras, int qtdEstoqueTotal, int qtdEstoqueDisponivel, String nomeEditora, String nomeCidade, String nomeCategoria) {
+        this.codigoObra = codigoObra;
+        this.titulo = titulo;
+        this.subtitulo = subtitulo;
+        this.edicao = edicao;
+        this.ano = ano;
+        this.situacao = situacao;
+        this.status = status;
+        this.codBarras = codBarras;
+        this.qtdEstoqueTotal = qtdEstoqueTotal;
+        this.qtdEstoqueDisponivel = qtdEstoqueDisponivel;
+        this.nomeEditora = nomeEditora;
+        this.nomeCidade = nomeCidade;
+        this.nomeCategoria = nomeCategoria;
+    }
+
+    public String getSubtitulo() {
+        return subtitulo;
+    }
+
+    public void setSubtitulo(String subtitulo) {
+        this.subtitulo = subtitulo;
+    }
+
+    public String getNomeEditora() {
+        return nomeEditora;
+    }
+
+    public void setNomeEditora(String nomeEditora) {
+        this.nomeEditora = nomeEditora;
+    }
+
+    public String getNomeCidade() {
+        return nomeCidade;
+    }
+
+    public void setNomeCidade(String nomeCidade) {
+        this.nomeCidade = nomeCidade;
+    }
+
+    public String getNomeCategoria() {
+        return nomeCategoria;
+    }
+
+    public void setNomeCategoria(String nomeCategoria) {
+        this.nomeCategoria = nomeCategoria;
+    }
    
-   
+    
 
 }

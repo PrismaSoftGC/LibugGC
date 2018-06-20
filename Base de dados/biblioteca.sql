@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 02-Jun-2018 às 23:16
+-- Generation Time: 20-Jun-2018 às 16:41
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.1.12
 
@@ -89,8 +89,8 @@ INSERT INTO `aux_autor_obra` (`codigoAutor`, `codigoObra`) VALUES
 (24, 0),
 (24, 1),
 (24, 2),
-(25, 3),
-(25, 4);
+(25, 4),
+(25, 3);
 
 -- --------------------------------------------------------
 
@@ -110,7 +110,8 @@ CREATE TABLE `aux_emprestimo_obra` (
 
 INSERT INTO `aux_emprestimo_obra` (`codigoEmprestimo`, `codigoObra`, `chegada`) VALUES
 (1, 1, '2018-05-18'),
-(2, 2, '2018-05-18');
+(2, 2, '2018-05-18'),
+(4, 3, '2018-06-21');
 
 -- --------------------------------------------------------
 
@@ -120,14 +121,14 @@ INSERT INTO `aux_emprestimo_obra` (`codigoEmprestimo`, `codigoObra`, `chegada`) 
 
 CREATE TABLE `categoria` (
   `codigoCategoria` int(11) NOT NULL,
-  `nome` varchar(30) NOT NULL
+  `nomeCategoria` varchar(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `categoria`
 --
 
-INSERT INTO `categoria` (`codigoCategoria`, `nome`) VALUES
+INSERT INTO `categoria` (`codigoCategoria`, `nomeCategoria`) VALUES
 (1, 'ROMANCE'),
 (2, 'TERROR');
 
@@ -139,14 +140,14 @@ INSERT INTO `categoria` (`codigoCategoria`, `nome`) VALUES
 
 CREATE TABLE `cidade` (
   `codigoCidade` int(11) NOT NULL,
-  `nome` varchar(30) NOT NULL
+  `nomeCidade` varchar(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `cidade`
 --
 
-INSERT INTO `cidade` (`codigoCidade`, `nome`) VALUES
+INSERT INTO `cidade` (`codigoCidade`, `nomeCidade`) VALUES
 (1, 'RIO VERDE');
 
 -- --------------------------------------------------------
@@ -229,7 +230,8 @@ CREATE TABLE `emprestimo` (
 --
 
 INSERT INTO `emprestimo` (`codigoEmprestimo`, `funcionario_codigoFuncionario`, `saida`, `codigoCliente`, `devolucao`) VALUES
-(3, 0, '2018-05-17', 12, '2018-05-18');
+(3, 0, '2018-05-17', 12, '2018-05-18'),
+(4, 3, '2018-06-20', 2, '2018-06-21');
 
 -- --------------------------------------------------------
 
@@ -288,8 +290,8 @@ CREATE TABLE `obra` (
 --
 
 INSERT INTO `obra` (`codigoObra`, `titulo`, `subtitulo`, `editora_codigoEditora`, `cidade_codigoCidade`, `edicao`, `ano`, `categoria_codigoCategoria`, `situacao`, `status`, `codBarras`, `qtdEstoqueTotal`, `qtdEstoqueDisponivel`) VALUES
-(3, 'teste', 'etet', 14, 1, 5, '2018-05-17', 2, 'Prateleira', 'Ativado', '', 2, 5),
-(4, 'SISTEMAS OPERACIONAIS', 'JANTAR DOS FILOSOFOS', 16, 1, 1, '2018-05-17', 2, 'Prateleira', 'Ativado', '', 3, 2);
+(3, 'teste', 'etet', 14, 1, 5, '2018-05-17', 1, 'Emprestado', 'Ativado', '', 6, 4),
+(4, 'SISTEMAS OPERACIONAIS', 'JANTAR DOS FILOSOFOS', 16, 1, 1, '2018-05-17', 2, 'Prateleira', 'Ativado', '7891721027451', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -413,7 +415,7 @@ ALTER TABLE `editora`
 -- AUTO_INCREMENT for table `emprestimo`
 --
 ALTER TABLE `emprestimo`
-  MODIFY `codigoEmprestimo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codigoEmprestimo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `endereco`

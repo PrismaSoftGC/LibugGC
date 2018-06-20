@@ -30,7 +30,7 @@ public class CategoriasDAO {
         rs = MySQLDAO.getResultSet(query);
         try {
             while (rs.next()) {
-                lista.add(new CategoriasBEAN(rs.getInt("codigoCategoria"), rs.getString("nome")));
+                lista.add(new CategoriasBEAN(rs.getInt("codigoCategoria"), rs.getString("nomeCategoria")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -45,7 +45,7 @@ public class CategoriasDAO {
         rs = MySQLDAO.getResultSet("SELECT * FROM CATEGORIA WHERE codigoCategoria=?", codigoCategoria);
         try {
             if (rs.next()) {
-                result = new CategoriasBEAN(rs.getInt("codigoCategoria"), rs.getString("nome"));
+                result = new CategoriasBEAN(rs.getInt("codigoCategoria"), rs.getString("nomeCategoria"));
             }
             rs.close();
         } catch (SQLException e) {
@@ -58,10 +58,10 @@ public class CategoriasDAO {
         ArrayList<CategoriasBEAN> lista = new ArrayList<CategoriasBEAN>();
         
         ResultSet rs = null;
-        rs = MySQLDAO.getResultSet("SELECT * FROM CATEGORIA WHERE nome like ?", "%" +categoria+ "%");
+        rs = MySQLDAO.getResultSet("SELECT * FROM CATEGORIA WHERE nomeCategoria like ?", "%" +categoria+ "%");
         try {
             while (rs.next()) {
-                lista.add( new CategoriasBEAN(rs.getInt("codigoCategoria"), rs.getString("nome")));
+                lista.add( new CategoriasBEAN(rs.getInt("codigoCategoria"), rs.getString("nomeCategoria")));
             }
             rs.close();
         } catch (SQLException e) {
@@ -73,7 +73,7 @@ public class CategoriasDAO {
     public int findId(CategoriasBEAN categoria) {
         int result = 0;
         ResultSet rs = null;
-        rs = MySQLDAO.getResultSet("SELECT * FROM CATEGORIA WHERE nome= ?",
+        rs = MySQLDAO.getResultSet("SELECT * FROM CATEGORIA WHERE nomeCategoria= ?",
                 categoria.getNome());
         try {
             if (rs.next()) {

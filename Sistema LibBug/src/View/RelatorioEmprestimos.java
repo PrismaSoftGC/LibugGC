@@ -21,6 +21,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,9 +62,10 @@ public class RelatorioEmprestimos extends javax.swing.JDialog {
                 obra = controle.findObraCodigo(au.getCodigoObra());
                 
                 UsuariosBEAN usuarioAux = controle.findUsuarioCodigo(emp.getCodigoFuncionario());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 
                 modelo.addRow(new Object[]{usuarioAux.getNome(),obra.getTitulo(), 
-                    cliente.getNome(), emp.getSaida(),emp.getDevolucao()});
+                    cliente.getNome(), sdf.format(emp.getSaida()), sdf.format(emp.getDevolucao())});
             }       
         }      
     }

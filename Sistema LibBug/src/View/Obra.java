@@ -198,6 +198,17 @@ public class Obra extends javax.swing.JDialog {
         }
     }
      
+       public void preencher_tabela(ObrasBEAN obra){
+        modelo3 = (javax.swing.table.DefaultTableModel)tabelaObra.getModel();
+        modelo3.setNumRows(0);
+
+        try {
+            modelo3.addRow(new Object[]{obra.getCodigoObra(), obra.getTitulo(), obra.getSubititulo(), obra.getNomeEditora(),
+                obra.getEdicao(), obra.getQtdEstoqueTotal(), obra.getQtdEstoqueDisponivel(),obra.getSituacao(), obra.getStatus()});
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
+        }
+    }
       public void preencher_tabela(ArrayList<AutoresBEAN> listaAutores){
        // modelo1 = (javax.swing.table.DefaultTableModel)tabelaObra.getModel();
         modelo1.setNumRows(0);
@@ -212,15 +223,14 @@ public class Obra extends javax.swing.JDialog {
         }
     }
   
-     public void preencher_tabela2(ArrayList<ObrasBEAN> listaObras, ArrayList<EditorasBEAN> listaEditoras){
+     public void preencher_tabela2(ArrayList<ObrasBEAN> listaObras){
         modelo3 = (javax.swing.table.DefaultTableModel)tabelaObra.getModel();
         modelo3.setNumRows(0);
 
         try {
-            for (int i=0; i<listaObras.size();i++) {
-                modelo3.addRow(new Object[]{listaObras.get(i).getCodigoObra(), listaObras.get(i).getTitulo(),listaObras.get(i).getSubititulo(),
-                    listaEditoras.get(i).getNomeFantasia(), listaObras.get(i).getEdicao(), listaObras.get(i).getQtdEstoqueTotal(), 
-                    listaObras.get(i).getQtdEstoqueDisponivel(), listaObras.get(i).getSituacao(), listaObras.get(i).getStatus()});
+            for (ObrasBEAN obra: listaObras) {
+                modelo3.addRow(new Object[]{obra.getCodigoObra(), obra.getTitulo(), obra.getSubititulo(), obra.getNomeEditora(),
+                obra.getEdicao(), obra.getQtdEstoqueTotal(), obra.getQtdEstoqueDisponivel(),obra.getSituacao(), obra.getStatus()});
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro ao listar dados - " + erro);
@@ -266,6 +276,8 @@ public class Obra extends javax.swing.JDialog {
         tabelaAutores = new javax.swing.JTable();
         labelAutores1 = new javax.swing.JLabel();
         botaoListar = new javax.swing.JButton();
+        labelBarras2 = new javax.swing.JLabel();
+        textBarras2 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         textTitulo = new javax.swing.JTextField();
@@ -394,7 +406,7 @@ public class Obra extends javax.swing.JDialog {
         });
         getContentPane().add(botaoSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(925, 34, 50, 50));
 
-        jPanel1.setLayout(null);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         textBuscaNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -416,8 +428,7 @@ public class Obra extends javax.swing.JDialog {
                 textBuscaNomeKeyTyped(evt);
             }
         });
-        jPanel1.add(textBuscaNome);
-        textBuscaNome.setBounds(70, 30, 180, 30);
+        jPanel1.add(textBuscaNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 180, 30));
 
         botaoBusca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         botaoBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/search-good_icon-icons.com_51027.png"))); // NOI18N
@@ -427,8 +438,7 @@ public class Obra extends javax.swing.JDialog {
                 botaoBuscaActionPerformed(evt);
             }
         });
-        jPanel1.add(botaoBusca);
-        botaoBusca.setBounds(270, 30, 140, 30);
+        jPanel1.add(botaoBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 140, 30));
 
         tabelaObra.setBackground(new java.awt.Color(153, 204, 255));
         tabelaObra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -477,8 +487,7 @@ public class Obra extends javax.swing.JDialog {
             tabelaObra.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 100, 920, 130);
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 920, 130));
 
         textBuscaCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -500,18 +509,15 @@ public class Obra extends javax.swing.JDialog {
                 textBuscaCodigoKeyTyped(evt);
             }
         });
-        jPanel1.add(textBuscaCodigo);
-        textBuscaCodigo.setBounds(10, 30, 50, 30);
+        jPanel1.add(textBuscaCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 50, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Codigo");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(10, 10, 50, 20);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 20));
 
         labelTitulo2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelTitulo2.setText("Titulo");
-        jPanel1.add(labelTitulo2);
-        labelTitulo2.setBounds(70, 10, 80, 20);
+        jPanel1.add(labelTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 80, 20));
 
         tabelaAutores.setBackground(new java.awt.Color(153, 204, 255));
         tabelaAutores.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -541,13 +547,11 @@ public class Obra extends javax.swing.JDialog {
         tabelaAutores.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(tabelaAutores);
 
-        jPanel1.add(jScrollPane6);
-        jScrollPane6.setBounds(10, 280, 440, 100);
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 440, 100));
 
         labelAutores1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelAutores1.setText("Autor(es) desta Obra");
-        jPanel1.add(labelAutores1);
-        labelAutores1.setBounds(160, 260, 170, 17);
+        jPanel1.add(labelAutores1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 170, -1));
 
         botaoListar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         botaoListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagens/list_tasks_22372.png"))); // NOI18N
@@ -557,8 +561,18 @@ public class Obra extends javax.swing.JDialog {
                 botaoListarActionPerformed(evt);
             }
         });
-        jPanel1.add(botaoListar);
-        botaoListar.setBounds(430, 30, 150, 30);
+        jPanel1.add(botaoListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 150, 30));
+
+        labelBarras2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelBarras2.setText("Cod. Barras");
+        jPanel1.add(labelBarras2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+
+        textBarras2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textBarras2KeyTyped(evt);
+            }
+        });
+        jPanel1.add(textBarras2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 160, 30));
 
         abas.addTab("Pesquisa", jPanel1);
 
@@ -1004,12 +1018,12 @@ public class Obra extends javax.swing.JDialog {
 
                 int codigo = Integer.parseInt(textBuscaCodigo.getText());
                 obra = controle.findObraCodigo(codigo);
-                editora = controle.findEditoraCodigo(obra.getCodigoEditora());
 
                 tabelaObra.setVisible(true);
                 tabelaAutores.setVisible(true);
 
-                preencher_tabela(obra, editora.getNomeFantasia());
+                preencher_tabela(obra);
+                JOptionPane.showMessageDialog(null, "Categoria: "+obra.getNomeCategoria());
 
                 ArrayList<AuxAutorObraBEAN> listaAux = controle.listaAux(obra.getCodigoObra());
                 AutoresSelecionados(listaAux);
@@ -1018,18 +1032,12 @@ public class Obra extends javax.swing.JDialog {
             } else if (textBuscaNome.getText().length() > 0) {
                 String nome = textBuscaNome.getText();
                 ArrayList<ObrasBEAN> listaObras = new ArrayList<ObrasBEAN>();
-                ArrayList<EditorasBEAN> listaEditoras = new ArrayList<EditorasBEAN>();
 
                 listaObras = controle.findObraTitulo(nome);
 
-                for(ObrasBEAN obras : listaObras){
-                    editora = controle.findEditoraCodigo(obras.getCodigoEditora());
-                    listaEditoras.add(editora);
-                }
-
                 tabelaObra.setVisible(true);
                 tabelaAutores.setVisible(true);
-                preencher_tabela2(listaObras, listaEditoras);
+                preencher_tabela2(listaObras);
 
                 int codigoObra = (int) tabelaObra.getValueAt(0, 0);
 
@@ -1037,8 +1045,14 @@ public class Obra extends javax.swing.JDialog {
                 AutoresSelecionados(listaAux);
                 contador = 0;
 
-            } else if ((textBuscaCodigo.getText().isEmpty() && textBuscaNome.getText().isEmpty())) {
-                JOptionPane.showMessageDialog(null, "Digite algo para pesquisar!");
+            }else if(textBarras2.getText().length() > 0){
+                String barras = textBarras2.getText();
+                ObrasBEAN obra = controle.findObraBarras(barras);
+                
+                tabelaObra.setVisible(true);
+                tabelaAutores.setVisible(true);
+                preencher_tabela(obra);
+                
             }
 
         } catch (Exception erro) {
@@ -1075,20 +1089,17 @@ public class Obra extends javax.swing.JDialog {
             int codigoObra = (int) tabelaObra.getValueAt(linha, 0);
             
             ObrasBEAN obra = controle.findObraCodigo(codigoObra);
-            CidadesBEAN cidade = controle.findCidadeCodigo(obra.getCodigoCidade());
-            CategoriasBEAN categoria = controle.findCategoriaCodigo(obra.getCodigoCategoria());
             
             Date anoObra = obra.getAno();
             
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String dataFormatada = sdf.format(anoObra);
                      
-
             textCodigo.setText(tabelaObra.getValueAt(linha, 0).toString());
             textTitulo.setText(tabelaObra.getValueAt(linha, 1).toString());
             textSubtitulo.setText(tabelaObra.getValueAt(linha, 2).toString());
             cbEditora1.setSelectedItem(tabelaObra.getValueAt(linha, 3));
-            cbCidade.setSelectedItem(cidade.getNome());
+            cbCidade.setSelectedItem(obra.getNomeCidade());
             textEdicao.setText(tabelaObra.getValueAt(linha, 4).toString());
             try {
                 java.sql.Date dataBrasil = new java.sql.Date(sdf.parse(dataFormatada).getTime());
@@ -1096,7 +1107,7 @@ public class Obra extends javax.swing.JDialog {
             } catch (ParseException ex) {
                 Logger.getLogger(Obra.class.getName()).log(Level.SEVERE, null, ex);
             }
-            cbCategoria.setSelectedItem(categoria.getNome());
+            cbCategoria.setSelectedItem(obra.getNomeCategoria());
             cbSituacao.setSelectedItem(tabelaObra.getValueAt(linha, 7));
             comboboxStatus.setSelectedItem(tabelaObra.getValueAt(linha, 8));
             textBarras.setText(obra.getCodBarras());
@@ -1146,15 +1157,8 @@ public class Obra extends javax.swing.JDialog {
         modelo4.setNumRows(0);
 
         ArrayList<ObrasBEAN> lista = controle.listaObras();
-        ArrayList<EditorasBEAN> listaEditoras = new ArrayList();
-        EditorasBEAN editora = new EditorasBEAN();
 
-        for(ObrasBEAN obra : lista){
-            editora = controle.findEditoraCodigo(obra.getCodigoEditora());
-            listaEditoras.add(editora);
-        }
-
-        preencher_tabela2(lista, listaEditoras);
+        preencher_tabela2(lista);
 
         int codigoObra = (int) tabelaObra.getValueAt(0, 0);
 
@@ -1217,6 +1221,13 @@ public class Obra extends javax.swing.JDialog {
 
     }//GEN-LAST:event_textEstoqueTotalKeyPressed
 
+    private void textBarras2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBarras2KeyTyped
+        String caracteres = "0987654321";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_textBarras2KeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaDestino;
@@ -1248,6 +1259,7 @@ public class Obra extends javax.swing.JDialog {
     private javax.swing.JLabel labelAutor;
     private javax.swing.JLabel labelAutores1;
     private javax.swing.JLabel labelBarras;
+    private javax.swing.JLabel labelBarras2;
     private javax.swing.JLabel labelCategoria;
     private javax.swing.JLabel labelCidade;
     private javax.swing.JLabel labelCodigo;
@@ -1265,6 +1277,7 @@ public class Obra extends javax.swing.JDialog {
     public javax.swing.JTable tabelaObra;
     private javax.swing.JTextField textAutor;
     private javax.swing.JTextField textBarras;
+    private javax.swing.JTextField textBarras2;
     private javax.swing.JTextField textBuscaCodigo;
     private javax.swing.JTextField textBuscaNome;
     private javax.swing.JTextField textCodigo;
