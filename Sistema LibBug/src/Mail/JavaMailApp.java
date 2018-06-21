@@ -13,6 +13,8 @@ package Mail;
 import Controller.Controle;
 import Model.ClientesBEAN;
 import Model.ClientesDAO;
+import Model.EmprestimoBEAN;
+import Model.ObrasBEAN;
 import java.util.Properties;
 import javax.mail.Address;
 import javax.mail.Message;
@@ -25,7 +27,7 @@ import javax.mail.internet.MimeMessage;
  
 public class JavaMailApp
 {
-      public void email(int num) {
+      public void email(int num,int codigoObra, int codigoEmp) {
             Properties props = new Properties();
             /** Parâmetros de conexão com servidor Gmail */
             props.put("mail.smtp.host", "smtp.gmail.com");
@@ -51,10 +53,11 @@ public class JavaMailApp
                   message.setFrom(new InternetAddress("prismasoftgc@gmail.com")); //Remetente
                    Address[] toUser = InternetAddress.parse(cliente.getEmail());
                     
-                 
+                  ObrasBEAN obra = new Controle().findObraAutor(codigoObra);
+                  EmprestimoBEAN emprestimo = new Controle().findEmprestimoCodigoEmail(codigoEmp);
                   message.setRecipients(Message.RecipientType.TO, toUser);
                   message.setSubject("Emprestimo realizado");//Assunto
-                  message.setText("***** Colocar os dados do emprestimo *********");
+                  message.setText("Emprestimo Feito Dia:" + emprestimo.getSaida() + "\n" + "***** Obra: "+obra.getTitulo()+", "+obra.getSubititulo() + "\n" + "***** Autor: "+ obra.getNomeAutor() + "\n" + "***** Edicao: "+ obra.getEdicao() + "\n" + "***** Data de Devolucao: "+emprestimo.getDevolucao() );
                   /**Método para enviar a mensagem criada*/
                   Transport.send(message);
  

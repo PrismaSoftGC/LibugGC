@@ -379,6 +379,11 @@ public class Controle {
         return ObrasDAO.getInstance().findObraTitulo(titulo);
     }
     
+    //walter
+    public ObrasBEAN findObraAutor(int codigoObra){
+        return ObrasDAO.getInstance().findObraAutor(codigoObra);
+    }
+    
     public int findObra(ObrasBEAN obra) {
         return ObrasDAO.getInstance().findId(obra);
     }
@@ -431,6 +436,10 @@ public class Controle {
     
     public ArrayList<EmprestimoBEAN> findEmprestimoCodigo(int id) {
         return EmprestimoDAO.getInstance().findEmprestimoCodigo(id);
+    }
+    
+    public EmprestimoBEAN findEmprestimoCodigoEmail(int id) {
+        return EmprestimoDAO.getInstance().findEmprestimoCodigoEmail(id);
     }
     
     public boolean haveAtraso(int id_usuario, Date data){

@@ -141,6 +141,22 @@ public class ObrasDAO {
         return lista;
     }
      
+    public ObrasBEAN findObraAutor (int codigoObra) {
+        ObrasBEAN result = null;
+         
+        ResultSet rs = null;
+        rs = MySQLDAO.getResultSet("SELECT obra.titulo, obra.subtitulo,autor.nome,obra.edicao FROM obra INNER JOIN aux_autor_obra ON (aux_autor_obra.codigoObra = obra.codigoObra) INNER JOIN autor ON (autor.codigoAutor = aux_autor_obra.codigoAutor) WHERE obra.codigoObra=?", codigoObra);
+        try {
+            while (rs.next()) {
+                result = new ObrasBEAN(rs.getString("titulo"),rs.getString("subtitulo"),rs.getString("nome"), rs.getInt("edicao"));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    } 
+     
     public int findId(ObrasBEAN obra) {
         int result = 0;
         ResultSet rs = null;

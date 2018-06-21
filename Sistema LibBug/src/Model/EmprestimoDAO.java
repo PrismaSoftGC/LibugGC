@@ -63,6 +63,23 @@ public class EmprestimoDAO {
         return lista;
     }
     
+    //findEmprestimoCodigoEmail
+    public EmprestimoBEAN findEmprestimoCodigoEmail(int codigoEmprestimo) {
+        EmprestimoBEAN result = null;
+        
+        ResultSet rs = null;
+        rs = MySQLDAO.getResultSet("SELECT * FROM emprestimo WHERE codigoEmprestimo=?", codigoEmprestimo);
+        try {
+            if (rs.next()) {
+                result = new EmprestimoBEAN(rs.getInt("codigoEmprestimo"), rs.getInt("funcionario_codigoFuncionario"), rs.getDate("saida"), rs.getInt("codigoCliente"), rs.getDate("devolucao"));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
     public int findId(EmprestimoBEAN emprestimo) {
         int result = 0;
         ResultSet rs = null;

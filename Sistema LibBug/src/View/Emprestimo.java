@@ -764,6 +764,8 @@ public class Emprestimo extends javax.swing.JDialog {
                     AuxEmprestimoObraBEAN aux = new AuxEmprestimoObraBEAN();
                     ObrasBEAN obra = new ObrasBEAN();
                     
+                    int codigoObra = 0;
+                    
                     for (int i = 0; i < linhaDestino; i++) {
                         int cod_obra = (int) tabelaDestino.getValueAt(i, 0);
                         obra = controle.findObraCodigo(cod_obra);
@@ -786,7 +788,7 @@ public class Emprestimo extends javax.swing.JDialog {
                         if (contador > 4) {
                             validador = 1;
                         }
-                        
+                        codigoObra = cod_obra;
                      }
                     
                     if (validador == 0) {
@@ -819,7 +821,8 @@ public class Emprestimo extends javax.swing.JDialog {
                         botaoCancelar.setEnabled(false);
                         botaoNovo.setEnabled(true);
                         abas.setSelectedIndex(0);
-                        new JavaMailApp().email(codigoCliente); ///parei aqui todo
+                        
+                        new JavaMailApp().email(codigoCliente,codigoObra,codigoEmprestimo);
                     }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());

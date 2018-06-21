@@ -22,6 +22,8 @@ public class ObrasBEAN {
    private String nomeCidade;
    private String nomeCategoria;
    
+   private String nomeAutor;
+   
 
     public ObrasBEAN(int codigoObra, String titulo, String subititulo, int codigoEditora, int codigoCidade, int edicao, Date ano, int codigoCategoria, String situacao, String status, String codBarras, int qtdEstoqueTotal, int qtdEstoqueDisponivel) {
         this.codigoObra = codigoObra;
@@ -195,6 +197,19 @@ public class ObrasBEAN {
         this.nomeCategoria = nomeCategoria;
     }
    
-    
+    public ObrasBEAN(String titulo, String subtitulo,String nomeAutor, int edicao){
+        this.titulo = titulo;
+        this.subtitulo = subtitulo;
+        this.nomeAutor = nomeAutor;
+        this.edicao = edicao;
+    }
+
+    public String getNomeAutor() {
+        return nomeAutor;
+    }
+
+    public void setNomeAutor(String nomeAutor) {
+        this.nomeAutor = nomeAutor;
+    }
 
 }
