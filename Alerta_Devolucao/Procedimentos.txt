@@ -1,14 +1,15 @@
 O envio de e-mail diario roda em um squedule do windows, juntamente com um arquivo .php com as configuracoes
-
 A rotina é disparada 1x ao dia e verifica quais emprestimos irao vencer no proximo dia.
 
 
 Descompactar a pasta sendmail.zip dentro do c:
-C:\sendmail
+ficando com o seguinte caminho: C:\sendmail
 
-Dentro da pasta do php da maquina no arquivo "php.ini", insira o campo:
+Dentro da pasta do php da maquina no arquivo "php.ini" no xamp é no caminho "C:\xampp\php\php.ini", insira o campo:
 sendmail_path = "C:\sendmail\sendmail.exe -t"
 No meu computador foi na linha 1056, na sessao [mail function].
 
-Colocar o arquivo extrator.php na seguinte pasta
-C:\xampp\htdocs
+Colocar o arquivo extrator.php na seguinte pasta C:\xampp\htdocs
+
+
+Ir no agendador de tarefas e configurar a tarefa do arquivo Agendador.docx
