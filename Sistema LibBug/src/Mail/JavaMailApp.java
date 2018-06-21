@@ -24,6 +24,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
  
 public class JavaMailApp
 {
@@ -59,9 +60,11 @@ public class JavaMailApp
                   message.setSubject("Emprestimo realizado");//Assunto
                   message.setText("Emprestimo Feito Dia:" + emprestimo.getSaida() + "\n" + "***** Obra: "+obra.getTitulo()+", "+obra.getSubititulo() + "\n" + "***** Autor: "+ obra.getNomeAutor() + "\n" + "***** Edicao: "+ obra.getEdicao() + "\n" + "***** Data de Devolucao: "+emprestimo.getDevolucao() );
                   /**Método para enviar a mensagem criada*/
+                  JOptionPane.showMessageDialog(null,"Enviando email...");
                   Transport.send(message);
  
                   System.out.println("Feito!!!");
+                  JOptionPane.showMessageDialog(null,"Email enviado com sucesso!");
  
              } catch (MessagingException e) {
                   throw new RuntimeException(e);
