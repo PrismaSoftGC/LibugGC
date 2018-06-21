@@ -41,6 +41,7 @@ public class Obra extends javax.swing.JDialog {
         textCodigo.setEditable(false);
         tabelaObra.setVisible(false);
         tabelaAutores.setVisible(false);
+        textEstoqueDisponivel.setEnabled(true);
         comboEditora();
         comboCategoria();
         comboCidade();
@@ -731,6 +732,11 @@ public class Obra extends javax.swing.JDialog {
         labelEstoqueTotal.setText("Estoque Total*");
         jPanel3.add(labelEstoqueTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, -1, -1));
 
+        textEstoqueDisponivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textEstoqueDisponivelActionPerformed(evt);
+            }
+        });
         textEstoqueDisponivel.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 textEstoqueDisponivelKeyTyped(evt);
@@ -1227,6 +1233,10 @@ public class Obra extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_textBarras2KeyTyped
+
+    private void textEstoqueDisponivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEstoqueDisponivelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textEstoqueDisponivelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

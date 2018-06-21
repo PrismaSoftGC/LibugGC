@@ -433,6 +433,9 @@ public class Controle {
         return EmprestimoDAO.getInstance().findEmprestimoCodigo(id);
     }
     
+    public boolean haveAtraso(int id_usuario, Date data){
+        return EmprestimoDAO.getInstance().haveAtraso(id_usuario, data);
+    }
 
      //*****************************************************************
     // Abaixo estão os métodos controladores referentes a tabela aux_emprestimo_obra.

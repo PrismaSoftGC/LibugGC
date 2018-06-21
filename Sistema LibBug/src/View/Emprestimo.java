@@ -715,29 +715,33 @@ public class Emprestimo extends javax.swing.JDialog {
         } else {
 
             //SALVA O EMPRESTIMO
-
+            
             Date data2 = new Date();
             Date calend2 = calendario.getCalendar().getTime();
 
             if(calend2.before(data2)){
                 JOptionPane.showMessageDialog(null, "Não e possivel salvar emprestimo com data retroativa ou data atual");
-            }
-            else{
+            }else{
+                
+                String nomeCliente = (String) cbCliente.getSelectedItem();
+                ArrayList<ClientesBEAN> lista = controle.findClienteNome(nomeCliente);
 
-                try {
-                    EmprestimoBEAN emprestimo = new EmprestimoBEAN();
+                int codigoCliente = 0;
 
-                    String nomeCliente = (String) cbCliente.getSelectedItem();
-                    ArrayList<ClientesBEAN> lista = controle.findClienteNome(nomeCliente);
-
-                    int codigoCliente = 0;
-
-                    for (ClientesBEAN lis : lista) {
-                        if (lis.getNome().equals(nomeCliente)) {
-                            codigoCliente = lis.getCodigoCliente();
-                        }
+                for (ClientesBEAN lis : lista) {
+                    if (lis.getNome().equals(nomeCliente)) {
+                        codigoCliente = lis.getCodigoCliente();
                     }
-                    
+                }   
+                
+                if (controle.haveAtraso(codigoCliente, new java.sql.Date(data2.getTime()))) {
+                   JOptionPane.showMessageDialog(null, "Não e possível realizar empréstimo\n"
+                           + "pois o usuário possui empréstimos\n atrasados!", "Emprestimo atrasado"
+                   , JOptionPane.ERROR_MESSAGE); 
+                }else{
+                   try {
+                    EmprestimoBEAN emprestimo = new EmprestimoBEAN();
+    
                     emprestimo.setCodigoFuncionario(usuario.getCodigoUsuario());
 
                     emprestimo.setCodigoCliente(codigoCliente);
@@ -819,7 +823,8 @@ public class Emprestimo extends javax.swing.JDialog {
                     }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());
-                }
+                } 
+                }               
             }
         }
     }//GEN-LAST:event_botaoSalvarActionPerformed

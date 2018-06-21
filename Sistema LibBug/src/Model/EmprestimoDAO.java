@@ -95,4 +95,22 @@ public class EmprestimoDAO {
         return result;
     }
     
+    public boolean haveAtraso(int id_cliente, Date data){
+        Boolean result = false;
+        ResultSet rs = null;
+        rs = MySQLDAO.getResultSet("SELECT * FROM EMPRESTIMO WHERE codigoCliente= ?", id_cliente);
+        try {
+            if (rs.next()) {
+                if (rs.getDate("devolucao").before(data)) {
+                    return true;
+                }
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return result;
+    }
+    
 }
