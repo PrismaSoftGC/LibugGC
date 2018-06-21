@@ -130,7 +130,7 @@ public class Editora extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        abas.setBackground(new java.awt.Color(0, 0, 0));
+        abas.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setLayout(null);
 
